@@ -11,7 +11,7 @@ mongoose.connect(`mongodb+srv://${user}:${password}@${url}`, {useNewUrlParser: t
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Salve os Bichin' });
 });
 
 router.get('/testebd', function(req, res, next) {
