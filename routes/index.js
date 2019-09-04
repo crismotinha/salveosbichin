@@ -15,7 +15,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/testebd', function(req, res, next) {
-
   const kitty = new Cat({ name: 'Furia' });
   kitty.save().then(() => console.log('meow'));
   res.render('index', { title: 'FOI' });
