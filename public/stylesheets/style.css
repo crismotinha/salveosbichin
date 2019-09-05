@@ -8,22 +8,30 @@
 	font-weight: bold;
 }
 #home {
-	background-image: url('../imgs/windows\ xp.jpg');
+	background-image: url('../imgs/windows xp.jpg');
 }
 
 .home-img {
 	height: 100vh;
-	background-image: url('../imgs/windows\ xp.jpg');
+	background-image: url('../imgs/art-close-up-ecology-886521.jpg');
 	background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-position: center center;
-  background-size: cover;
+	background-attachment: scroll;
+	background-position: center center;
+	background-size: cover;
 }
 
 .frase-home {
-	text-align: center;
-	padding-top: 200px; /**/
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	font-size: 30px;
+	color: #5d564f;
+	text-shadow: 1px 1px 2px #ffffff;
+	text-align: right;
+	padding-top: 320px; /**/
+	padding-right: 100px;
+	padding-left: 400px;
 }
+
+
 
 #noticias {
 	height:100vh;
@@ -33,6 +41,7 @@
 	width: 100%;
 }
 
+
 #eventos {
 
 }
@@ -41,9 +50,33 @@
 	height: 50vh;
 }
 
+
+
 #depoimentos {
   height: 50vh;
 }
+
+section#reviews{
+	padding: 50px 0;
+    color: #5d564f;
+    background: #f7f7f7;
+}
+
+
+section#home-reviews h2{
+	font-size: 1.75rem;
+	text-transform: uppercase;
+	margin-bottom: 50px;
+}
+
+section#home-reviews p{
+	font-size: 13pt;
+}
+.stars{
+	color: #BB8B41;
+}
+
+
 
 #contatos {
 
