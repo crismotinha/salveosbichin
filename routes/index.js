@@ -20,5 +20,16 @@ router.get('/testebd', function(req, res, next) {
   res.render('index', { title: 'FOI' });
 });
 
+router.get('/noticias/agua-bom-investimento', function (req, res, next) {
+  res.render('noticias/noticia1', { title: 'Salve os Bichin | Com a escassez, a água pode se tornar um bom investimento'});
+});
+
+router.get('/noticias/agricultura-aliada', function (req, res, next) {
+  res.render('noticias/noticia2', { title: 'Salve os Bichin | A agricultura é aliada, não inimiga do clima'});
+});
+
+router.get('/noticias/sustentabilidade-o-que', function (req, res, next) {
+  res.render('noticias/noticia3', { title: 'Salve os Bichin | O que é essa tal sustentabilidade?'});
+});
 
 module.exports = router;

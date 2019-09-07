@@ -1,18 +1,25 @@
 * {
-	font-family: 'Roboto';
+	font-family: 'Open Sans';
+}
+
+@font-face {
+    font-family: 'Sifonn Pro';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Sifonn Pro'), url('./SIFONN_PRO.woff') format('woff');
 }
 
 #mainNav, footer {
 	background-color: #E8E7E3;
 }
 .nav-item {
-	font-family: 'Roboto';
+	font-family: 'Nunito';
 	font-weight: bold;
 	font-size: small;
 }
 
 #home {
-	background-image: url('../imgs/windows xp.jpg');
+	background-image: url('../imgs/art-close-up-ecology-886521.jpg');
 }
 
 .home-img {
@@ -25,7 +32,7 @@
 }
 
 .frase-home {
-	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+	font-family: 'Sifonn Pro';
 	font-size: 30px;
 	color: #5d564f;
 	text-shadow: 1px 1px 2px #ffffff;
@@ -42,7 +49,8 @@
 }
 
 .card-text {
-	font-size: 0.6em;
+	font-size: 1em;
+	text-align: justify;
 }
 
 .news-card-img {
@@ -85,8 +93,74 @@ section#home-reviews p{
 	color: #BB8B41;
 }
 
+.news-home {
+	height: 50vh;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: center center;
+	background-size: cover cover;
+}
 
+.news-home-title {
+	font-family: 'Sifonn Pro';
+	color: #fafafa;
+	font-size: 3em;
+	text-shadow: 1px 1px 2px #000;
+	text-align: left;
+}
 
-#contatos {
+.news-home-date {
+	font-family: 'Sifonn Pro';
+	color: #fafafa;
+	text-shadow: 1px 1px 2px #000;
+	text-align: left;
+	font-size: 1.3em;
+}
 
+.news-title {
+	font-family: 'Nunito';
+	margin-top: 60px;
+	color: #c08d59;
+}
+
+.news-home {
+	background-color: #2b8067;
+}
+
+#noticias-post p{
+	text-align: justify;
+	color: #331B14;
+}
+
+.news-p-column {
+	max-width: 50%;
+}
+
+.img-news-post {
+	width: 100%;
+
+}
+
+.conteudo-original {
+	margin-bottom: 30px;
+	font-size: .9em;
+}
+
+.noticias-header {
+	padding-top: 15%; /*descobrir outro jeito, ele quebra em telas maiores (fica dançando pra cima)*/
+}
+
+.date {
+	display: flex;
+	flex-direction: row;
+}
+
+.dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 100%;
+	background-color: #bfd8d1;
+	position:relative;
+	top: 6px;
+	margin-right: 7px;
 }
