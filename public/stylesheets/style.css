@@ -13,11 +13,18 @@
 	background-color: #E8E7E3;
 }
 
+.logo{
+    position: relative;
+	max-height: 45px;
+    size: contain;
+}
+
 .nav-item {
 	font-family: 'Nunito';
 	font-weight: bold;
 	font-size: small;
 }
+
 
 #home {
 	background-image: url('../imgs/art-close-up-ecology-886521.jpg');
@@ -35,6 +42,7 @@
 	background-attachment: scroll;
 	background-position: center center;
 	background-size: cover;
+	max-width: 100%;
 }
 
 .frase-home {
@@ -79,6 +87,20 @@
 .btn-leia-mais a:hover {
 	text-decoration: none;
 	color: #518f63;
+	padding-top: 40vh; 
+	padding-bottom: 10%;
+	padding-left: 40%;
+	
+	
+}
+
+h2 {
+	padding-bottom:  1%;
+}
+
+#noticias {
+	height: 100vh;
+	padding-top: 5%;
 }
 
 .card-text {
@@ -91,7 +113,9 @@
 	height: 23vh;
 }
 
-#eventos {}
+#eventos {
+	padding-top: 5%;
+}
 
 #patrocinadores {
 	height: 65vh;
@@ -122,8 +146,9 @@
 	align-content: center;
 	align-items: center;
 }
-#depoimentos {
+#depoimentos {  
 	height: 50vh;
+	padding-top: 5%;
 }
 
 section#reviews {
@@ -145,6 +170,69 @@ section#home-reviews p {
 .stars {
 	color: #BB8B41;
 }
+
+.align-center {
+    text-align: center;
+}
+.hash-list {
+    display: block;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.depo-text {
+	font-size: 0.8em;
+}
+
+@media (min-width: 768px){
+    .hash-list.cols-3 > li:nth-last-child(-n+3) {
+        border-bottom: none;
+    }
+}
+@media (min-width: 768px){
+    .hash-list.cols-3 > li {
+        width: 33.3333%;
+    }
+}
+.hash-list > li {
+    display: block;
+    float: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.pad-30, .pad-30-all > * {
+    padding: 30px;
+}
+img {
+    border: 0;
+}
+.mgb-20, .mgb-20-all > * {
+    margin-bottom: 20px;
+}
+.wpx-100, .wpx-100-after:after {
+    width: 100px;
+}
+.img-round, .img-rel-round {
+    border-radius: 50%;
+}
+.padb-30, .padb-30-all > * {
+    padding-bottom: 30px;
+}
+
+.mgb-40, .mgb-40-all > * {
+    margin-bottom: 40px;
+}
+.align-center {
+    text-align: center;
+}
+[class*="line-b"] {
+    position: relative;
+    padding-bottom: 20px;
+    border-color: #E6AF2A;
+}
+
+.checked {
+	color: orange;
+  }
 
 .news-home {
 	height: 50vh;
