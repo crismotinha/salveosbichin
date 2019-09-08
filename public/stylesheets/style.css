@@ -5,6 +5,13 @@
 #mainNav, footer {
 	background-color: #E8E7E3;
 }
+
+.logo{
+    position: relative;
+	max-height: 45px;
+    size: contain;
+}
+
 .nav-item {
 	font-family: 'Roboto';
 	font-weight: bold;
