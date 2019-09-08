@@ -326,3 +326,16 @@ section#home-reviews p {
 }
 
 /* Fim página notícias */
+
+/*Página adote uma especie*/
+
+.btn-adote {
+	color: #fff; 
+	background-color: #2b8067 !important;
+	border-color: #2b8067 !important;
+}
+.card-img-top {
+	margin: auto;
+}
+
+/*fim pagina adote uma especie*/

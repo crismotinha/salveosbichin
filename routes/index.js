@@ -32,4 +32,8 @@ router.get('/noticias/sustentabilidade-o-que', function (req, res, next) {
   res.render('noticias/noticia3', { title: 'Salve os Bichin | O que é essa tal sustentabilidade?'});
 });
 
+router.get('/adote-uma-especie', function (req, res, next) {
+  res.render('adote_especies/adote-uma-especie', { title: 'Salve os Bichin | Adote uma espécie!'});
+})
+
 module.exports = router;
