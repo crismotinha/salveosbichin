@@ -127,7 +127,8 @@ section#home-reviews p{
 	background-color: #2b8067;
 }
 
-#noticias-post p{
+
+.noticias-post p, .noticias-post h5{
 	text-align: justify;
 	color: #331B14;
 }
@@ -143,7 +144,7 @@ section#home-reviews p{
 
 .conteudo-original {
 	margin-bottom: 30px;
-	font-size: .9em;
+	font-size: .7em;
 }
 
 .noticias-header {
@@ -163,4 +164,16 @@ section#home-reviews p{
 	position:relative;
 	top: 6px;
 	margin-right: 7px;
+}
+
+.big-paragraph {
+	font-family: 'Nunito';
+	text-align: left;
+	font-size: 1.5em;
+	margin-top: 50px;
+	font-weight: 800;
+}
+
+.space {
+	height: 50px;
 }
