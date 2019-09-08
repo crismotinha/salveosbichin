@@ -18,6 +18,7 @@
 	font-size: small;
 }
 
+
 #home {
 }
 
@@ -28,6 +29,7 @@
 	background-attachment: scroll;
 	background-position: center center;
 	background-size: cover;
+	max-width: 100%;
 }
 
 .frase-home {
@@ -36,15 +38,20 @@
 	color: #5d564f;
 	text-shadow: 1px 1px 2px #ffffff;
 	text-align: right;
-	padding-top: 320px; /**/
-	padding-right: 100px;
-	padding-left: 400px;
+	padding-top: 40vh; 
+	padding-bottom: 10%;
+	padding-left: 40%;
+	
+	
 }
 
-
+h2 {
+	padding-bottom:  1%;
+}
 
 #noticias {
-	height:100vh;
+	height: 100vh;
+	padding-top: 5%;
 }
 
 .card-text {
@@ -57,40 +64,88 @@
 }
 
 
-#eventos {
-
+#eventos {	
+	padding-top: 5%;
 }
 
 #patrocinadores {
 	height: 50vh;
+	padding-top: 5%;
 }
-
 
 
 #depoimentos {
   height: 50vh;
+  padding-top: 5%;
+  
 }
 
-section#reviews{
-	padding: 50px 0;
-    color: #5d564f;
-    background: #f7f7f7;
+/* Depoimentos */
+
+.align-center {
+    text-align: center;
+}
+.hash-list {
+    display: block;
+    padding: 0;
+    margin: 0 auto;
 }
 
-
-section#home-reviews h2{
-	font-size: 1.75rem;
-	text-transform: uppercase;
-	margin-bottom: 50px;
+.depo-text {
+	font-size: 0.8em;
 }
 
-section#home-reviews p{
-	font-size: 13pt;
+@media (min-width: 768px){
+    .hash-list.cols-3 > li:nth-last-child(-n+3) {
+        border-bottom: none;
+    }
 }
-.stars{
-	color: #BB8B41;
+@media (min-width: 768px){
+    .hash-list.cols-3 > li {
+        width: 33.3333%;
+    }
+}
+.hash-list > li {
+    display: block;
+    float: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.pad-30, .pad-30-all > * {
+    padding: 30px;
+}
+img {
+    border: 0;
+}
+.mgb-20, .mgb-20-all > * {
+    margin-bottom: 20px;
+}
+.wpx-100, .wpx-100-after:after {
+    width: 100px;
+}
+.img-round, .img-rel-round {
+    border-radius: 50%;
+}
+.padb-30, .padb-30-all > * {
+    padding-bottom: 30px;
 }
 
+.mgb-40, .mgb-40-all > * {
+    margin-bottom: 40px;
+}
+.align-center {
+    text-align: center;
+}
+[class*="line-b"] {
+    position: relative;
+    padding-bottom: 20px;
+    border-color: #E6AF2A;
+}
+
+.checked {
+	color: orange;
+  }
+
+/* Fim Depoimentos */
 
 
 #contatos {
