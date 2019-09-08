@@ -94,9 +94,34 @@
 #eventos {}
 
 #patrocinadores {
-	height: 50vh;
+	height: 65vh;
 }
 
+#patrocinadores a {
+	height: 120px;
+	width: 10%;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+}
+
+#patrocinadores img{
+	align-self: center;
+	max-height: auto;
+	width:100%;
+}
+
+#patrocinadores a:hover {
+	background-color: #ECF0F1;
+}
+
+.logos {
+	min-height: auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-content: center;
+	align-items: center;
+}
 #depoimentos {
 	height: 50vh;
 }
