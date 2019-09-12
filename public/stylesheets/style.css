@@ -14,6 +14,11 @@
 	height: 50px;
 }
 
+.orange-title {
+	font-family: 'Nunito';
+	color: #c08d59;
+}
+
 /* Fim global */
 
 /* Header e Footer */
@@ -290,9 +295,7 @@ section#home-reviews p {
 }
 
 .news-title {
-	font-family: 'Nunito';
 	margin-top: 60px;
-	color: #c08d59;
 	margin-bottom: 10px;
 }
 
@@ -334,8 +337,27 @@ section#home-reviews p {
 	background-color: #2b8067 !important;
 	border-color: #2b8067 !important;
 }
+
+.btn-adote:hover {
+	background-color: #1A4D3D !important;
+}
+
 .card-img-top {
 	margin: auto;
 }
 
+.header-subtitle {
+	color: #fafafa;
+	font-family: 'Nunito';
+}
+
 /*fim pagina adote uma especie*/
+
+/* Início página show espécie */
+
+.show-especie-img {
+	width: 100%;
+	height: 100%;
+}
+
+/* Fim página show espécie */
