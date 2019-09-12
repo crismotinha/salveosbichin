@@ -19,41 +19,7 @@
 			</div>
 		</div>
 		<div class="space"></div>
-		<form>
-			<div class="form-group">
-				<label for="email-adote">Informe seu email:</label>
-				<input type="email" class="form-control" id="email-adote" aria-describedby="emailHelp"
-					placeholder="Insira seu email">
-				<small id="emailHelp" class="form-text text-muted">Nós iremos enviar as informações de pagamento por
-					email.</small>
-			</div>
-			<div class="form-group">
-				<label for="nome-adote">Seu nome:</label>
-				<input type="text" class="form-control" id="nome-adote" placeholder="Insira seu nome">
-			</div>
-			<div class="form-group">
-				<label for="endereco-adote">Endereço:</label>
-				<input type="text" class="form-control" id="endereco-adote" placeholder="Insira seu endereço">
-				<small id="emailHelp" class="form-text text-muted">Pedimos seu endereço apenas para o envio dos kits.</small>
-			</div>
-			<div class="custom-control custom-radio">
-				<input type="radio" id="val-1-adote" name="valorRadio" class="custom-control-input">
-				<label class="custom-control-label" for="val-1-adote">Quero contribuir com R$ 40,00</label>
-			</div>
-			<div class="custom-control custom-radio">
-				<input type="radio" id="val-2-adote" name="valorRadio" class="custom-control-input">
-				<label class="custom-control-label" for="val-2-adote">Quero contribuir com R$ 70,00</label>
-			</div>
-			<div class="custom-control custom-radio">
-				<input type="radio" id="val-3-adote" name="valorRadio" class="custom-control-input">
-				<label class="custom-control-label" for="val-3-adote">Quero contribuir com R$ 100,00</label>
-			</div>
-			<button type="submit" class="btn btn-primary">Enviar</button>
-		</form>
-		<div class="especie-back-button">
-			<a href="/adote-uma-especie">
-				<< Voltar </a> 
-		</div> 
+		{{>formAdote nomeEspecie="arara"}}
 	</div>
 </section>
 
