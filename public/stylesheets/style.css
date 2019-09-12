@@ -355,6 +355,9 @@ section#home-reviews p {
 
 /* Início página show espécie */
 
-
+.show-especie-img {
+	width: 100%;
+	height: 100%;
+}
 
 /* Fim página show espécie */
