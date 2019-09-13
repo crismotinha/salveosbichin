@@ -94,7 +94,7 @@ router.post('/afiliacao', function (req, res, next) {
       if (err) console.log(err);
     });
 
-  res.render('index' { title: 'Salve os Bichin'});
+  res.render('index', { title: 'Salve os Bichin'});
 }); //TODO: popup de sucesso
 
 
