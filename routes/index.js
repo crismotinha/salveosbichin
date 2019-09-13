@@ -70,7 +70,7 @@ router.post('/adotar', function (req, res, next) {
 
 
   newPerson.save(); // TODO: colocar pra salvar numa collection certinha, de pessoas (por enquanto salva em adoptedanimal)
-  res.render('adote_especies/adote-uma-especie'); // TODO: popup de adotado
+  res.render('adote_especies/adote-uma-especie', { title: 'Salve os Bichin | Adote uma espécie'}); // TODO: popup de adotado
 });
 
 // criar model afiliacao
@@ -94,7 +94,7 @@ router.post('/afiliacao', function (req, res, next) {
       if (err) console.log(err);
     });
 
-  res.render('index');
+  res.render('index' { title: 'Salve os Bichin'});
 }); //TODO: popup de sucesso
 
 
