@@ -51,25 +51,51 @@ const personModel = mongoose.model('AdoptedAnimal', new mongoose.Schema({ name: 
 
 router.post('/adotar', function (req, res, next) {
   const newPerson = personModel({
-    name: req.body.nomeadote, // TODO: entender pq não está pegando o nome
+    name: req.body.nomeadote,
     email: req.body.emailadote,
     nomeEspecie: req.body.nomeEspecie
   });
 
   transporter.sendMail(
-    {from: 'salveosbichin@gmail.com',
+    {
+      from: 'salveosbichin@gmail.com',
       to: req.body.emailadote,
-      subject: 'salveosbichin! | Obrigado por Adotar',
-      text: 'Obrigado, ' + req.body.nomeadote + '! Você Acabou de adotar um(a) ' + req.body.nomeEspecie + '.\n Salveosbichin agradece.'},
-    (err, resp)=>{
+      subject: 'salveosbichin | Obrigado por Adotar',
+      text: 'Obrigado, ' + req.body.nomeadote + '! Você Acabou de adotar o ' + req.body.nomeEspecie + '.\n Salveosbichin agradece.'
+    },
+    (err, resp) => {
       if (err) console.log(err);
     });
-  
 
 
-  newPerson.save(); // TODO: colocar pra salvar numa collection certinha, de pessoas (por enquanto salva em teste)
+
+  newPerson.save(); // TODO: colocar pra salvar numa collection certinha, de pessoas (por enquanto salva em adoptedanimal)
   res.render('adote_especies/adote-uma-especie'); // TODO: popup de adotado
-}); // TODO: nao deixar a pessoa adotar outra vez
+});
+
+// criar model afiliacao
+const afiliacaoModel = mongoose.model('Afiliacao', new mongoose.Schema({ email: String }));
+
+
+router.post('/afiliacao', function (req, res, next) {
+  const newAfiliacao = afiliacaoModel({
+    email: req.body.emailafiliacao
+  });
+  newAfiliacao.save();
+  transporter.sendMail(
+    {
+      from: 'salveosbichin@gmail.com',
+      to: req.body.emailafiliacao,
+      subject: 'salveosbichin | Obrigado por se inscrever!',
+      text: 'Bem vindo! Agora você receberá todas as novidades da nossa página e ficará por dentro de todas as novidades. '
+      // TODO: layout bonitinho do email
+    },
+    (err, resp) => {
+      if (err) console.log(err);
+    });
+
+  res.render('index');
+}); //TODO: popup de sucesso
 
 
 module.exports = router;
