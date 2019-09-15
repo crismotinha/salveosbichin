@@ -3,21 +3,32 @@ const mongoose = require('mongoose');
 const nodemailer = require('nodemailer');
 const router = express.Router();
 
+//variáveis de ambiente
 const user = process.env.DB_USER
 const password = process.env.DB_PASSWORD
 const url = process.env.DB_URL
+const email = process.env.EMAIL;
+const emailPass = process.env.EMAIL_PASSWORD;
+
+//mongoose
+mongoose.connect(`mongodb+srv://${user}:${password}@${url}`, { useNewUrlParser: true });
+const AdoptedSpecies = mongoose.model(('AdoptedSpecies'), new mongoose.Schema({
+  species: String,
+  whoAdopted: [String],
+  moneyRaised: Number
+}));
 const Cat = mongoose.model('Cat', { name: String });
+
+//nodemailer
 let transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 587,
   secure: false,
   auth: {
-    user: process.env.EMAIL,
-    pass: process.env.EMAIL_PASSWORD
+    user: email,
+    pass: emailPass
   }
 });
-
-mongoose.connect(`mongodb+srv://${user}:${password}@${url}`, { useNewUrlParser: true});
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -43,16 +54,22 @@ router.get('/noticias/sustentabilidade-o-que', function (req, res, next) {
 });
 
 router.get('/adote-uma-especie', function (req, res, next) {
-  res.render('adote_especies/adote-uma-especie', { title: 'Salve os Bichin | Adote uma espécie!' });
-})
 
-// criar model pessoa
-const personModel = mongoose.model('AdoptedAnimal', new mongoose.Schema({ name: String, email: String, nomeEspecie: String }));
-const AdoptedSpecies = mongoose.model(('AdoptedSpecies'), new mongoose.Schema({
-  species: String,
-  whoAdopted: [String],
-  moneyRaised: Number
-}));
+  const valores = AdoptedSpecies.find({}).lean().exec((err, doc)=>{
+   
+    res.render('adote_especies/adote-uma-especie', {
+      title: 'Salve os Bichin | Adote uma espécie!',
+      arrecadacaoArara: doc.filter(animal => { return animal.species == 'Arara'; })[0].moneyRaised,
+      arrecadacaoGato: doc.filter(animal => { return animal.species == 'Gato'; })[0].moneyRaised,
+      arrecadacaoMico: doc.filter(animal => { return animal.species == 'Mico'; })[0].moneyRaised,
+      arrecadacaoOnca: doc.filter(animal => { return animal.species == 'Onça'; })[0].moneyRaised,
+      arrecadacaoTartaruga: doc.filter(animal => { return animal.species == 'Tartaruga'; })[0].moneyRaised,
+      arrecadacaoLobo: doc.filter(animal => { return animal.species == 'Lobo'; })[0].moneyRaised
+
+    });
+  });
+  //res.render('adote_especies/adote-uma-especie', { title: 'Salve os Bichin | Adote uma espécie!', arrecadacaoArara: arrecadacaoArara});
+})
 
 router.post('/adotar', function (req, res, next) {
   let brinde;
