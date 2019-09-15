@@ -44,8 +44,11 @@ router.get('/noticias/sustentabilidade-o-que', function (req, res, next) {
 
 router.get('/adote-uma-especie', function (req, res, next) {
   res.render('adote_especies/adote-uma-especie', { title: 'Salve os Bichin | Adote uma espécie!' });
-})
+});
 
+router.get('/jogos-natureza', function(req, res, next) {
+  res.render('inovacoes/jogos-natureza', { title: 'Salve os Bichin | Jogos da natureza!'})
+});
 // criar model pessoa
 const personModel = mongoose.model('AdoptedAnimal', new mongoose.Schema({ name: String, email: String, nomeEspecie: String }));
 
