@@ -17,7 +17,7 @@ let transporter = nodemailer.createTransport({
   }
 });
 
-mongoose.connect(`mongodb+srv://${user}:${password}@${url}`, { useNewUrlParser: true, dbName: 'AdoptedAnimal' });
+mongoose.connect(`mongodb+srv://${user}:${password}@${url}`, { useNewUrlParser: true});
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -48,27 +48,33 @@ router.get('/adote-uma-especie', function (req, res, next) {
 
 // criar model pessoa
 const personModel = mongoose.model('AdoptedAnimal', new mongoose.Schema({ name: String, email: String, nomeEspecie: String }));
+const AdoptedSpecies = mongoose.model(('AdoptedSpecies'), new mongoose.Schema({
+  species: String,
+  whoAdopted: String,
+  moneyRaised: Number
+}));
 
 router.post('/adotar', function (req, res, next) {
-  const newPerson = personModel({
-    name: req.body.nomeadote, // TODO: entender pq não está pegando o nome
-    email: req.body.emailadote,
-    nomeEspecie: req.body.nomeEspecie
-  });
+  
+  console.log('O valor que está na variável é: ' + req.body.valorradio)
+  const AdoptedAnimal = new AdoptedSpecies({
+      species: req.body.nomeEspecie,
+      whoAdopted: req.body.emailadote,
+      moneyRaised: parseInt(req.body.valorradio)
+    });
 
   transporter.sendMail(
     {from: 'salveosbichin@gmail.com',
       to: req.body.emailadote,
-      subject: 'salveosbichin! | Obrigado por Adotar',
-      text: 'Obrigado, ' + req.body.nomeadote + '! Você Acabou de adotar um(a) ' + req.body.nomeEspecie + '.\n Salveosbichin agradece.'},
+      subject: 'salveosbichin! | Obrigado por Adotar uma espécie!',
+      text: 'Parabéns, ' + req.body.nomeadote + '! Você Acabou de adotar um(a) ' + req.body.nomeEspecie + '.\n \n Obrigado também pela contribuição de: R$ ' + req.body.enderecoadote},
     (err, resp)=>{
       if (err) console.log(err);
     });
   
-
-
-  newPerson.save(); // TODO: colocar pra salvar numa collection certinha, de pessoas (por enquanto salva em teste)
-  res.render('adote_especies/adote-uma-especie'); // TODO: popup de adotado
+    AdoptedAnimal.save();
+  //newPerson.save(); // TODO: colocar pra salvar numa collection certinha, de pessoas (por enquanto salva em teste)
+    res.render('adote_especies/adote-uma-especie'); // TODO: popup de adotado
 }); // TODO: nao deixar a pessoa adotar outra vez
 
 
