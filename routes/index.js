@@ -12,8 +12,8 @@ let transporter = nodemailer.createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: 'salveosbichin@gmail.com',
-    pass: 'gpms2019'
+    user: process.env.EMAIL,
+    pass: process.env.EMAIL_PASSWORD
   }
 });
 
@@ -50,30 +50,40 @@ router.get('/adote-uma-especie', function (req, res, next) {
 const personModel = mongoose.model('AdoptedAnimal', new mongoose.Schema({ name: String, email: String, nomeEspecie: String }));
 const AdoptedSpecies = mongoose.model(('AdoptedSpecies'), new mongoose.Schema({
   species: String,
-  whoAdopted: String,
+  whoAdopted: [String],
   moneyRaised: Number
 }));
 
 router.post('/adotar', function (req, res, next) {
-  
-  console.log('O valor que está na variável é: ' + req.body.valorradio)
-  const AdoptedAnimal = new AdoptedSpecies({
-      species: req.body.nomeEspecie,
-      whoAdopted: req.body.emailadote,
-      moneyRaised: parseInt(req.body.valorradio)
-    });
+  let brinde;
+  let valorDoacao = parseInt(req.body.valorradio);
+
+  AdoptedSpecies.findOneAndUpdate({species: req.body.nomeEspecie}, //procura a especie no bd para atualizar
+  { $push: {whoAdopted: req.body.emailadote}, //inclui o email na lista de emails
+    $inc: { moneyRaised: valorDoacao}}, //aumenta o valor arrecadado
+  {upsert: true}, //caso nao exista, cria a especie
+  (err, res)=>{
+    if(err) console.log(err);//erro, caso exista. Normalmente v em null
+    console.log(res); //resultado da query
+  });
+
+  if (valorDoacao == 40) {
+      brinde = 'Caderninho';
+  } else if (valorDoacao == 70){
+      brinde = 'Caderninho + Garrafinha';
+  } else {
+      brinde = 'Kit do Patrocinador'
+  }
 
   transporter.sendMail(
-    {from: 'salveosbichin@gmail.com',
+    {
+      from: process.env.EMAIL,
       to: req.body.emailadote,
       subject: 'salveosbichin! | Obrigado por Adotar uma espécie!',
-      text: 'Parabéns, ' + req.body.nomeadote + '! Você Acabou de adotar um(a) ' + req.body.nomeEspecie + '.\n \n Obrigado também pela contribuição de: R$ ' + req.body.enderecoadote},
+      text: 'Parabéns, ' + req.body.nomeadote + '! Você Acabou de adotar um(a) ' + req.body.nomeEspecie + '.\n \n Obrigado também pela contribuição de: R$ ' + req.body.valorradio + '\nVocê ganhará um ' + brinde},
     (err, resp)=>{
       if (err) console.log(err);
     });
-  
-    AdoptedAnimal.save();
-  //newPerson.save(); // TODO: colocar pra salvar numa collection certinha, de pessoas (por enquanto salva em teste)
     res.render('adote_especies/adote-uma-especie'); // TODO: popup de adotado
 }); // TODO: nao deixar a pessoa adotar outra vez
 
