@@ -56,7 +56,7 @@ router.get('/noticias/sustentabilidade-o-que', function (req, res, next) {
 router.get('/adote-uma-especie', function (req, res, next) {
 
   const valores = AdoptedSpecies.find({}).lean().exec((err, doc)=>{
-   
+    //só consegui tratar os valores dentro do find
     res.render('adote_especies/adote-uma-especie', {
       title: 'Salve os Bichin | Adote uma espécie!',
       arrecadacaoArara: doc.filter(animal => { return animal.species == 'Arara'; })[0].moneyRaised,
