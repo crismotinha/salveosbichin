@@ -39,13 +39,28 @@ router.post('/adotar', function (req, res, next) {
   adoteController.registraDoacao(req, res);  
 });
 
-// Eventos
-router.get('/eventos', function(req, res, next) {
-  eventosController.getEventos(res);
-});
+// criar model afiliacao
+const afiliacaoModel = mongoose.model('Afiliacao', new mongoose.Schema({ email: String }));
 
-router.post('/criarevento', function(req, res) {
-  eventosController.createEvento(req, res);
-})
+
+router.post('/afiliacao', function (req, res, next) {
+  const newAfiliacao = afiliacaoModel({
+    email: req.body.emailafiliacao
+  });
+  newAfiliacao.save();
+  transporter.sendMail(
+    {
+      from: process.env.EMAIL,
+      to: req.body.emailafiliacao,
+      subject: 'salveosbichin | Obrigado por se inscrever!',
+      text: 'Bem vindo! Agora você receberá todas as novidades da nossa página e ficará por dentro de todas as novidades. '
+      // TODO: layout bonitinho do email
+    },
+    (err, resp) => {
+      if (err) console.log(err);
+    });
+
+  res.render('index', { title: 'Salve os Bichin'}); //TODO: popup de sucesso
+}); 
 
 module.exports = router;
