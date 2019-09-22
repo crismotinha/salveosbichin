@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const router = express.Router();
 const adoteController = require('../controllers/adote.controller');
 const eventosController = require('../controllers/eventos.controller');
-const mailer = require('../services/mail.service');
+const inscritoController = require('../controllers/inscritos.controller');
 
 const Cat = mongoose.model('Cat', { name: String });
 
@@ -40,22 +40,26 @@ router.post('/adotar', function (req, res, next) {
   adoteController.registraDoacao(req, res);
 });
 
-// criar model afiliacao
-const afiliacaoModel = mongoose.model('Afiliacao', new mongoose.Schema
-  ({ email: String }));
-
-
-router.post('/afiliacao', function (req, res, next) {
-  const newAfiliacao = afiliacaoModel({
-    email: req.body.emailafiliacao
-  });
-  newAfiliacao.save().then(() => {
-    mailer.mailAfiliacao(req.body.emailafiliacao);
-  });
-  // res.render(); TODO: popup de inscrito
-  res.redirect('/');
+// Eventos
+router.get('/eventos', function (req, res, next) {
+  res.render('eventos/eventos', { title: 'Salve os Bichin | Eventos'})
 });
 
+router.get('/eventos-novo', function(req, res, next) {
+  res.render('eventos/eventos-new', { title: 'Salve os Bichin | Criar evento'})
+});
+
+
+// Inscrições (agenda de eventos e afiliação)
+router.post('/afiliacao', function (req, res, next) {
+  inscritoController.newAfiliacao(req, res);
+});
+
+router.post('/agenda-inscrito', function(req, res, next) {
+  inscritoController.newAgendaInscrito(req, res);
+});
+
+// Jogos da natureza
 router.get('/jogos-natureza', function (req, res, next) {
   res.render('inovacoes/jogos-natureza', { title: 'Salve os Bichin | Jogos da natureza!' })
 });

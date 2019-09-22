@@ -6,7 +6,6 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var adoteRouter = require('./routes/adote-especies');
-var eventosRouter = require('./routes/eventos');
 
 var app = express();
 var hbs = require('hbs');
@@ -25,7 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/adote', adoteRouter);
-app.use('/eventos', eventosRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
