@@ -1,23 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const nodemailer = require('nodemailer');
 const router = express.Router();
+const adoteController = require('../controllers/adote.controller')
 
-const user = process.env.DB_USER
-const password = process.env.DB_PASSWORD
-const url = process.env.DB_URL
 const Cat = mongoose.model('Cat', { name: String });
-let transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL,
-    pass: process.env.EMAIL_PASSWORD
-  }
-});
-
-mongoose.connect(`mongodb+srv://${user}:${password}@${url}`, { useNewUrlParser: true});
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -43,53 +29,16 @@ router.get('/noticias/sustentabilidade-o-que', function (req, res, next) {
 });
 
 router.get('/adote-uma-especie', function (req, res, next) {
-  res.render('adote_especies/adote-uma-especie', { title: 'Salve os Bichin | Adote uma espécie!' });
+  adoteController.valores(res);
 })
 
-// criar model pessoa
-const personModel = mongoose.model('AdoptedAnimal', new mongoose.Schema({ name: String, email: String, nomeEspecie: String }));
-const AdoptedSpecies = mongoose.model(('AdoptedSpecies'), new mongoose.Schema({
-  species: String,
-  whoAdopted: [String],
-  moneyRaised: Number
-}));
-
 router.post('/adotar', function (req, res, next) {
-  let brinde;
-  let valorDoacao = parseInt(req.body.valorradio);
-
-  AdoptedSpecies.findOneAndUpdate({species: req.body.nomeEspecie}, //procura a especie no bd para atualizar
-  { $push: {whoAdopted: req.body.emailadote}, //inclui o email na lista de emails
-    $inc: { moneyRaised: valorDoacao}}, //aumenta o valor arrecadado
-  {upsert: true}, //caso nao exista, cria a especie
-  (err, res)=>{
-    if(err) console.log(err);//erro, caso exista. Normalmente v em null
-    console.log(res); //resultado da query
-  });
-
-  if (valorDoacao == 40) {
-      brinde = 'Caderninho';
-  } else if (valorDoacao == 70){
-      brinde = 'Caderninho + Garrafinha';
-  } else {
-      brinde = 'Kit do Patrocinador'
-  }
-
-  transporter.sendMail(
-    {
-      from: process.env.EMAIL,
-      to: req.body.emailadote,
-      subject: 'salveosbichin | Obrigado por Adotar uma espécie!',
-      text: 'Parabéns, ' + req.body.nomeadote + '! Você Acabou de adotar um(a) ' + req.body.nomeEspecie + '.\n \n Obrigado também pela contribuição de: R$ ' + req.body.valorradio + '\nVocê ganhará um ' + brinde},
-    (err, resp)=>{
-      if (err) console.log(err);
-    });
-    res.render('adote_especies/adote-uma-especie', {title: 'Salve os Bichin | Adote uma espécie'}); // TODO: popup de adotado
+  adoteController.registraDoacao(req, res);  
 });
 
-
 // criar model afiliacao
-const afiliacaoModel = mongoose.model('Afiliacao', new mongoose.Schema({ email: String }));
+const afiliacaoModel = mongoose.model('Afiliacao', new mongoose.Schema
+({ email: String }));
 
 
 router.post('/afiliacao', function (req, res, next) {
@@ -108,7 +57,6 @@ router.post('/afiliacao', function (req, res, next) {
     (err, resp) => {
       if (err) console.log(err);
     });
-
   res.render('index', { title: 'Salve os Bichin'}); //TODO: popup de sucesso
 }); 
 
