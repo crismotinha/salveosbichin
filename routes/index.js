@@ -56,4 +56,8 @@ router.post('/afiliacao', function (req, res, next) {
   res.redirect('/');
 });
 
+router.get('/jogos-natureza', function (req, res, next) {
+  res.render('inovacoes/jogos-natureza', { title: 'Salve os Bichin | Jogos da natureza!' })
+});
+
 module.exports = router;
