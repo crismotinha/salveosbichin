@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
-const adoteController = require('../controllers/adote.controller')
+const adoteController = require('../controllers/adote.controller');
+const mailer = require('../services/mail.service');
 
 const Cat = mongoose.model('Cat', { name: String });
 
@@ -33,8 +34,23 @@ router.get('/adote-uma-especie', function (req, res, next) {
 })
 
 router.post('/adotar', function (req, res, next) {
-  adoteController.registraDoacao(req, res);  
+  adoteController.registraDoacao(req, res);
 });
 
+// criar model afiliacao
+const afiliacaoModel = mongoose.model('Afiliacao', new mongoose.Schema
+  ({ email: String }));
+
+
+router.post('/afiliacao', function (req, res, next) {
+  const newAfiliacao = afiliacaoModel({
+    email: req.body.emailafiliacao
+  });
+  newAfiliacao.save().then(() => {
+    mailer.mailAfiliacao(req.body.emailafiliacao);
+  });
+  // res.render(); TODO: popup de inscrito
+  res.redirect('/');
+});
 
 module.exports = router;

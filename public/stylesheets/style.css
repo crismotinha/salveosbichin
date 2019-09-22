@@ -10,6 +10,9 @@
 	src: local('Sifonn Pro'), url('./SIFONN_PRO.woff') format('woff');
 }
 
+body{
+	background-color: #fafafa;
+}
 .space {
 	height: 50px;
 }
@@ -22,7 +25,7 @@
 /* Fim global */
 
 /* Header e Footer */
-#mainNav, footer {
+#mainNav, #footer {
 	background-color: #E8E7E3;
 }
 
@@ -36,6 +39,10 @@
 	font-family: 'Nunito';
 	font-weight: bold;
 	font-size: small;
+}
+
+#afiliacao {
+	background-color: #fafafa;
 }
 /*Fim header e footer*/
 
