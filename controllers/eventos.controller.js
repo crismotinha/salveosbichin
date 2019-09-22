@@ -34,7 +34,7 @@ module.exports = {
         const eventosHome = Eventos.find({}).sort({'data': -1}).limit(3);
     },
 
-    createEvento: (req, callback)=> {
+    createEvento: (req, res)=> {
       const evento = new Eventos({ 
         nome: req.body.nomeevento,
         data: req.body.dataevento,
@@ -51,7 +51,7 @@ module.exports = {
       evento.save().then(() => 
       //  mailer.enviaMailEventos(evento, ));
       console.log('foi'));
-      res.redirect('eventos/eventos');
+      res.redirect('eventos');
     }
 
 }

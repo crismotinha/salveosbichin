@@ -47,8 +47,8 @@ router.get('/eventos', function(req, res, next) {
 router.get('/eventos-novo', function(req, res, next) {
   eventosController.newEvento(res);
 });
-router.post('/criarevento', function(req, res, next) {
-  eventosController.createEvento(req, res, next);
+router.post('/criarevento', function(req, res) {
+  eventosController.createEvento(req, res);
 })
 
 module.exports = router;
