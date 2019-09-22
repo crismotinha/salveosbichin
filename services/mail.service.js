@@ -28,17 +28,16 @@ module.exports = {
             });
     },
 
-    enviaMailEventos: (evento, afiliados, inscritos)=> {
-        const subject = 'salveosbichin | Um novo evento foi cadastrado!';
-        for(let i = 0; i<afiliados.length; i++) {
-            transporter.sendMail({
-                from: email,
-                to: afiliado[i].email,
-                subject: this.subject,
-                text: 'Informações do evento: ' + evento.nome + evento.local
-            },
-            (err, resp)=> { if (err) console.log(err);
-            });
-        }
+    mailAfiliacao: (receiver)=> {
+        transporter.sendMail({
+            from: email, // TODO: o from está só com o email, colocar o nome do salveosbichin
+            to: receiver,
+            subject: 'salveosbichin | Obrigada por se inscrever na nossa newsletter!',
+            text: 'Bem vindo! Agora você receberá todas as novidades da nossa página e ficará por dentro de todas as novidades. '
+            // TODO: layout bonitinho do email
+          },
+          (err, resp) => {
+            if (err) console.log(err);
+          });
     }
 }
