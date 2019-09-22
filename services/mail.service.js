@@ -26,5 +26,18 @@ module.exports = {
             (err, resp) => {
                 if (err) console.log(err);
             });
+    },
+
+    mailAfiliacao: (receiver)=> {
+        transporter.sendMail({
+            from: email, // TODO: o from está só com o email, colocar o nome do salveosbichin
+            to: receiver,
+            subject: 'salveosbichin | Obrigada por se inscrever na nossa newsletter!',
+            text: 'Bem vindo! Agora você receberá todas as novidades da nossa página e ficará por dentro de todas as novidades. '
+            // TODO: layout bonitinho do email
+          },
+          (err, resp) => {
+            if (err) console.log(err);
+          });
     }
 }
