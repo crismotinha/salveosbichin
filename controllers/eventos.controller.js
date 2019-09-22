@@ -26,10 +26,6 @@ module.exports = {
       res.render('eventos/eventos', { title: 'Salve os Bichin | Eventos'});
     },
 
-    newEvento: (res)=> {
-      res.render('eventos/eventos-new', { title: 'Salve os Bichin | Criar evento'})
-    },
-
     getEventosHomepage: (req, callback) => {
         const eventosHome = Eventos.find({}).sort({'data': -1}).limit(3);
     },

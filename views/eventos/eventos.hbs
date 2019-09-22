@@ -7,9 +7,30 @@
 </section>
 <div class="space"></div>
 <section id="eventos-agenda">
-    <div class="container">
-        Agenda goes here <br>
-        Form de inscrição na agenda goes here
-    </div>
-    <div class="space"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-9">
+				<p>Conhece algum evento que não está aqui?
+					Cadastre ele para que todo mundo colabore! <a href="/eventos/eventos-novo"><button class="btn btn-primary">novo evento</button></a> </p>
+			</div>
+			<div class="col-lg-3">
+				<div id="agenda-inscrever" class="agenda-inscrever">
+					<p>Quer saber de todos os nossos eventos?</p>
+					<p>Inscreva-se aqui e receba por email as novidades:</p>
+
+					<form method="post" action="/agenda-inscrito"> 
+						<div class="form-row">
+							<div class="col">
+								<input type="text" class="form-control" placeholder="Email">
+							</div>
+							<div class="col-auto">
+								<button type="submit" class="btn btn-primary mb-2">Enviar</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="space"></div>
 </section>
