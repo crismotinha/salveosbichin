@@ -55,5 +55,6 @@ module.exports = {
         mailer.mailAgendaInscrito(req.body.emailinscrito);
         // res.render(); TODO: popup de inscrito
         callback.render('index');
-    }
+    },
+    InscristosModel: inscritos
 }

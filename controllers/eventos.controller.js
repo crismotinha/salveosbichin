@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const mailer = require('../services/mail.service');
+const Inscritos = require('../controllers/inscritos.controller').InscristosModel;
 
 const user = process.env.DB_USER
 const password = process.env.DB_PASSWORD
 const url = process.env.DB_URL
-
 
 mongoose.connect(`mongodb+srv://${user}:${password}@${url}`, { useNewUrlParser: true });
 
@@ -44,9 +44,35 @@ module.exports = {
         observacao: req.body.obsevento
       });
 
-      evento.save().then(() => 
-      //  mailer.enviaMailEventos(evento, ));
-      console.log('foi'));
+      evento.save().then(() =>{
+        Inscritos.find({}, (err, docs)=>{
+          if (err) console.error(err);
+          
+          else
+          {
+            const to = [];
+
+            docs.forEach((currentValue)=>{
+              to.push(currentValue.email);
+            });
+
+            corpoEvento = 'Nome do Evento: ' + req.body.nomeevento + '\n'
+              + 'Data do Evento: ' + req.body.dataevento + '\n'
+              + 'Descricao do Evento: ' + req.body.descricaoevento + '\n'
+              + 'Responsável: ' + req.body.responsavelevento + '\n'
+              + 'E-mail de Contato: ' + req.body.emailevento + '\n'
+              + 'Local: ' + req.body.localevento + '\n'
+              + 'Cidade: ' + req.body.cidadeevento + '\n'
+              + 'Estado: ' + req.body.estadoevento + '\n'
+              + 'Link: ' + req.body.linkevento + '\n'
+              + 'Observação: ' + req.body.obsevento + '\n';
+
+          mailer.enviaEmail(to, req.body.nomeevento + ' | Salve os Bichin!', corpoEvento);
+          }
+        });
+      });
+
+      console.log('foi');
       res.redirect('/eventos');
     }
 
