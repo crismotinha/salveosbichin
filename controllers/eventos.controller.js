@@ -47,7 +47,7 @@ module.exports = {
       evento.save().then(() => 
       //  mailer.enviaMailEventos(evento, ));
       console.log('foi'));
-      res.redirect('eventos');
+      res.redirect('/eventos');
     }
 
 }

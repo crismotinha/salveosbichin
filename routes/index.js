@@ -45,11 +45,6 @@ router.get('/eventos', function (req, res, next) {
   res.render('eventos/eventos', { title: 'Salve os Bichin | Eventos'})
 });
 
-router.get('/eventos-novo', function(req, res, next) {
-  res.render('eventos/eventos-new', { title: 'Salve os Bichin | Criar evento'})
-});
-
-
 // Inscrições (agenda de eventos e afiliação)
 router.post('/afiliacao', function (req, res, next) {
   inscritoController.newAfiliacao(req, res);
