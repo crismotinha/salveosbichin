@@ -62,6 +62,6 @@ module.exports = {
     let text = 'Parabéns, ' + req.body.nomeadote + '! Você Acabou de adotar um(a) ' + req.body.nomeEspecie + '.\n \n Obrigado também pela contribuição de: R$ ' + req.body.valorradio + '\nVocê ganhará um ' + brinde;
 
     mailer.enviaEmail(receiver, subject, text);
-    callback.render('adote_especies/adote-uma-especie'); // TODO: popup de adotado
+    callback.redirect('/adote-uma-especie'); // TODO: popup de adotado
   }
 }
