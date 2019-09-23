@@ -53,7 +53,7 @@ module.exports = {
             const to = [];
 
             docs.forEach((currentValue)=>{
-              to.push(currentValue.email);
+              if (currentValue.agenda) to.push(currentValue.email);
             });
 
             corpoEvento = 'Nome do Evento: ' + req.body.nomeevento + '\n'
