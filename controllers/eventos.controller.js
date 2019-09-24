@@ -53,7 +53,7 @@ module.exports = {
             const to = [];
 
             docs.forEach((currentValue)=>{
-              if (currentValue.agenda) to.push(currentValue.email);
+              to.push(currentValue.email);
             });
 
             corpoEvento = 'Nome do Evento: ' + req.body.nomeevento + '\n'
@@ -74,6 +74,8 @@ module.exports = {
 
       console.log('foi');
       res.redirect('/eventos');
-    }
+    },
+
+    EventosModel: Eventos
 
 }

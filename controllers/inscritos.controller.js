@@ -15,43 +15,28 @@ const inscritos = mongoose.model('Inscrito', new mongoose.Schema
 
 module.exports = {
     newAfiliacao: (req, callback) => {
-        // FIXME: não está entrando nesse IF, entra no else mas reclama de chave duplicada
-        if (inscritos.findOne({ email: req.body.emailafiliacao }) == true) {
-            inscritos.findOneAndUpdate({ email: req.body.emailafiliacao }, { afiliado: true });
-            console.log('dei update afiliado')
-        }
-        else {
-            const newAfiliacao = inscritos({
-                email: req.body.emailafiliacao,
-                afiliado: true,
-                agenda: false
+     
+        //corrigido usando upsert
+        inscritos.findOneAndUpdate({ email: req.body.emailafiliacao },
+            { email: req.body.emailafiliacao, afiliado: true},
+            { upsert: true },
+            (err, doc)=>{
+                if (err) console.error(err);
+                console.log(doc); 
             });
-            newAfiliacao.save().then(() => {
-                console.log('new afiliacao');
-            });
-        }
         mailer.mailAfiliacao(req.body.emailafiliacao);
         // res.render(); TODO: popup de inscrito
         callback.render('index');
     },
 
     newAgendaInscrito: (req, callback) => {
-        // FIXME: não está entrando nesse if, entra no else mas reclama de chave duplicada
-        if (inscritos.find({ email: req.body.emailinscrito }) == true) {
-            inscritos.findOneAndUpdate({ email: req.body.emailinscrito },  { agenda: true });
-            console.log('dei update agenda');
-        }
-        else {
-            console.log('entrei no else e cagou tudo');
-            const newAgendaInscrito = inscritos({
-                email: req.body.emailinscrito,
-                afiliado: false,
-                agenda: true
+        inscritos.findOneAndUpdate({ email: req.body.emailinscrito },
+            { email: req.body.emailinscrito, agenda: true },
+            { upsert: true },
+            (err, doc) => {
+                if (err) console.error(err);
+                console.log(doc);
             });
-            newAgendaInscrito.save().then(() => {
-                console.log('inscrito agenda');
-            });
-        }
         mailer.mailAgendaInscrito(req.body.emailinscrito);
         // res.render(); TODO: popup de inscrito
         callback.render('index');
