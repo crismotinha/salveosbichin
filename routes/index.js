@@ -1,13 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
+const adoteController = require('../controllers/adote.controller');
+const mailer = require('../services/mail.service');
 
-const user = process.env.DB_USER
-const password = process.env.DB_PASSWORD
-const url = process.env.DB_URL
 const Cat = mongoose.model('Cat', { name: String });
-
-mongoose.connect(`mongodb+srv://${user}:${password}@${url}`, { useNewUrlParser: true });
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -33,21 +30,27 @@ router.get('/noticias/sustentabilidade-o-que', function (req, res, next) {
 });
 
 router.get('/adote-uma-especie', function (req, res, next) {
-  res.render('adote_especies/adote-uma-especie', { title: 'Salve os Bichin | Adote uma espécie!' });
+  adoteController.valores(res);
 })
 
-// criar model pessoa
-const personModel = mongoose.model('teste', { nome: String, email: String, nomeEspecie: String });
-
 router.post('/adotar', function (req, res, next) {
-  const newPerson = personModel({
-    name: req.body.nomeadote, // TODO: entender pq não está pegando o nome
-    email: req.body.emailadote,
-    nomeEspecie: req.body.nomeEspecie
-  });
-  newPerson.save(); // TODO: colocar pra salvar numa collection certinha, de pessoas (por enquanto salva em teste)
-  res.render('adote_especies/adote-uma-especie'); // TODO: popup de adotado
-}); // TODO: nao deixar a pessoa adotar outra vez
+  adoteController.registraDoacao(req, res);
+});
 
+// criar model afiliacao
+const afiliacaoModel = mongoose.model('Afiliacao', new mongoose.Schema
+  ({ email: String }));
+
+
+router.post('/afiliacao', function (req, res, next) {
+  const newAfiliacao = afiliacaoModel({
+    email: req.body.emailafiliacao
+  });
+  newAfiliacao.save().then(() => {
+    mailer.mailAfiliacao(req.body.emailafiliacao);
+  });
+  // res.render(); TODO: popup de inscrito
+  res.redirect('/');
+});
 
 module.exports = router;
