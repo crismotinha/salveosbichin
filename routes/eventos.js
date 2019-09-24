@@ -1,5 +1,6 @@
 const express = require('express');
-const eventos = require('../controllers/eventos.controller');
+const EventosController = require('../controllers/eventos.controller');
+const InscritosConstroller = require('../controllers/inscritos.controller');
 
 const router = express.Router();
 
@@ -8,7 +9,11 @@ router.get('/eventos-new', (req, res)=>{
 });
 
 router.post('/criarevento', (req, res)=>{
-    eventos.createEvento(req, res);
+    EventosController.createEvento(req, res);
+});
+
+router.post('/agenda-inscrito', function (req, res, next) {
+    InscritosConstroller.newAgendaInscrito(req, res);
 });
 
 module.exports = router;

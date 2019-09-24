@@ -26,10 +26,11 @@ module.exports = {
             });
         mailer.mailAfiliacao(req.body.emailafiliacao);
         // res.render(); TODO: popup de inscrito
-        callback.render('index');
+        callback.json({title: 'Obigado por se afiliar!', type: 'success'});
     },
 
     newAgendaInscrito: (req, callback) => {
+        console.log(req);
         inscritos.findOneAndUpdate({ email: req.body.emailinscrito },
             { email: req.body.emailinscrito, agenda: true },
             { upsert: true },
@@ -39,7 +40,7 @@ module.exports = {
             });
         mailer.mailAgendaInscrito(req.body.emailinscrito);
         // res.render(); TODO: popup de inscrito
-        callback.render('index');
+        callback.json({ title: 'Obrigado por se iscrever na nossa agenda!', type: 'success' });
     },
     InscristosModel: inscritos
 }

@@ -3,31 +3,13 @@ const mongoose = require('mongoose');
 const adoteController = require('../controllers/adote.controller');
 const eventosController = require('../controllers/eventos.controller');
 const inscritoController = require('../controllers/inscritos.controller');
-const Eventos = require('../controllers/eventos.controller').EventosModel;
 
 const Cat = mongoose.model('Cat', { name: String });
 const router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  Eventos.find({}).limit(3).lean().exec((err, docs) => {
-    if (err) console.error(err);
-    console.log(docs);
-
-    let eventos = [];
-
-    docs.forEach((current) => {
-      let dataParaString = current.data.toLocaleDateString('en-GB'/*, {day: '2-digit', month: '2-digit', year: 'numeric'}*/);
-      console.log(dataParaString);
-      
-      eventos.push({nome: current.nome,
-        data: dataParaString,
-        descricao: current.descricao});
-    });
-    res.render('index', { title: 'Salve os Bichin', eventos: eventos });
-    //res.render('eventos/eventos', { title: 'Salve os Bichin | Eventos', eventos: eventos });
-  });
-  //res.render('index', { title: 'Salve os Bichin' });
+ eventosController.carregaEventosHomePage(res);
 });
 
 router.get('/testebd', function (req, res, next) {
@@ -66,10 +48,6 @@ router.get('/eventos', function (req, res, next) {
 // Inscrições (agenda de eventos e afiliação)
 router.post('/afiliacao', function (req, res, next) {
   inscritoController.newAfiliacao(req, res);
-});
-
-router.post('/agenda-inscrito', function(req, res, next) {
-  inscritoController.newAgendaInscrito(req, res);
 });
 
 // Jogos da natureza

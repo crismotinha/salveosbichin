@@ -10,6 +10,8 @@ var eventosRouter = require('./routes/eventos');
 
 var app = express();
 var hbs = require('hbs');
+const Swal = require('sweetalert2');
+const $ = require('jquery');
 
 
 hbs.registerPartials(path.join(__dirname + '/views/partials'));
