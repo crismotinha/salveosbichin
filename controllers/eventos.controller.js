@@ -50,7 +50,7 @@ module.exports = {
           
           else
           {
-            const to = [];
+            let to = [];
 
             docs.forEach((currentValue)=>{
               to.push(currentValue.email);

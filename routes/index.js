@@ -10,7 +10,24 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Salve os Bichin' });
+  Eventos.find({}).limit(3).lean().exec((err, docs) => {
+    if (err) console.error(err);
+    console.log(docs);
+
+    let eventos = [];
+
+    docs.forEach((current) => {
+      let dataParaString = current.data.toLocaleDateString('en-GB'/*, {day: '2-digit', month: '2-digit', year: 'numeric'}*/);
+      console.log(dataParaString);
+      
+      eventos.push({nome: current.nome,
+        data: dataParaString,
+        descricao: current.descricao});
+    });
+    res.render('index', { title: 'Salve os Bichin', eventos: eventos });
+    //res.render('eventos/eventos', { title: 'Salve os Bichin | Eventos', eventos: eventos });
+  });
+  //res.render('index', { title: 'Salve os Bichin' });
 });
 
 router.get('/testebd', function (req, res, next) {
@@ -43,13 +60,7 @@ router.post('/adotar', function (req, res, next) {
 
 // Eventos
 router.get('/eventos', function (req, res, next) {
-  Eventos.find({}).limit(3).lean().exec((err, docs)=>{
-    if(err) console.error(err);
-    console.log(docs);
-    res.render('eventos/eventos', { title: 'Salve os Bichin | Eventos', eventos: docs});
-  });
-
-  //res.render('eventos/eventos', { title: 'Salve os Bichin | Eventos'})
+  res.render('eventos/eventos', { title: 'Salve os Bichin | Eventos'})
 });
 
 // Inscrições (agenda de eventos e afiliação)
