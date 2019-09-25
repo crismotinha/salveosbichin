@@ -24,7 +24,6 @@
 <script>
   $('#formafiliacao').on('submit', (e) => {
     e.preventDefault();
-    console.log(e);
     $.ajax({
       url: '/afiliacao',
       method: 'post',
