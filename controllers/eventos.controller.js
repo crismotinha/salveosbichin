@@ -50,10 +50,10 @@ module.exports = {
           
           else
           {
-            const to = [];
+            let to = [];
 
             docs.forEach((currentValue)=>{
-              if (currentValue.agenda) to.push(currentValue.email);
+              to.push(currentValue.email);
             });
 
             corpoEvento = 'Nome do Evento: ' + req.body.nomeevento + '\n'
@@ -74,6 +74,34 @@ module.exports = {
 
       console.log('foi');
       res.redirect('/eventos');
+    },
+
+    EventosModel: Eventos,
+
+    carregaEventosHomePage: (callback) => {
+      Eventos.find({}).limit(3).lean().exec((err, docs) => {
+        let eventos = [];
+        //
+        if (err || (docs === null)) {
+          console.error(err);
+          for (let i = 0 ; i < 3 ; i++){
+            eventos.push({ nome: 'Nehum Evento Encontrado', data: 'XX/XX/XXXX', descricao: 'Sem descrição' });
+          }
+          //console.log(docs);
+        }
+        else {
+          docs.forEach((current) => {
+            let dataParaString = current.data.toLocaleDateString('en-GB'/*, {day: '2-digit', month: '2-digit', year: 'numeric'}*/);
+            
+            eventos.push({
+              nome: current.nome,
+              data: dataParaString,
+              descricao: current.descricao
+            });
+          });
+        }
+        callback.render('index', { title: 'Salve os Bichin', eventos: eventos });
+      });
     }
 
 }

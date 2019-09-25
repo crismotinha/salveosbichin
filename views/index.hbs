@@ -17,7 +17,7 @@
 		<h2 class="home-title">Notícias</h2>
 		<div class="row">
 			<div class="col-sm-4">
-				<div class="card">
+				<div class="card card-noticias">
 					<img src="../imgs/atlantic-ocean-blue-ocean-blue-water-2860703.jpg" class="card-img-top news-card-img"
 						alt="...">
 					<div class="card-body">
@@ -32,7 +32,7 @@
 				</div>
 			</div>
 			<div class="col-sm-4">
-				<div class="card">
+				<div class="card card-noticias">
 					<img src="../imgs/agriculture-countryside-crop-2332736.jpg" class="card-img-top news-card-img" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">A agricultura é aliada, não inimiga do clima</h5>
@@ -45,7 +45,7 @@
 				</div>
 			</div>
 			<div class="col-sm-4">
-				<div class="card">
+				<div class="card card-noticias">
 					<iframe class="news-card-img" src="https://www.youtube.com/embed/tBr6GvbeJvo" frameborder="0"
 						allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 					<div class="card-body">
@@ -65,8 +65,26 @@
 	<!-- Eventos -->
 	<section id="eventos">
 		<h2 class="home-title">Eventos</h2>
-		<div class="alert alert-danger" role="alert">
-			{{#list eventosHome}}{{nome}} {{data}} {{linkEvento}}{{/list}}
+		<!--div class="alert alert-danger card-group" role="alert">
+			{{#each eventos}}
+			<div class="col-sm">
+				<div class="card card-eventos">
+					<h5 class="card-title">{{nome}}</h5>
+					<h6 class="card-subtitle mb-2 text-muted">{{data}}</h6>
+					<p class="card-text">{{descricao}}</p>
+				</div>
+			</div>
+			{{/each}}
+		</div-->
+
+		<div class="alert alert-danger card-group">
+			{{#each eventos}}
+				<div class="card card-eventos">
+					<h5 class="card-title">{{nome}}</h5>
+					<h6 class="card-subtitle mb-2 text-muted">{{data}}</h6>
+					<p class="card-text">{{descricao}}</p>
+				</div>
+			{{/each}}
 		</div>
 	</section>
 	<br><br>

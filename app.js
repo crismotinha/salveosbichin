@@ -10,6 +10,8 @@ var eventosRouter = require('./routes/eventos');
 
 var app = express();
 var hbs = require('hbs');
+const Swal = require('sweetalert2');
+const $ = require('jquery');
 
 
 hbs.registerPartials(path.join(__dirname + '/views/partials'));
@@ -44,12 +46,12 @@ app.use(function(err, req, res, next) {
 });
 
 // helpers para eventos
-hbs.registerHelper('list', function(items, options) {
+/*hbs.registerHelper('list', function(items, options) {
   var out = "<ul>";
   for(var i=0, l=items.length; i<l; i++) {
     out = out + "<li>" + options.fn(items[i]) + "</li>";
   }
   return out + "</ul>";
-});
+});*/
 
 module.exports = app;

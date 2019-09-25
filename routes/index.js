@@ -1,15 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const router = express.Router();
 const adoteController = require('../controllers/adote.controller');
 const eventosController = require('../controllers/eventos.controller');
 const inscritoController = require('../controllers/inscritos.controller');
 
 const Cat = mongoose.model('Cat', { name: String });
+const router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Salve os Bichin' });
+ eventosController.carregaEventosHomePage(res);
 });
 
 router.get('/testebd', function (req, res, next) {
@@ -48,10 +48,6 @@ router.get('/eventos', function (req, res, next) {
 // Inscrições (agenda de eventos e afiliação)
 router.post('/afiliacao', function (req, res, next) {
   inscritoController.newAfiliacao(req, res);
-});
-
-router.post('/agenda-inscrito', function(req, res, next) {
-  inscritoController.newAgendaInscrito(req, res);
 });
 
 // Jogos da natureza

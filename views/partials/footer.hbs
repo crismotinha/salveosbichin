@@ -11,8 +11,8 @@
         <p>receba nossa newsletter e fique por dentro dos eventos e novidades da página!</p>
       </div>
       <div class="col-sm-4">
-        <form action="/afiliacao" method="post" class="form-inline">
-          <input type="email" class="form-control mx-sm-3 mb-2" id="email-adote" name="emailafiliacao" aria-describedby="emailHelp"
+        <form id="formafiliacao" action="#" method="post">
+          <input type="email" class="form-control" id="email-adote" name="emailafiliacao" aria-describedby="emailHelp"
             placeholder="Insira seu email">
 
           <button type="submit" class="btn btn-success btn-adote mb-2">Enviar</button>
@@ -23,6 +23,20 @@
   </div>
 </section>
 
+<script>
+  $('#formafiliacao').on('submit', (e) => {
+    e.preventDefault();
+    console.log(e);
+    $.ajax({
+      url: '/afiliacao',
+      method: 'post',
+      data: $('#formafiliacao').serialize()
+    }).done(d => {
+      Swal.fire(d);
+      $('#email-adote').val('');
+    });
+  })
+</script>
 <!-- Footer -->
 <footer id="footer" class="page-footer font-small pt-4">
   <div class="container text-center text-md-left">
