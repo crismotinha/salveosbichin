@@ -368,3 +368,14 @@ section#home-reviews p {
 }
 
 /* Fim página show espécie */
+
+/* Início página Jogos da natureza */
+
+#jogos iframe {
+	width: 50%;
+	height: 300px;
+	margin: 0 auto;
+	display: block;
+}
+
+/* Fim página jogos da natureza */

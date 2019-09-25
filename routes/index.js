@@ -2,7 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 const adoteController = require('../controllers/adote.controller');
-const mailer = require('../services/mail.service');
+const eventosController = require('../controllers/eventos.controller');
+const inscritoController = require('../controllers/inscritos.controller');
 
 const Cat = mongoose.model('Cat', { name: String });
 
@@ -17,6 +18,7 @@ router.get('/testebd', function (req, res, next) {
   res.render('index', { title: 'FOI' });
 });
 
+// Noticias pages
 router.get('/noticias/agua-bom-investimento', function (req, res, next) {
   res.render('noticias/noticia1', { title: 'Salve os Bichin | Com a escassez, a água pode se tornar um bom investimento' });
 });
@@ -33,24 +35,28 @@ router.get('/adote-uma-especie', function (req, res, next) {
   adoteController.valores(res);
 })
 
+// Adotar
 router.post('/adotar', function (req, res, next) {
   adoteController.registraDoacao(req, res);
 });
 
-// criar model afiliacao
-const afiliacaoModel = mongoose.model('Afiliacao', new mongoose.Schema
-  ({ email: String }));
+// Eventos
+router.get('/eventos', function (req, res, next) {
+  res.render('eventos/eventos', { title: 'Salve os Bichin | Eventos'})
+});
 
-
+// Inscrições (agenda de eventos e afiliação)
 router.post('/afiliacao', function (req, res, next) {
-  const newAfiliacao = afiliacaoModel({
-    email: req.body.emailafiliacao
-  });
-  newAfiliacao.save().then(() => {
-    mailer.mailAfiliacao(req.body.emailafiliacao);
-  });
-  // res.render(); TODO: popup de inscrito
-  res.redirect('/');
+  inscritoController.newAfiliacao(req, res);
+});
+
+router.post('/agenda-inscrito', function(req, res, next) {
+  inscritoController.newAgendaInscrito(req, res);
+});
+
+// Jogos da natureza
+router.get('/jogos-natureza', function (req, res, next) {
+  res.render('inovacoes/jogos-natureza', { title: 'Salve os Bichin | Jogos da natureza!' })
 });
 
 module.exports = router;

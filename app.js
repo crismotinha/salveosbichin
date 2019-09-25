@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var adoteRouter = require('./routes/adote-especies');
+var eventosRouter = require('./routes/eventos');
 
 var app = express();
 var hbs = require('hbs');
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/adote', adoteRouter);
+app.use('/eventos', eventosRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -39,6 +41,15 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+// helpers para eventos
+hbs.registerHelper('list', function(items, options) {
+  var out = "<ul>";
+  for(var i=0, l=items.length; i<l; i++) {
+    out = out + "<li>" + options.fn(items[i]) + "</li>";
+  }
+  return out + "</ul>";
 });
 
 module.exports = app;
