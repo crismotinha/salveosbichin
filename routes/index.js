@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const adoteController = require('../controllers/adote.controller');
 const eventosController = require('../controllers/eventos.controller');
 const inscritoController = require('../controllers/inscritos.controller');
+const jogoController = require('../controllers/jogo.controller');
 
 const Cat = mongoose.model('Cat', { name: String });
 const router = express.Router();
@@ -52,7 +53,8 @@ router.post('/afiliacao', function (req, res, next) {
 
 // Jogos da natureza
 router.get('/jogos-natureza', function (req, res, next) {
-  res.render('inovacoes/jogos-natureza', { title: 'Salve os Bichin | Jogos da natureza!' })
+  jogoController.numeroPessoasJogando(res);
+  //res.render('inovacoes/jogos-natureza', { title: 'Salve os Bichin | Jogos da natureza!' })
 });
 
 module.exports = router;
