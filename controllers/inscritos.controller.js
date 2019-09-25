@@ -27,8 +27,13 @@ module.exports = {
       { email: req.body.emailafiliacao, afiliado: true },
       { upsert: true },
       (err, doc) => {
-        if (err) console.error(err);
-        else if (doc.afiliado) {
+        if (err) {
+          console.error(err);
+          callback.json({
+            title: "Ocorreu um erro ao processar sua solicitação",
+            type: "error"
+          });
+        } else if (doc.afiliado) {
           callback.json({
             title: "Você já é um afiliado!",
             text:
