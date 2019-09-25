@@ -60,7 +60,7 @@ module.exports = {
       { upsert: true }, //caso nao exista, cria a especie
       (err, res) => {
         if (err) console.log(err); //erro, caso exista. Normalmente v em null
-        console.log(res); //resultado da query
+        //console.log(res); //resultado da query
       }
     );
 

@@ -33,16 +33,27 @@ module.exports = {
             title: "Ocorreu um erro ao processar sua solicitação",
             type: "error"
           });
-        } else if (doc.afiliado) {
-          callback.json({
-            title: "Você já é um afiliado!",
-            text:
-              "Inscreva-se na nossa agenda de eventos e saiba de tudo que acontece!",
-            type: "info"
-          });
+        } else if (doc != null) {
+          if (doc.afiliado) {
+            callback.json({
+              title: "Você já é um afiliado!",
+              text:
+                "Inscreva-se também na nossa agenda de eventos e saiba de tudo que acontece!",
+              type: "info"
+            });
+          } else {
+            mailer.mailAfiliacao(req.body.emailafiliacao);
+            callback.json({
+              title: "Obrigado por se afiliar!",
+              type: "success"
+            });
+          }
         } else {
           mailer.mailAfiliacao(req.body.emailafiliacao);
-          callback.json({ title: "Obigado por se afiliar!", type: "success" });
+          callback.json({
+            title: "Obrigado por se afiliar!",
+            type: "success"
+          });
         }
       }
     );
@@ -50,7 +61,7 @@ module.exports = {
   },
 
   newAgendaInscrito: (req, callback) => {
-    console.log(req);
+    //console.log(req);
     inscritos.findOneAndUpdate(
       { email: req.body.emailinscrito },
       { email: req.body.emailinscrito, agenda: true },
@@ -62,12 +73,20 @@ module.exports = {
             title: "Ocorreu um erro ao processar sua solicitação",
             type: "error"
           });
-        } else if (doc.agenda) {
-          callback.json({
-            title: "Você já faz parte da nossa agenda!",
-            text: "Afilie-se e fique por dentro da nossa newsletter!",
-            type: "info"
-          });
+        } else if (doc != null) {
+          if (doc.agenda) {
+            callback.json({
+              title: "Você já faz parte da nossa agenda!",
+              text: "Afilie-se também e fique por dentro da nossa newsletter!",
+              type: "info"
+            });
+          } else {
+            mailer.mailAgendaInscrito(req.body.emailinscrito);
+            callback.json({
+              title: "Obrigado por se iscrever na nossa agenda!",
+              type: "success"
+            });
+          }
         } else {
           mailer.mailAgendaInscrito(req.body.emailinscrito);
           callback.json({
