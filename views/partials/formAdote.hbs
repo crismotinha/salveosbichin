@@ -1,4 +1,4 @@
-<form method="post" action="/adotar">
+<form id="form-adote" method="post" action="#">
 	<div class="form-group">
 		<label for="nome-adote">Seu nome:</label>
 		<input type="text" class="form-control" id="nome-adote" name="nomeadote" placeholder="Insira seu nome">
@@ -36,4 +36,18 @@
 </form>
 <div class="especie-back-button">
 	<a href="/adote-uma-especie">
-		<< Voltar </a> </div>
+		<< Voltar </a> </div> <script>
+			$('#form-adote').on('submit', e => {
+				e.preventDefault()
+
+				$.ajax({
+					url: '/adotar',
+					method: 'post',
+					data: $('#form-adote').serialize()
+				}).done(d => {
+					Swal.fire(d).then(result => {
+						if (result.value) window.location = '/adote-uma-especie';
+					});
+				})
+			})
+		</script>
