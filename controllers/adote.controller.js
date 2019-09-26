@@ -79,10 +79,14 @@ module.exports = {
       req.body.nomeadote +
       "! Você Acabou de adotar a espécie: " +
       req.body.nomeEspecie +
-      ".\n \n Obrigado também pela contribuição de: R$ " +
+      ".\n \n Obrigada também pela contribuição de: R$ " +
       req.body.valorradio +
       "\nVocê ganhará um " +
-      brinde;
+      brinde + ", que enviaremos assim que o pagamento for confirmado. \n Para realizar o pagamento, realize uma transferência bancária com os seguintes dados:" +
+      "\n CONTA: 9867-1 \n AGÊNCIA: 0001 \N BANCO: Banco do Brasil. \n" +
+      "Razão Social: Salve os Bichin \n" +
+      "CNPJ: 50.668.081/0001-70" + 
+      "Obrigada e até a próxima! :) ";
 
     mailer.enviaEmail(receiver, subject, text);
     callback.json({
