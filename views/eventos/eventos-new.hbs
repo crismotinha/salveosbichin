@@ -8,46 +8,47 @@
 <div class="space"></div>
 <section id="eventos-new">
     <div class="container">
-        <form method="post" action="criarevento">
+        <form id="form-eventos" method="post" action="criarevento">
             <div class="form-group">
                 <label for="nome-evento">Nome do evento:</label>
-                <input type="text" class="form-control" id="nome-evento" name="nomeevento" placeholder="Insira o nome">
+                <input type="text" class="form-control" id="nome-evento" name="nomeevento" placeholder="Insira o nome"
+                    required>
             </div>
             <div class="form-group">
                 {{!-- TODO COLOCAR HORARIO --}}
                 <label for="data-evento">Data do evento:</label>
-                <input type="date" class="form-control" id="data-evento" name="dataevento"
-                    placeholder="Insira a data">
+                <input type="date" class="form-control" id="data-evento" name="dataevento" placeholder="Insira a data"
+                    required>
             </div>
             <div class="form-group">
                 <label for="descricao-evento">Descrição do evento:</label>
                 <input type="textarea" class="form-control" id="descricao-evento" placeholder="Descreva o evento"
-                    name="descricaoevento">
+                    name="descricaoevento" required>
             </div>
             <div class="form-group">
                 <label for="responsavel-evento">Responsável do evento:</label>
                 <input type="text" class="form-control" id="responsavel-evento" placeholder="Quem está organizando?"
-                    name="responsavelevento">
+                    name="responsavelevento" required>
             </div>
             <div class="form-group">
                 <label for="emailresponsavel-evento">Email do responsável (Contato):</label>
                 <input type="email" class="form-control" id="email-evento" name="emailevento"
-                    placeholder="Insira o email para contato">
+                    placeholder="Insira o email para contato" required>
             </div>
             <div class="form-group">
                 <label for="local-evento">Local:</label>
-                <input type="text" class="form-control" id="local-evento" name="localevento"
-                    placeholder="Onde vai ser?">
+                <input type="text" class="form-control" id="local-evento" name="localevento" placeholder="Onde vai ser?"
+                    required>
             </div>
             <div class="form-group">
                 <label for="cidade-evento">Cidade:</label>
                 <input type="text" class="form-control" id="cidade-evento" name="cidadeevento"
-                    placeholder="Em que cidade?">
+                    placeholder="Em que cidade?" required>
             </div>
             <div class="form-group">
                 <label for="estado-evento">Estado:</label>
                 <input type="text" class="form-control" id="estado-evento" name="estadoevento"
-                    placeholder="Em qual estado?">
+                    placeholder="Em qual estado?" required>
             </div>
             <div class="form-group">
                 <label for="link-evento">Link do evento (se houver):</label>
@@ -55,7 +56,7 @@
                     placeholder="Tem mais informações?">
             </div>
             <div class="form-group">
-                <label for="obs-evento">Observações:</label>
+                <label for="obs-evento">Observações (Opicional):</label>
                 <input type="text" class="form-control" id="obs-evento" name="obsevento"
                     placeholder="Insira aqui se há alguma restrição ou algo que necessite de atenção.">
             </div>
@@ -63,8 +64,21 @@
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
         <div class="especie-back-button">
-            <a href="/eventos"><< Voltar </a> 
-        </div> 
-    </section> 
-</div> 
-<div class="space"></div>
+            <a href="/eventos">
+                << Voltar </a> </div> </section> </div> <div class="space">
+        </div>
+        <script>
+            $('#form-eventos').on('submit', e => {
+                e.preventDefault();
+                $.ajax({
+                    url: 'criarevento',
+                    method: 'post',
+                    data: $('#form-eventos').serialize()
+                }).done(d => {
+                    //console.log(d);
+                    Swal.fire(d).then(result => {
+                        if (result.value) window.location = '/eventos';
+                    })
+                })
+            })
+        </script>
