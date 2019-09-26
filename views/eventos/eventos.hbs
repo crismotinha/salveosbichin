@@ -11,22 +11,43 @@
 		<div class="row">
 			<div class="col-lg-9">
 				<p>Conhece algum evento que não está aqui?
-					Cadastre ele para que todo mundo colabore! <a href="/eventos/eventos-new"><button class="btn btn-primary">novo evento</button></a> </p>
-			<div id="eventos">
-				
+					Cadastre ele para que todo mundo colabore! <a href="/eventos/eventos-new"><button
+							class="btn btn-success btn-adote">novo evento</button></a> </p>
+				<div id="eventos">
+					<div class="container">
+					{{#each eventoslist}}
+						<div class="row row-striped">
+							<div class="col-2 text-right">
+								<h1 class="display-4"><span class="badge badge-secondary">{{day}}</span></h1>
+								<h2>{{month}}</h2>
+							</div>
+							<div class="col-10">
+								<h3 class="text-uppercase"><strong>{{nome}}</strong></h3>
+								<ul class="list-inline">
+									<li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i>
+										{{local}}</li>
+									<li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i> {{local}} </li>
+									<li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true">{{cidade}}, {{estado}}</i></li>
+								</ul>
+								<p>{{descricao}}</p>
+							</div>
+						</div>
+					{{/each}}
+					</div>
 
+				</div>
 			</div>
-			</div>
-			
+
 			<div class="col-lg-3">
 				<div id="agenda-inscrever" class="agenda-inscrever">
 					<p>Quer saber de todos os nossos eventos?</p>
 					<p>Inscreva-se aqui e receba por email as novidades:</p>
 
-					<form id="form" method="post" action="#"> 
+					<form id="form" method="post" action="#">
 						<div class="form-row">
 							<div class="col">
-								<input id="emailinscricao" type="text" name="emailinscrito" class="form-control" placeholder="Email">
+								<input id="emailinscricao" type="text" name="emailinscrito" class="form-control"
+									placeholder="Email">
 							</div>
 							<div class="col-auto">
 								<button type="submit" class="btn btn-primary mb-2">Enviar</button>
@@ -40,16 +61,16 @@
 	<div class="space"></div>
 </section>
 <script>
-$('#form').on('submit', (e)=>{
-	e.preventDefault();
-	$.ajax({
-		url: 'eventos/agenda-inscrito',
-		method: 'post',
-		data: $('#form').serialize()
-	}).done(d=>{
-		console.log(d);
-		Swal.fire(d);
-		$('#emailinscricao').val('');
-	});
-})
+	$('#form').on('submit', (e) => {
+		e.preventDefault();
+		$.ajax({
+			url: 'eventos/agenda-inscrito',
+			method: 'post',
+			data: $('#form').serialize()
+		}).done(d => {
+			console.log(d);
+			Swal.fire(d);
+			$('#emailinscricao').val('');
+		});
+	})
 </script>

@@ -8,6 +8,8 @@ const url = process.env.DB_URL
 
 mongoose.connect(`mongodb+srv://${user}:${password}@${url}`, { useNewUrlParser: true });
 
+const months = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ']; 
+
 const Eventos = mongoose.model(('Eventos'), new mongoose.Schema({
   nome: String,
   data: Date,
@@ -101,6 +103,40 @@ module.exports = {
           });
         }
         callback.render('index', { title: 'Salve os Bichin', eventos: eventos });
+      });
+    },
+
+    carregaEventosPage: (callback) => {
+      Eventos.find({}).sort({'data': -1}).limit(10).lean().exec((err, docs) => {
+        let eventoslist = [];
+        //
+        if (err || (docs === null)) {
+          for (let i = 0 ; i < 10 ; i++){
+            eventoslist.push({ nome: 'Nehum Evento Encontrado', data: 'XX/XX/XXXX', descricao: 'Sem descrição' });
+          }
+        }
+        else {
+          docs.forEach((current) => {
+            let dataParaString = current.data.toLocaleDateString('en-GB'/*, {day: '2-digit', month: '2-digit', year: 'numeric'}*/);
+              //12/11/2019
+            let day = dataParaString.substring(0,2);
+            let dataSubstring = dataParaString.substring(3,5);
+            let dataInt = parseInt(dataSubstring, 10);
+            let month = months[dataInt - 1];
+     
+            eventoslist.push({
+              nome: current.nome,
+              day: day,
+              month: month,
+              data: dataParaString,
+              descricao: current.descricao,
+              local: current.local,
+              cidade: current.cidade,
+              estado: current.estado
+            });
+          });
+        }
+        callback.render('eventos/eventos', { title: 'Salve os Bichin | Eventos', eventoslist: eventoslist });
       });
     }
 
