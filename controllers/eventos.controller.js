@@ -32,23 +32,21 @@ module.exports = {
   },
 
   getEventosHomepage: (req, callback) => {
-    const eventosHome = Eventos.find({})
-      .sort({ data: -1 })
-      .limit(3);
+    const eventosHome = Eventos.find({}).sort({ data: -1 }).limit(3);
   },
 
   createEvento: (req, callback) => {
     const evento = new Eventos({
-      nome: req.body.nomeevento,
-      data: req.body.dataevento,
-      descricao: req.body.descricaoevento,
-      responsavel: req.body.responsavelevento,
-      emailContato: req.body.emailevento,
-      local: req.body.localevento,
-      cidade: req.body.cidadeevento,
-      estado: req.body.estadoevento,
-      linkEvento: req.body.linkevento,
-      observacao: req.body.obsevento
+        nome: req.body.nomeevento,
+        data: req.body.dataevento,
+        descricao: req.body.descricaoevento,
+        responsavel: req.body.responsavelevento,
+        emailContato: req.body.emailevento,
+        local: req.body.localevento,
+        cidade: req.body.cidadeevento,
+        estado: req.body.estadoevento,
+        linkEvento: req.body.linkevento,
+        observacao: req.body.obsevento
     });
 
     evento.save().then(() => {
@@ -114,7 +112,7 @@ module.exports = {
   EventosModel: Eventos,
 
   carregaEventosHomePage: callback => {
-    Eventos.find({}).sort({'data': -1})
+    Eventos.find({}).sort({ 'data': -1 })
       .limit(3)
       .lean()
       .exec((err, docs) => {
@@ -145,7 +143,7 @@ module.exports = {
           });
         }
         callback.render("index", {
-          title: "Salve os Bichin",
+          title: "Salve os Bichin | Eventos",
           eventos: eventos
         });
       });
@@ -180,7 +178,7 @@ module.exports = {
             estado: current.estado,
             responsavel: current.responsavelevento,
             emailContato: current.emailContato,
-            obs: current.obsevento
+            obs: current.observacao
           });
         });
       }
