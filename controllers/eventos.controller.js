@@ -150,7 +150,7 @@ module.exports = {
   },
 
   carregaEventosPage: (callback) => {
-    Eventos.find({ 'data': { $gte: new Date() } }).sort({ 'data': -1 }).limit(10).lean().exec((err, docs) => {
+    Eventos.find({ 'data': { $gte: new Date() } }).sort({ 'data': 1 }).limit(10).lean().exec((err, docs) => {
       let eventoslist = [];
       //
       if (err || (docs === null)) {
@@ -162,8 +162,8 @@ module.exports = {
         docs.forEach((current) => {
           let dataParaString = current.data.toLocaleDateString('en-GB'/*, {day: '2-digit', month: '2-digit', year: 'numeric'}*/);
           //12/11/2019
-          let day = dataParaString.substring(0, 2);
-          let month = months[parseInt(dataParaString.substring(3, 5), 10) - 1];
+          let day = dataParaString.substring(3, 5); //FIXME datas com 0?
+          let month = months[parseInt(dataParaString.substring(0, 2), 10) - 1];
           let year = dataParaString.substring(6, 10);
           eventoslist.push({
             link: current.linkEvento,
