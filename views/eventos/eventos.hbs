@@ -16,20 +16,24 @@
 				<div id="eventos-list">
 					<script>
 						$(document).ready(function () {
-							$("#myInput").on("keyup", function () {
-								var value = $(this).val().toLowerCase();
-								$("#myDIV *").filter(function () {
-									$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-								});
-							});
+				    
+					    var $search = $("#search").on('input',function(){
+					        var matcher = new RegExp($(this).val(), 'gi');
+					        console.log(matcher)
+					        $('.cards').show().not(function(){
+					        	console.log($(this).find('.gambiarra').text())
+					            return matcher.test($(this).find('.gambiarra').text())
+					        }).hide();
+					    })
 						});
 					</script>
-					<input id="myInput" type="text" class="form-control" placeholder="Pesquise por...">
+					<input id="search" type="text" class="form-control" placeholder="Pesquise por...">
 					<div class="space"></div>
 
 					<div id="myDIV">
 						{{#each eventoslist}}
-						<div class="row row-striped">
+						<div class="row row-striped cards">
+							<div class="gambiarra" style="display: none;">{{cidade}} {{estado}}</div>
 							<div class="col-2 text-right">
 								<h1 class="display-4"><span class="badge badge-secondary">{{day}}</span></h1>
 								<h6>{{month}}, {{year}}</h6>
