@@ -231,7 +231,7 @@ section#home-reviews p {
 
 /** Section patrocinadores**/
 #patrocinadores {
-	height: 13vh;
+	height: 65vh;
 }
 
 #patrocinadores a {
@@ -381,6 +381,26 @@ section#home-reviews p {
 	height: 300px;
 	margin: 0 auto;
 	display: block;
+}
+#patrocinadores-jogos {
+	height: 13vh;
+}
+
+#patrocinadores-jogos a {
+	height: 120px;
+	width: 10%;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+}
+
+#patrocinadores-jogos a:hover {
+	background-color: #ECF0F1;
+}
+
+#patrocinadores-jogos img{
+	align-self: center;
+	max-height: auto;
+	width:100%;
 }
 
 /* Fim página jogos da natureza */
