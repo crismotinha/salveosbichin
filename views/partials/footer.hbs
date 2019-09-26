@@ -11,8 +11,8 @@
         <p>receba nossa newsletter e fique por dentro dos eventos e novidades da página!</p>
       </div>
       <div class="col-sm-4">
-        <form id="formafiliacao" action="#" method="post">
-          <input type="email" class="form-control" id="email-adote" name="emailafiliacao" aria-describedby="emailHelp"
+        <form id="formafiliacao" class="form-inline" action="#" method="post">
+          <input type="email" class="form-control mx-sm-3 mb-2" id="email-adote" name="emailafiliacao" aria-describedby="emailHelp"
             placeholder="Insira seu email">
 
           <button type="submit" class="btn btn-success btn-adote mb-2">Enviar</button>
@@ -26,7 +26,6 @@
 <script>
   $('#formafiliacao').on('submit', (e) => {
     e.preventDefault();
-    console.log(e);
     $.ajax({
       url: '/afiliacao',
       method: 'post',
@@ -53,8 +52,8 @@
         <ul class="list-unstyled">
           <li><a href="/adote-uma-especie">Adote</a></li>
           <li><a href="/eventos">Eventos</a></li>
-          <li><a href="/">Loja</a></li>
-          <li><a href="/">Abaixo-assinado</a></li>
+          {{!-- <li><a href="/">Loja</a></li>
+          <li><a href="/">Abaixo-assinado</a></li> --}}
         </ul>
       </div>
       <div class="col-md-3 mb-md-0 mb-3">

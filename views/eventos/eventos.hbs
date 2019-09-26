@@ -6,50 +6,96 @@
 	</div>
 </section>
 <div class="space"></div>
+
 <section id="eventos-agenda">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-9">
-				<p>Conhece algum evento que não está aqui?
-					Cadastre ele para que todo mundo colabore! <a href="/eventos/eventos-new"><button class="btn btn-primary">novo evento</button></a> </p>
-			<div id="eventos">
-				
+				<p>Conhece algum evento que não está aqui? Cadastre ele para que todo mundo colabore!
+					<a href="/eventos/eventos-new"><button class="btn btn-success btn-adote">novo evento</button></a> </p>
+				<div id="eventos-list">
+					<script>
+						$(document).ready(function () {
+				    
+					    var $search = $("#search").on('input',function(){
+					        var matcher = new RegExp($(this).val(), 'gi');
+					        console.log(matcher)
+					        $('.cards').show().not(function(){
+					        	console.log($(this).find('.gambiarra').text())
+					            return matcher.test($(this).find('.gambiarra').text())
+					        }).hide();
+					    })
+						});
+					</script>
+					<input id="search" type="text" class="form-control" placeholder="Pesquise por...">
+					<div class="space"></div>
+
+					<div id="myDIV">
+						{{#each eventoslist}}
+						<div class="row row-striped cards">
+							<div class="gambiarra" style="display: none;">{{cidade}} {{estado}}</div>
+							<div class="col-2 text-right">
+								<h1 class="display-4"><span class="badge badge-custom">{{day}}</span></h1>
+								<h6>{{month}}, {{year}}</h6>
+							</div>
+							<div class="col-10">
+								<h3 class="text-uppercase"><strong>{{nome}}</strong></h3>
+								<ul class="list-inline">
+									{{!-- <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i>
+										{{responsavel}}</li> --}}
+									{{!-- <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i>
+										{{local}} </li> --}}
+									<li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i> {{local}},
+										{{cidade}} - {{estado}}</li>
+								</ul>
+								<p>{{descricao}}</p>
+								<ul class="list-inline">
+									<li class="list-inline-item">Contato: {{emailContato}}</li>
+									<li class="list-inline-item">Link: {{link}}</li>
+								</ul>
+								<p>Observações: {{obs}}</p>
+							</div>
+						</div>
+						{{/each}}
+
+					</div>
+				</div>
 
 			</div>
-			</div>
-			
+
 			<div class="col-lg-3">
 				<div id="agenda-inscrever" class="agenda-inscrever">
 					<p>Quer saber de todos os nossos eventos?</p>
 					<p>Inscreva-se aqui e receba por email as novidades:</p>
 
-					<form id="form" method="post" action="#"> 
+					<form id="form" method="post" action="#">
 						<div class="form-row">
 							<div class="col">
 								<input id="emailinscricao" type="text" name="emailinscrito" class="form-control" placeholder="Email">
 							</div>
 							<div class="col-auto">
-								<button type="submit" class="btn btn-primary mb-2">Enviar</button>
+								<button type="submit" class="btn btn-success btn-adote mb-2">Enviar</button>
 							</div>
 						</div>
 					</form>
 				</div>
 			</div>
+
 		</div>
-	</div>
+	</div> <!-- fecha container -->
 	<div class="space"></div>
 </section>
 <script>
-$('#form').on('submit', (e)=>{
-	e.preventDefault();
-	$.ajax({
-		url: 'eventos/agenda-inscrito',
-		method: 'post',
-		data: $('#form').serialize()
-	}).done(d=>{
-		console.log(d);
-		Swal.fire(d);
-		$('#emailinscricao').val('');
-	});
-})
+	$('#form').on('submit', (e) => {
+		e.preventDefault();
+		$.ajax({
+			url: 'eventos/agenda-inscrito',
+			method: 'post',
+			data: $('#form').serialize()
+		}).done(d => {
+			//console.log(d);
+			Swal.fire(d);
+			$('#emailinscricao').val('');
+		});
+	})
 </script>
