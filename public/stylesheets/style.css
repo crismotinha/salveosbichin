@@ -51,7 +51,7 @@ body{
 /** Section home **/
 .home-title {
 	font-family: 'Sifonn Pro';
-	color: #5d564f;
+	color: #8b8681;
 }
 
 .home-img {
@@ -388,7 +388,7 @@ section#home-reviews p {
 /* Página eventos */
 .row-striped:nth-of-type(odd){
 	background-color: #efefef;
-	border-left: 4px #000000 solid;
+	border-left: 4px #8b8681 solid;
   }
   
   .row-striped:nth-of-type(even){
@@ -398,6 +398,11 @@ section#home-reviews p {
   
   .row-striped {
 	  padding: 15px 0;
+  }
+
+  .badge-custom {
+	  background-color: #1A4D3D;
+	  color: #fafafa;
   }
 
 /* fim página eventos */

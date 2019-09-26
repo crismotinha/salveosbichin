@@ -114,7 +114,7 @@ module.exports = {
   EventosModel: Eventos,
 
   carregaEventosHomePage: callback => {
-    Eventos.find({})
+    Eventos.find({}).sort({'data': -1})
       .limit(3)
       .lean()
       .exec((err, docs) => {
@@ -152,7 +152,7 @@ module.exports = {
   },
 
   carregaEventosPage: (callback) => {
-    Eventos.find({ data: { $gte: new Date() } }).sort({ 'data': -1 }).limit(10).lean().exec((err, docs) => {
+    Eventos.find({ 'data': { $gte: new Date() } }).sort({ 'data': -1 }).limit(10).lean().exec((err, docs) => {
       let eventoslist = [];
       //
       if (err || (docs === null)) {
