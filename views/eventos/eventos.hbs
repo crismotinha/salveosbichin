@@ -24,6 +24,7 @@
 							});
 						});
 					</script>
+
 					<input id="myInput" type="text" class="form-control" placeholder="Pesquise por...">
 					<div class="space"></div>
 
@@ -31,7 +32,7 @@
 						{{#each eventoslist}}
 						<div class="row row-striped">
 							<div class="col-2 text-right">
-								<h1 class="display-4"><span class="badge badge-secondary">{{day}}</span></h1>
+								<h1 class="display-4"><span class="badge badge-custom">{{day}}</span></h1>
 								<h6>{{month}}, {{year}}</h6>
 							</div>
 							<div class="col-10">
@@ -45,34 +46,38 @@
 										{{cidade}} - {{estado}}</li>
 								</ul>
 								<p>{{descricao}}</p>
-								<p>Contato: {{emailContato}}</p>
-								<p>Link: {{link}}</p>
+								<ul class="list-inline">
+									<li class="list-inline-item">Contato: {{emailContato}}</li>
+									<li class="list-inline-item">Link: {{link}}</li>
+								</ul>
 								<p>Observações: {{obs}}</p>
 							</div>
 						</div>
 						{{/each}}
+
 					</div>
 				</div>
 
 			</div>
-		</div>
 
-		<div class="col-lg-3">
-			<div id="agenda-inscrever" class="agenda-inscrever">
-				<p>Quer saber de todos os nossos eventos?</p>
-				<p>Inscreva-se aqui e receba por email as novidades:</p>
+			<div class="col-lg-3">
+				<div id="agenda-inscrever" class="agenda-inscrever">
+					<p>Quer saber de todos os nossos eventos?</p>
+					<p>Inscreva-se aqui e receba por email as novidades:</p>
 
-				<form id="form" method="post" action="#">
-					<div class="form-row">
-						<div class="col">
-							<input id="emailinscricao" type="text" name="emailinscrito" class="form-control" placeholder="Email">
+					<form id="form" method="post" action="#">
+						<div class="form-row">
+							<div class="col">
+								<input id="emailinscricao" type="text" name="emailinscrito" class="form-control" placeholder="Email">
+							</div>
+							<div class="col-auto">
+								<button type="submit" class="btn btn-success btn-adote mb-2">Enviar</button>
+							</div>
 						</div>
-						<div class="col-auto">
-							<button type="submit" class="btn btn-success btn-adote mb-2">Enviar</button>
-						</div>
-					</div>
-				</form>
+					</form>
+				</div>
 			</div>
+
 		</div>
 	</div> <!-- fecha container -->
 	<div class="space"></div>
