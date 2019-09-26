@@ -42,7 +42,7 @@ router.post('/adotar', function (req, res, next) {
 
 // Eventos
 router.get('/eventos', function (req, res, next) {
-  res.render('eventos/eventos', { title: 'Salve os Bichin | Eventos'})
+  eventosController.carregaEventosPage(res);
 });
 
 // Inscrições (agenda de eventos e afiliação)

@@ -11,21 +11,20 @@ mongoose.connect(`mongodb+srv://${user}:${password}@${url}`, {
   useNewUrlParser: true
 });
 
-const Eventos = mongoose.model(
-  "Eventos",
-  new mongoose.Schema({
-    nome: String,
-    data: Date,
-    descricao: String,
-    responsavel: String,
-    emailContato: String,
-    local: String,
-    cidade: String,
-    estado: String,
-    linkEvento: String,
-    observacao: String
-  })
-);
+const months = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+
+const Eventos = mongoose.model(('Eventos'), new mongoose.Schema({
+  nome: String,
+  data: Date,
+  descricao: String,
+  responsavel: String,
+  emailContato: String,
+  local: String,
+  cidade: String,
+  estado: String,
+  linkEvento: String,
+  observacao: String
+}));
 
 module.exports = {
   getEventos: res => {
@@ -115,7 +114,7 @@ module.exports = {
   EventosModel: Eventos,
 
   carregaEventosHomePage: callback => {
-    Eventos.find({})
+    Eventos.find({}).sort({'data': -1})
       .limit(3)
       .lean()
       .exec((err, docs) => {
@@ -150,5 +149,43 @@ module.exports = {
           eventos: eventos
         });
       });
+  },
+
+  carregaEventosPage: (callback) => {
+    Eventos.find({ 'data': { $gte: new Date() } }).sort({ 'data': -1 }).limit(10).lean().exec((err, docs) => {
+      let eventoslist = [];
+      //
+      if (err || (docs === null)) {
+        for (let i = 0; i < 10; i++) {
+          eventoslist.push({ nome: 'Nehum Evento Encontrado', data: 'XX/XX/XXXX', descricao: 'Sem descrição' });
+        }
+      }
+      else {
+        docs.forEach((current) => {
+          let dataParaString = current.data.toLocaleDateString('en-GB'/*, {day: '2-digit', month: '2-digit', year: 'numeric'}*/);
+          //12/11/2019
+          let day = dataParaString.substring(0, 2);
+          let month = months[parseInt(dataParaString.substring(3, 5), 10) - 1];
+          let year = dataParaString.substring(6, 10);
+          eventoslist.push({
+            link: current.linkEvento,
+            nome: current.nome,
+            day: day,
+            month: month,
+            year: year,
+            data: dataParaString,
+            descricao: current.descricao,
+            local: current.local,
+            cidade: current.cidade,
+            estado: current.estado,
+            responsavel: current.responsavelevento,
+            emailContato: current.emailContato,
+            obs: current.obsevento
+          });
+        });
+      }
+      callback.render('eventos/eventos', { title: 'Salve os Bichin | Eventos', eventoslist: eventoslist });
+    });
   }
-};
+
+}
