@@ -1,17 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const router = express.Router();
+const adoteController = require('../controllers/adote.controller');
+const eventosController = require('../controllers/eventos.controller');
+const inscritoController = require('../controllers/inscritos.controller');
+const jogoController = require('../controllers/jogo.controller');
 
-const user = process.env.DB_USER
-const password = process.env.DB_PASSWORD
-const url = process.env.DB_URL
 const Cat = mongoose.model('Cat', { name: String });
-
-mongoose.connect(`mongodb+srv://${user}:${password}@${url}`, { useNewUrlParser: true });
+const router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Salve os Bichin' });
+ eventosController.carregaEventosHomePage(res);
 });
 
 router.get('/testebd', function (req, res, next) {
@@ -20,6 +19,7 @@ router.get('/testebd', function (req, res, next) {
   res.render('index', { title: 'FOI' });
 });
 
+// Noticias pages
 router.get('/noticias/agua-bom-investimento', function (req, res, next) {
   res.render('noticias/noticia1', { title: 'Salve os Bichin | Com a escassez, a água pode se tornar um bom investimento' });
 });
@@ -33,21 +33,28 @@ router.get('/noticias/sustentabilidade-o-que', function (req, res, next) {
 });
 
 router.get('/adote-uma-especie', function (req, res, next) {
-  res.render('adote_especies/adote-uma-especie', { title: 'Salve os Bichin | Adote uma espécie!' });
+  adoteController.valores(res);
 })
 
-// criar model pessoa
-const personModel = mongoose.model('teste', { nome: String, email: String, nomeEspecie: String });
-
+// Adotar
 router.post('/adotar', function (req, res, next) {
-  const newPerson = personModel({
-    name: req.body.nomeadote, // TODO: entender pq não está pegando o nome
-    email: req.body.emailadote,
-    nomeEspecie: req.body.nomeEspecie
-  });
-  newPerson.save(); // TODO: colocar pra salvar numa collection certinha, de pessoas (por enquanto salva em teste)
-  res.render('adote_especies/adote-uma-especie'); // TODO: popup de adotado
-}); // TODO: nao deixar a pessoa adotar outra vez
+  adoteController.registraDoacao(req, res);
+});
 
+// Eventos
+router.get('/eventos', function (req, res, next) {
+  eventosController.carregaEventosPage(res);
+});
+
+// Inscrições (agenda de eventos e afiliação)
+router.post('/afiliacao', function (req, res, next) {
+  inscritoController.newAfiliacao(req, res);
+});
+
+// Jogos da natureza
+router.get('/jogos-natureza', function (req, res, next) {
+  jogoController.numeroPessoasJogando(res);
+  //res.render('inovacoes/jogos-natureza', { title: 'Salve os Bichin | Jogos da natureza!' })
+});
 
 module.exports = router;

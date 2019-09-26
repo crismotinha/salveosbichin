@@ -1,28 +1,67 @@
+<!-- Afiliação -->
+<div class="space"></div>
+<section id="afiliacao">
+  <div class="container">
+    <div class="space"></div>
+    <div class="row">
+      <div class="col-sm-4">
+        <h1 class="home-title text-center">Afilie-se</h1>
+      </div>
+      <div class="col-sm-4">
+        <p>receba nossa newsletter e fique por dentro dos eventos e novidades da página!</p>
+      </div>
+      <div class="col-sm-4">
+        <form id="formafiliacao" class="form-inline" action="#" method="post">
+          <input type="email" class="form-control mx-sm-3 mb-2" id="email-adote" name="emailafiliacao" aria-describedby="emailHelp"
+            placeholder="Insira seu email">
+
+          <button type="submit" class="btn btn-success btn-adote mb-2">Enviar</button>
+        </form>
+      </div>
+    </div>
+    <div class="space"></div>
+  </div>
+</section>
+
+<script>
+  $('#formafiliacao').on('submit', (e) => {
+    e.preventDefault();
+    $.ajax({
+      url: '/afiliacao',
+      method: 'post',
+      data: $('#formafiliacao').serialize()
+    }).done(d => {
+      Swal.fire(d);
+      $('#email-adote').val('');
+    });
+  })
+</script>
 <!-- Footer -->
-<footer class="page-footer font-small pt-4">
+<footer id="footer" class="page-footer font-small pt-4">
   <div class="container text-center text-md-left">
     <div class="row">
       <div class="col-md-6 mt-md-0 mt-3">
-        <h5 class="text-uppercase">Contate-nos</h5>
+        <h5 class="text-uppercase orange-title">Contate-nos</h5>
         <p>nos siga no twitter @salveosbichin</p>
         <p>ou no instagram @salveosbichin</p>
-        <p>ou nos envie um email para contato@salveosbichin.com :)</p>
+        <p>ou nos envie um email para salveosbichin@gmail.com :)</p>
       </div>
       <hr class="clearfix w-100 d-md-none pb-3">
       <div class="col-md-3 mb-md-0 mb-3">
-        <h5 class="text-uppercase">Links</h5>
+        <h5 class="text-uppercase orange-title">Links</h5>
         <ul class="list-unstyled">
-          <li><a href="#!">Link 1</a></li>
-          <li><a href="#!">Link 2</a></li>
-          <li><a href="#!">Link 3</a></li>
-          <li><a href="#!">Link 4</a></li>
+          <li><a href="/adote-uma-especie">Adote</a></li>
+          <li><a href="/eventos">Eventos</a></li>
+          {{!-- <li><a href="/">Loja</a></li>
+          <li><a href="/">Abaixo-assinado</a></li> --}}
         </ul>
       </div>
       <div class="col-md-3 mb-md-0 mb-3">
-        <h5 class="text-uppercase">Busque por...</h5>
+        <h5 class="text-uppercase orange-title">Busque por...</h5>
         <div class="gcse-search"></div>
+      </div>
     </div>
-  </div>
-  <div class="footer-copyright text-center py-3">© 2019 | salveosbichin
+    <div class="footer-copyright text-center py-3">© 2019 | salveosbichin
+    </div>
   </div>
 </footer>
