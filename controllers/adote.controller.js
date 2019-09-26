@@ -27,22 +27,22 @@ module.exports = {
         callback.render("adote_especies/adote-uma-especie", {
           title: "Salve os Bichin | Adote uma espécie!",
           arrecadacaoArara: doc.filter(animal => {
-            return animal.species == "Arara";
+            return animal.species == "Arara-azul";
           })[0].moneyRaised,
           arrecadacaoGato: doc.filter(animal => {
-            return animal.species == "Gato";
+            return animal.species == "Gato-maracajá";
           })[0].moneyRaised,
           arrecadacaoMico: doc.filter(animal => {
-            return animal.species == "Mico";
+            return animal.species == "Mico-leão-dourado";
           })[0].moneyRaised,
           arrecadacaoOnca: doc.filter(animal => {
-            return animal.species == "Onça";
+            return animal.species == "Onça-pintada";
           })[0].moneyRaised,
           arrecadacaoTartaruga: doc.filter(animal => {
-            return animal.species == "Tartaruga";
+            return animal.species == "Tartaruga-oliva";
           })[0].moneyRaised,
           arrecadacaoLobo: doc.filter(animal => {
-            return animal.species == "Lobo";
+            return animal.species == "Lobo-guará";
           })[0].moneyRaised
         });
       });
@@ -77,7 +77,7 @@ module.exports = {
     let text =
       "Parabéns, " +
       req.body.nomeadote +
-      "! Você Acabou de adotar um(a) " +
+      "! Você Acabou de adotar a espécie: " +
       req.body.nomeEspecie +
       ".\n \n Obrigado também pela contribuição de: R$ " +
       req.body.valorradio +
@@ -88,7 +88,7 @@ module.exports = {
     callback.json({
       title: "Obrigado pela doação!",
       text: "As informações de pagamento serão eviadas para seu e-mail.",
-      type: "sucess"
+      type: "success"
     }); // TODO: popup de adotado
   }
 };

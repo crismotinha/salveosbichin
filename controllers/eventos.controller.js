@@ -119,6 +119,7 @@ module.exports = {
       .limit(3)
       .lean()
       .exec((err, docs) => {
+        console.log("entrei");
         let eventos = [];
         //
         if (err || docs === null) {
