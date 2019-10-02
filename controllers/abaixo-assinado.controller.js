@@ -12,30 +12,59 @@ mongoose.connect(`mongodb+srv://${user}:${password}@${url}`, {
 });
 
 const AbaixoAssinado = mongoose.model(('AbaixoAssinado'), new mongoose.Schema({
-	titulo: String,
+	titulo: { type: String, unique: true },
 	dataLimite: Date,
-	descricao: String, // descrição pequenina do abaixo assinado: para nao enfiar um textão na pagina index
+	resumo: String, // descrição pequenina do abaixo assinado: para nao enfiar um textão na pagina index
 	responsavel: String,
 	whoSigned: [Array],
 	meta: Number,
 	texto: String,
+	qtdAssinaturas: Number
 }));
 
 
 module.exports = {
 	getAbaixosAssinados: res => {
-		res.render("abaixo-assinado/abaixo-assinado", { title: "Salve os Bichin | Abaixo-Assinados " });
+		AbaixoAssinado.find().limit(10).lean().exec((err, docs) => {
+			let abaixosList = [];
+      //
+      if (err || (docs === null)) {
+        for (let i = 0; i < 10; i++) {
+          abaixosList.push({ nome: 'Nehum Abaixo-Assinado Encontrado', dataLimite: 'XX/XX/XXXX', resumo: 'Sem resumo' });
+        }
+      }
+      else {
+        docs.forEach((current) => {
+          // let dataParaString = current.data.toLocaleDateString('en-GB'/*, {day: '2-digit', month: '2-digit', year: 'numeric'}*/);
+          //MM/DD/YYYY
+
+          abaixosList.push({
+            titulo: current.titulo,
+            dataLimite: current.dataLimite,
+						resumo: current.resumo,
+            responsavel: current.responsavel,
+            texto: current.texto,
+            meta: current.meta,
+						// qtdAssinaturas: current.qtdAssinaturas, -- apagar do banco
+						// porcentagem: (qtdAssinaturas * 100) / meta -- apagar registros do banco
+
+          });
+        });
+      }
+      callback.render('abaixo-assinado/abaixo-assinado', { title: 'Salve os Bichin | Abaixo-Assinado', abaixosList: abaixosList });
+    });
 	},
 
 	createAbaixoAssinado: (req, callback) => {
 		const abaixo = new AbaixoAssinado({
 			titulo: req.body.tituloAbaixo,
 			dataLimite: req.body.dataLimiteAbaixo,
-			descricao: req.body.descricaoAbaixo,
-			responsavel: req.body.responsavelAbaixo,
-			$push: { whoSigned: req.body.emailAbaixo }, //inclui o email na lista de emails
+			resumo: req.body.resumoAbaixo,
+			responsavel: req.body.resumoAbaixo,
+			$push: { whoSigned: req.body.emailAbaixo },
 			meta: req.body.metaAbaixo,
-			texto: req.body.textoAbaixo
+			texto: req.body.textoAbaixo,
+			// qtdAssinaturas: 0 --APAGAR do banco 
 		})
 
 		abaixo.save().then(() => {
@@ -50,7 +79,7 @@ module.exports = {
 
 					mail = "Um novo abaixo assinado foi criado no nosso site! \n" +
 						"Título: " + req.body.tituloAbaixo + "\n"
-					"Descrição: " + req.body.descricaoAbaixo + "\n"
+					"Resumo: " + req.body.resumoAbaixo + "\n"
 					"Responsável: " + req.body.responsavelAbaixo + "\n"
 					"Data Limite: " + req.body.dataLimiteAbaixo + "\n"
 					"Meta: " + req.body.metaAbaixo + "\n"
@@ -67,5 +96,31 @@ module.exports = {
 				"Um e-mail com as informações do seu abaixo-assinado foi enviado para todos os afiliados.",
 			type: "success"
 		});
+	},
+
+	assinarAbaixoAssinado: (req, callback) => {
+		AbaixoAssinado.findOneAndUpdate(
+			{ titulo: req.body.tituloAbaixo },
+			{
+				$push: { whoSigned: req.body.emailAssinar },
+				$inc: { qtdAssinaturas: 1 }
+			},
+			{ upsert: true },
+			(err, res) => {
+				if (err) console.log(err);
+			});
+
+			let receiver = req.body.emailAbaixo;
+			let subject = "Salve os Bichin | Obrigada por ajudar essa causa!";
+			let text =
+				"Olá! Muito obrigada por assinar " + req.body.tituloAbaixo + ".\n" +
+				"Obrigada e até a próxima! :) ";
+	
+			mailer.enviaEmail(receiver, subject, text);
+			callback.json({
+				title: "Obrigada pela assinatura!",
+				text: "Cada assinatura conta! Estamos mais perto de alcançar a meta!",
+				type: "success"
+			});
 	}
 }

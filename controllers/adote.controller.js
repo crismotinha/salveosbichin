@@ -60,7 +60,6 @@ module.exports = {
       { upsert: true }, //caso nao exista, cria a especie
       (err, res) => {
         if (err) console.log(err); //erro, caso exista. Normalmente v em null
-        //console.log(res); //resultado da query
       }
     );
 
@@ -73,7 +72,7 @@ module.exports = {
     }
 
     let receiver = req.body.emailadote;
-    let subject = "salveosbichin! | Obrigado por Adotar uma espécie!";
+    let subject = "salveosbichin! | Obrigada por Adotar uma espécie!";
     let text =
       "Parabéns, " +
       req.body.nomeadote +
@@ -90,9 +89,9 @@ module.exports = {
 
     mailer.enviaEmail(receiver, subject, text);
     callback.json({
-      title: "Obrigado pela doação!",
+      title: "Obrigada pela doação!",
       text: "As informações de pagamento serão eviadas para seu e-mail.",
       type: "success"
-    }); // TODO: popup de adotado
+    });
   }
 };
