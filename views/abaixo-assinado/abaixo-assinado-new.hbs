@@ -6,9 +6,9 @@
     </div>
 </section>
 <div class="space"></div>
-<section id="eventos-new">
+<section id="abaixos-new">
     <div class="container">
-        <form id="form-eventos" method="post" action="createAbaixoAssinado">
+        <form id="form-abaixos" method="post" action="criarabaixoassinado">
             <div class="form-group">
                 <label for="nome-abaixo">Título:</label>
                 <input type="text" class="form-control" id="tituloAbaixo" name="tituloAbaixo" placeholder="Insira o título do seu abaixo-assinado"
@@ -31,7 +31,7 @@
             </div>
             <div class="form-group">
                 <label for="data-abaixo">Data limite:</label>
-                <input type="date" class="form-control" id="dataLimiteAbaixo" name="dataLimiteAbaixo"
+                <input type="datetime-local" class="form-control" id="dataLimiteAbaixo" name="dataLimiteAbaixo"
                     placeholder="Insira aqui a data limite">
             </div>
             <div class="form-group">
@@ -47,16 +47,16 @@
                 << Voltar </a> </div> </section> </div> <div class="space">
         </div>
         <script>
-            $('#form-eventos').on('submit', e => {
+            $('#form-abaixos').on('submit', e => {
                 e.preventDefault();
                 $.ajax({
-                    url: 'criarevento',
+                    url: 'criarabaixoassinado',
                     method: 'post',
-                    data: $('#form-eventos').serialize()
+                    data: $('#form-abaixos').serialize()
                 }).done(d => {
                     //console.log(d);
                     Swal.fire(d).then(result => {
-                        if (result.value) window.location = '/eventos';
+                        if (result.value) window.location = '/abaixo-assinado';
                     })
                 })
             })

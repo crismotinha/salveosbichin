@@ -51,7 +51,7 @@ module.exports = {
           });
         });
       }
-      callback.render('abaixo-assinado/abaixo-assinado', { title: 'Salve os Bichin | Abaixo-Assinado', abaixosList: abaixosList });
+      res.render('abaixo-assinado/abaixo-assinado', { title: 'Salve os Bichin | Abaixo-Assinado', abaixosList: abaixosList });
     });
 	},
 
