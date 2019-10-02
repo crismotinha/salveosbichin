@@ -1,12 +1,5 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const router = express.Router();
-
-const user = process.env.DB_USER;
-const password = process.env.DB_PASSWORD;
-const url = process.env.DB_URL;
-
-mongoose.connect(`mongodb+srv://${user}:${password}@${url}`, {useNewUrlParser: true});
 
 // Arara page
 router.get('/adote-arara', function (req, res, next) {
