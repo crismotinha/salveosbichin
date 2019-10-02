@@ -27,32 +27,33 @@ module.exports = {
 	getAbaixosAssinados: res => {
 		AbaixoAssinado.find().limit(10).lean().exec((err, docs) => {
 			let abaixosList = [];
-      //
-      if (err || (docs === null)) {
-        for (let i = 0; i < 10; i++) {
-          abaixosList.push({ nome: 'Nehum Abaixo-Assinado Encontrado', dataLimite: 'XX/XX/XXXX', resumo: 'Sem resumo' });
-        }
-      }
-      else {
-        docs.forEach((current) => {
-          // let dataParaString = current.data.toLocaleDateString('en-GB'/*, {day: '2-digit', month: '2-digit', year: 'numeric'}*/);
-          //MM/DD/YYYY
+			//
+			if (err || (docs === null)) {
+				for (let i = 0; i < 10; i++) {
+					abaixosList.push({ nome: 'Nehum Abaixo-Assinado Encontrado', dataLimite: 'XX/XX/XXXX', resumo: 'Sem resumo' });
+				}
+			}
+			else {
+				docs.forEach((current) => {
+					// let dataParaString = current.data.toLocaleDateString('en-GB'/*, {day: '2-digit', month: '2-digit', year: 'numeric'}*/);
+					//MM/DD/YYYY
 
-          abaixosList.push({
-            titulo: current.titulo,
-            dataLimite: current.dataLimite,
+					abaixosList.push({
+						id: current._id,
+						titulo: current.titulo,
+						dataLimite: current.dataLimite,
 						resumo: current.resumo,
-            responsavel: current.responsavel,
-            texto: current.texto,
-            meta: current.meta,
+						responsavel: current.responsavel,
+						texto: current.texto,
+						meta: current.meta,
 						// qtdAssinaturas: current.qtdAssinaturas, -- apagar do banco
 						// porcentagem: (qtdAssinaturas * 100) / meta -- apagar registros do banco
 
-          });
-        });
-      }
-      res.render('abaixo-assinado/abaixo-assinado', { title: 'Salve os Bichin | Abaixo-Assinado', abaixosList: abaixosList });
-    });
+					});
+				});
+			}
+			res.render('abaixo-assinado/abaixo-assinado', { title: 'Salve os Bichin | Abaixo-Assinado', abaixosList: abaixosList });
+		});
 	},
 
 	createAbaixoAssinado: (req, callback) => {
@@ -64,7 +65,7 @@ module.exports = {
 			$push: { whoSigned: req.body.emailAbaixo },
 			meta: req.body.metaAbaixo,
 			texto: req.body.textoAbaixo,
-			// qtdAssinaturas: 0 --APAGAR do banco 
+			qtdAssinaturas: 0
 		})
 
 		abaixo.save().then(() => {
@@ -110,17 +111,19 @@ module.exports = {
 				if (err) console.log(err);
 			});
 
-			let receiver = req.body.emailAbaixo;
-			let subject = "Salve os Bichin | Obrigada por ajudar essa causa!";
-			let text =
-				"Olá! Muito obrigada por assinar " + req.body.tituloAbaixo + ".\n" +
-				"Obrigada e até a próxima! :) ";
-	
-			mailer.enviaEmail(receiver, subject, text);
-			callback.json({
-				title: "Obrigada pela assinatura!",
-				text: "Cada assinatura conta! Estamos mais perto de alcançar a meta!",
-				type: "success"
-			});
-	}
+		let receiver = req.body.emailAbaixo;
+		let subject = "Salve os Bichin | Obrigada por ajudar essa causa!";
+		let text =
+			"Olá! Muito obrigada por assinar " + req.body.tituloAbaixo + ".\n" +
+			"Obrigada e até a próxima! :) ";
+
+		mailer.enviaEmail(receiver, subject, text);
+		callback.json({
+			title: "Obrigada pela assinatura!",
+			text: "Cada assinatura conta! Estamos mais perto de alcançar a meta!",
+			type: "success"
+		});
+	},
+
+	showAbaixoAssinado: (req, callback) => { }
 }
