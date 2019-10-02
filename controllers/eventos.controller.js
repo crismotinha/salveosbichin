@@ -161,8 +161,10 @@ module.exports = {
       else {
         docs.forEach((current) => {
           let dataParaString = current.data.toLocaleDateString('en-GB'/*, {day: '2-digit', month: '2-digit', year: 'numeric'}*/);
+          let horaParaString = current.data.toLocaleTimeString();
           //12/11/2019
-          let day = dataParaString.substring(3, 5); //FIXME datas com 0?
+          let day = ("0" + current.data.getDate()).slice(-2); 
+          //let day = dataParaString.substring(3, 5); //FIXME datas com 0?
           let month = months[parseInt(dataParaString.substring(0, 2), 10) - 1];
           let year = dataParaString.substring(6, 10);
           eventoslist.push({
@@ -172,11 +174,12 @@ module.exports = {
             month: month,
             year: year,
             data: dataParaString,
+            hora: horaParaString,
             descricao: current.descricao,
             local: current.local,
             cidade: current.cidade,
             estado: current.estado,
-            responsavel: current.responsavelevento,
+            responsavel: current.responsavel,
             emailContato: current.emailContato,
             obs: current.observacao
           });

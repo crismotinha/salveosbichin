@@ -37,20 +37,17 @@
 							<div class="col-2 text-right">
 								<h1 class="display-4"><span class="badge badge-custom">{{day}}</span></h1>
 								<h6>{{month}}, {{year}}</h6>
+								<h6>{{hora}}</h6>
 							</div>
 							<div class="col-10">
 								<h3 class="text-uppercase"><strong>{{nome}}</strong></h3>
 								<ul class="list-inline">
-									{{!-- <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i>
-										{{responsavel}}</li> --}}
-									{{!-- <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i>
-										{{local}} </li> --}}
 									<li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i> {{local}},
 										{{cidade}} - {{estado}}</li>
 								</ul>
 								<p>{{descricao}}</p>
 								<ul class="list-inline">
-									<li class="list-inline-item">Contato: {{emailContato}}</li>
+									<li class="list-inline-item">Contato: {{responsavel}}, {{emailContato}}</li>
 									<li class="list-inline-item">Link: {{link}}</li>
 								</ul>
 								<p>Observações: {{obs}}</p>
@@ -93,7 +90,6 @@
 			method: 'post',
 			data: $('#form').serialize()
 		}).done(d => {
-			//console.log(d);
 			Swal.fire(d);
 			$('#emailinscricao').val('');
 		});
