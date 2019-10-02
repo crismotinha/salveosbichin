@@ -57,11 +57,9 @@ module.exports = {
         }
       }
     );
-    // res.render(); TODO: popup de inscrito
   },
 
   newAgendaInscrito: (req, callback) => {
-    //console.log(req);
     inscritos.findOneAndUpdate(
       { email: req.body.emailinscrito },
       { email: req.body.emailinscrito, agenda: true },
