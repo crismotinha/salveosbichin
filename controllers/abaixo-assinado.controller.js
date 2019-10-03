@@ -19,7 +19,8 @@ const AbaixoAssinado = mongoose.model(('AbaixoAssinado'), new mongoose.Schema({
 	whoSigned: [Array],
 	meta: Number,
 	texto: String,
-	qtdAssinaturas: Number
+	qtdAssinaturas: Number,
+	dataCriacao: Date
 }));
 
 
@@ -36,7 +37,7 @@ module.exports = {
 	},
 
 	getAbaixosAssinados: res => {
-		AbaixoAssinado.find().limit(10).lean().exec((err, docs) => {
+		AbaixoAssinado.find().sort({ 'dataCriacao': -1 }).limit(10).lean().exec((err, docs) => {
 			let abaixosList = [];
 			//
 			if (err || (docs === null)) {
@@ -75,7 +76,8 @@ module.exports = {
 			//$push: { whoSigned: req.body.emailAbaixo },
 			meta: req.body.metaAbaixo,
 			texto: req.body.textoAbaixo,
-			qtdAssinaturas: 0
+			qtdAssinaturas: 0,
+			dataCriacao: new Date()
 		})
 
 		abaixo.save().then(() => {

@@ -4,7 +4,7 @@ const abaixoController = require('../controllers/abaixo-assinado.controller');
 const router = express.Router();
 
 router.get('/abaixo-assinado-new', (req, res)=>{
-    res.render('abaixo-assinado/abaixo-assinado-new');
+    res.render('abaixo-assinado/abaixo-assinado-new', { title: 'Salve os Bichin | Criar novo Abaixo-Assinado'});
 });
 
 router.post('/criarabaixoassinado', (req, res)=>{
