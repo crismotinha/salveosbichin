@@ -25,7 +25,6 @@ const AbaixoAssinado = mongoose.model(('AbaixoAssinado'), new mongoose.Schema({
 
 module.exports = {
 	getSingleAbaixo: (req, res) => {
-		console.log(req.params);
 		AbaixoAssinado.findOne({ titulo: req.params.titulo }).lean().exec((err, document) => {
 			if (err || (document === null)) {
 				console.log(err);

@@ -97,7 +97,6 @@ module.exports = {
               descricao: "Sem descrição"
             });
           }
-          //console.log(docs);
         } else {
           docs.forEach(current => {
             let dataParaString = current.data.toLocaleDateString(
