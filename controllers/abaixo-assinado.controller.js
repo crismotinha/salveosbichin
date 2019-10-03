@@ -89,12 +89,12 @@ module.exports = {
 					});
 
 					mail = "Um novo abaixo assinado foi criado no nosso site! \n" +
-						"Título: " + req.body.tituloAbaixo + "\n"
-					"Resumo: " + req.body.resumoAbaixo + "\n"
-					"Responsável: " + req.body.responsavelAbaixo + "\n"
-					"Data Limite: " + req.body.dataLimiteAbaixo + "\n"
-					"Meta: " + req.body.metaAbaixo + "\n"
-						+ req.body.textoAbaixo + "\n";
+						"Título: " + req.body.tituloAbaixo + "\n" +
+					"Resumo: " + req.body.resumoAbaixo + "\n" + 
+					"Responsável: " + req.body.responsavelAbaixo + "\n" +
+					"Data Limite: " + req.body.dataLimiteAbaixo + "\n" +
+					"Meta: " + req.body.metaAbaixo + "\n" + 
+					req.body.textoAbaixo + "\n";
 
 					mailer.enviaEmail(to, "Salve os Bichin | Novo abaixo-assinado!", mail);
 				}
