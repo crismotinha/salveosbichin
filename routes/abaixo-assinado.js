@@ -12,8 +12,8 @@ router.post('/criarabaixoassinado', (req, res)=>{
 });
 
 // WIP 
-router.get('/abaixo-assinado/:id', (req, res) => {
-    res.send(req.params).render('abaixo-assinado/show' + req.params.id);
-})
+router.get('/:titulo', async (req, res) => {
+    abaixoController.getSingleAbaixo(req, res);
+});
 
 module.exports = router;

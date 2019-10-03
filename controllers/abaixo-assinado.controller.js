@@ -24,6 +24,18 @@ const AbaixoAssinado = mongoose.model(('AbaixoAssinado'), new mongoose.Schema({
 
 
 module.exports = {
+	getSingleAbaixo: (req, res) => {
+		console.log(req.params);
+		AbaixoAssinado.findOne({ titulo: req.params.titulo }).lean().exec((err, document) => {
+			if (err || (document === null)) {
+				console.log(err);
+			}
+			else {
+				res.render('abaixo-assinado/abaixo-assinado-single', { title: 'Salve os Bichin | Abaixo assinado - ' + req.params.titulo, abaixo: document });
+			}
+		})
+	},
+
 	getAbaixosAssinados: res => {
 		AbaixoAssinado.find().limit(10).lean().exec((err, docs) => {
 			let abaixosList = [];
@@ -39,15 +51,14 @@ module.exports = {
 					//MM/DD/YYYY
 
 					abaixosList.push({
-						id: current._id,
 						titulo: current.titulo,
 						dataLimite: current.dataLimite,
 						resumo: current.resumo,
 						responsavel: current.responsavel,
 						texto: current.texto,
 						meta: current.meta,
-						// qtdAssinaturas: current.qtdAssinaturas, -- apagar do banco
-						// porcentagem: (qtdAssinaturas * 100) / meta -- apagar registros do banco
+						qtdAssinaturas: current.qtdAssinaturas,
+						porcentagem: (current.qtdAssinaturas * 100) / current.meta
 
 					});
 				});
@@ -61,8 +72,8 @@ module.exports = {
 			titulo: req.body.tituloAbaixo,
 			dataLimite: req.body.dataLimiteAbaixo,
 			resumo: req.body.resumoAbaixo,
-			responsavel: req.body.resumoAbaixo,
-			$push: { whoSigned: req.body.emailAbaixo },
+			responsavel: req.body.responsavelAbaixo,
+			//$push: { whoSigned: req.body.emailAbaixo },
 			meta: req.body.metaAbaixo,
 			texto: req.body.textoAbaixo,
 			qtdAssinaturas: 0
@@ -123,7 +134,5 @@ module.exports = {
 			text: "Cada assinatura conta! Estamos mais perto de alcançar a meta!",
 			type: "success"
 		});
-	},
-
-	showAbaixoAssinado: (req, callback) => { }
+	}
 }

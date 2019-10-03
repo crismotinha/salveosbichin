@@ -112,7 +112,7 @@ module.exports = {
           });
         }
         callback.render("index", {
-          title: "Salve os Bichin | Eventos",
+          title: "Salve os Bichin",
           eventos: eventos
         });
       });
