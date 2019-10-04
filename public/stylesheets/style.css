@@ -426,3 +426,28 @@ section#home-reviews p {
   }
 
 /* fim página eventos */
+
+/* show abaixo-assinado */
+
+	.col-aa .col-md-4 {
+		display: block;
+		background-color: #fafafa;
+		width: 25em;
+		text-align: right;
+	}
+
+	.resumo-aa {
+		font-family: 'Nunito';
+		text-align: left;
+		font-size: 1em;
+		font-weight: 700;
+	}
+  
+	.ass-aa {
+		font-family: 'Nunito';
+		text-align: right;
+		font-size: 1em;
+		font-weight: 700;
+	}
+  
+/* fim show abaixo-assinado*/

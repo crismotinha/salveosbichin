@@ -54,7 +54,6 @@
                     method: 'post',
                     data: $('#form-abaixos').serialize()
                 }).done(d => {
-                    //console.log(d);
                     Swal.fire(d).then(result => {
                         if (result.value) window.location = '/abaixo-assinado';
                     })
