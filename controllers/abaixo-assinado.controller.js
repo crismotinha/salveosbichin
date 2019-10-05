@@ -20,7 +20,6 @@ const AbaixoAssinado = mongoose.model(('AbaixoAssinado'), new mongoose.Schema({
 	meta: Number,
 	texto: String,
 	qtdAssinaturas: Number,
-	porcentagem: Number,
 	dataCriacao: Date
 }));
 
