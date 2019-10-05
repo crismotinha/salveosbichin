@@ -77,7 +77,6 @@
                     method: 'post',
                     data: $('#form-eventos').serialize()
                 }).done(d => {
-                    //console.log(d);
                     Swal.fire(d).then(result => {
                         if (result.value) window.location = '/eventos';
                     })

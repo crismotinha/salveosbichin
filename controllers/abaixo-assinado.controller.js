@@ -26,12 +26,13 @@ const AbaixoAssinado = mongoose.model(('AbaixoAssinado'), new mongoose.Schema({
 
 module.exports = {
 	getSingleAbaixo: (req, res) => {
-		AbaixoAssinado.findOne({ titulo: req.params.titulo }).lean().exec((err, document) => {
+		AbaixoAssinado.findOne({ _id: req.params.id }).lean().exec((err, document) => {
 			if (err || (document === null)) {
 				console.log(err);
 			}
 			else {
-				res.render('abaixo-assinado/abaixo-assinado-single', { title: 'Salve os Bichin | Abaixo assinado - ' + req.params.titulo, abaixo: document });
+				res.render('abaixo-assinado/abaixo-assinado-single', { title: 'Salve os Bichin | Abaixo assinado - ' + req.params.titulo, 
+				abaixo: document, porcentagem: Math.round((document.qtdAssinaturas * 100) / document.meta) });
 			}
 		})
 	},
@@ -49,8 +50,10 @@ module.exports = {
 				docs.forEach((current) => {
 					// let dataParaString = current.data.toLocaleDateString('en-GB'/*, {day: '2-digit', month: '2-digit', year: 'numeric'}*/);
 					//MM/DD/YYYY
+					const porcentagem = Math.round((current.qtdAssinaturas * 100) / current.meta);
 
 					abaixosList.push({
+						id: current._id,
 						titulo: current.titulo,
 						dataLimite: current.dataLimite,
 						resumo: current.resumo,
@@ -58,7 +61,7 @@ module.exports = {
 						texto: current.texto,
 						meta: current.meta,
 						qtdAssinaturas: current.qtdAssinaturas,
-						porcentagem: (current.qtdAssinaturas * 100) / current.meta
+						porcentagem: porcentagem
 
 					});
 				});
@@ -104,7 +107,7 @@ module.exports = {
 		});
 
 		callback.json({
-			title: "Abaixo-assinado Criado!",
+			title: "Abaixo-assinado criado!",
 			text:
 				"Um e-mail com as informações do seu abaixo-assinado foi enviado para todos os afiliados.",
 			type: "success"
@@ -113,7 +116,7 @@ module.exports = {
 
 	assinarAbaixoAssinado: (req, callback) => {
 		AbaixoAssinado.findOneAndUpdate(
-			{ titulo: req.body.tituloAbaixo },
+			{ _id: req.body.idAssinar },
 			{
 				$push: { whoSigned: req.body.emailAssinar },
 				$inc: { qtdAssinaturas: 1 }
@@ -123,10 +126,11 @@ module.exports = {
 				if (err) console.log(err);
 			});
 
-		let receiver = req.body.emailAbaixo;
+		let receiver = req.body.emailAssinar;
 		let subject = "Salve os Bichin | Obrigada por ajudar essa causa!";
 		let text =
-			"Olá! Muito obrigada por assinar " + req.body.tituloAbaixo + ".\n" +
+			"Olá! Muito obrigada por assinar " + req.body.tituloAssinar + ".\n" +
+			"Estamos juntos nessa causa! \n" +
 			"Obrigada e até a próxima! :) ";
 
 		mailer.enviaEmail(receiver, subject, text);

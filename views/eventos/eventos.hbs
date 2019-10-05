@@ -19,9 +19,7 @@
 				    
 					    var $search = $("#search").on('input',function(){
 					        var matcher = new RegExp($(this).val(), 'gi');
-					        console.log(matcher)
 					        $('.cards').show().not(function(){
-					        	console.log($(this).find('.gambiarra').text())
 					            return matcher.test($(this).find('.gambiarra').text())
 					        }).hide();
 					    })
