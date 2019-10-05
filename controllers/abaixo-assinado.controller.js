@@ -80,7 +80,6 @@ module.exports = {
 			meta: req.body.metaAbaixo,
 			texto: req.body.textoAbaixo,
 			qtdAssinaturas: 0,
-			porcentagem: 0,
 			dataCriacao: new Date()
 		})
 
