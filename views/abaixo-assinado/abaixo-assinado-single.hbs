@@ -17,8 +17,10 @@
                 <h1 class="orange-title">{{abaixo.titulo}}</h1>
                 <p class="resumo-aa">{{abaixo.resumo}} </p>
                 <p>{{abaixo.texto}}</p>
+                <span class="resp-aa">Responsável pela criação do abaixo-assinado:</span>
+                <span>{{abaixo.responsavel}}</span>
             </div>
-            <div class="col-aa col-md-4" style="padding-top: 5px">
+            <div class="col-aa col-md-4" style="padding: 5px">
                 <h3 class="orange-title" style="text-align: right">Temos {{abaixo.qtdAssinaturas}} assinaturas!</h3>
                 <h5 class="orange-title" style="text-align: right; padding-bottom: 30px">Ajude-nos a atingir a meta:
                     </h4>
@@ -30,8 +32,7 @@
                         <input type="hidden" id="tituloAssinar" name="tituloAssinar" value="{{abaixo.titulo}}">
                         <input type="hidden" id="idAssinar" name="idAssinar" value="{{abaixo._id}}">
                     </form>
-
-                    <div class="progress">
+                    <div class="progress" style="width: 90%; float: right">
                         <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="{{porcentagem}}"
                             aria-valuemin="0" aria-valuemax="100" style="width:{{porcentagem}}%">
                             {{porcentagem}}%

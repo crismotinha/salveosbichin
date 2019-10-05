@@ -442,18 +442,26 @@ section#home-reviews p {
   text-align: right;
 }
 
-.resumo-aa {
-  font-family: "Nunito";
-  text-align: left;
-  font-size: 1em;
-  font-weight: 700;
-}
 
 .ass-aa {
   font-family: "Nunito";
   text-align: right;
   font-size: 1em;
   font-weight: 700;
+}
+
+.resumo-aa {
+  font-family: 'Nunito';
+  text-align: left justify;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.resp-aa {
+  font-family: 'Nunito';
+  text-align: left justify;
+  font-size: 1.0em;
+  font-weight: 600;
 }
 
 /* fim show abaixo-assinado*/
