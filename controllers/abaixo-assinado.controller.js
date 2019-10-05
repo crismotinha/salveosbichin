@@ -130,7 +130,7 @@ module.exports = {
 		let subject = "Salve os Bichin | Obrigada por ajudar essa causa!";
 		let text =
 			"Olá! Muito obrigada por assinar " + req.body.tituloAssinar + ".\n" +
-			"Estamos juntos nessa causa!" +
+			"Estamos juntos nessa causa! \n" +
 			"Obrigada e até a próxima! :) ";
 
 		mailer.enviaEmail(receiver, subject, text);
