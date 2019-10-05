@@ -14,6 +14,7 @@ var hbs = require('hbs');
 
 
 hbs.registerPartials(path.join(__dirname + '/views/partials'));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
