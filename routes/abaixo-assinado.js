@@ -11,9 +11,11 @@ router.post('/criarabaixoassinado', (req, res)=>{
     abaixoController.createAbaixoAssinado(req, res);
 });
 
-// WIP 
-router.get('/:titulo', async (req, res) => {
+router.get('/:id', async (req, res) => {
     abaixoController.getSingleAbaixo(req, res);
 });
 
+router.post('/assinarabaixoassinado', (req, res) => {
+    abaixoController.assinarAbaixoAssinado(req, res);
+})
 module.exports = router;
