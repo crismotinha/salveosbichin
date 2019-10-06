@@ -77,14 +77,14 @@ module.exports = {
 			dataLimite: req.body.dataLimiteAbaixo,
 			resumo: req.body.resumoAbaixo,
 			responsavel: req.body.responsavelAbaixo,
-			//$push: { whoSigned: req.body.emailAbaixo },
 			meta: req.body.metaAbaixo,
 			texto: req.body.textoAbaixo,
 			qtdAssinaturas: 0,
 			dataCriacao: new Date()
 		})
 
-		abaixo.save().then(() => {
+		abaixo.save()
+		.then(() => {
 			Inscritos.find({ afiliado: true }, (err, docs) => {
 				if (err) console.error(err);
 				else {
@@ -105,13 +105,21 @@ module.exports = {
 					mailer.enviaEmail(to, "Salve os Bichin | Novo abaixo-assinado!", mail);
 				}
 			});
-		});
-
-		callback.json({
-			title: "Abaixo-assinado criado!",
-			text:
-				"Um e-mail com as informações do seu abaixo-assinado foi enviado para todos os afiliados.",
-			type: "success"
+			callback.json({
+				title: "Abaixo-assinado criado!",
+				text:
+					"Um e-mail com as informações do seu abaixo-assinado foi enviado para todos os afiliados.",
+				type: "success"
+			});
+		})
+		.catch(err => {
+			console.log(err);
+			callback.json({
+				title: "Erro ao criar abaixo assinado",
+				text:
+					"Algo deu errado ao criar o abaixo assinado. Tente novamente!",
+				type: "error"
+			});
 		});
 	},
 
