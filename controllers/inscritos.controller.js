@@ -1,13 +1,8 @@
 const mongoose = require("mongoose");
 const mailer = require("../services/mail.service");
+const db = require("../services/database.service");
 
-const user = process.env.DB_USER;
-const password = process.env.DB_PASSWORD;
-const url = process.env.DB_URL;
-
-mongoose.connect(`mongodb+srv://${user}:${password}@${url}`, {
-  useNewUrlParser: true
-});
+db.dbConnect();
 
 // criar model inscrito-> pode ser pra agenda ou pra afiliacao
 const inscritos = mongoose.model(
