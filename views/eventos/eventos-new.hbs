@@ -15,10 +15,10 @@
                     required>
             </div>
             <div class="form-group">
-                {{!-- TODO COLOCAR HORARIO --}}
                 <label for="data-evento">Data do evento:</label>
-                <input type="date" class="form-control" id="data-evento" name="dataevento" placeholder="Insira a data"
-                    required>
+                <input type="datetime-local" class="form-control datepicker" id="data-evento"
+                    name="dataevento" placeholder="Insira a data" required>
+
             </div>
             <div class="form-group">
                 <label for="descricao-evento">Descrição do evento:</label>
@@ -56,7 +56,7 @@
                     placeholder="Tem mais informações?">
             </div>
             <div class="form-group">
-                <label for="obs-evento">Observações (Opicional):</label>
+                <label for="obs-evento">Observações (Opcional):</label>
                 <input type="text" class="form-control" id="obs-evento" name="obsevento"
                     placeholder="Insira aqui se há alguma restrição ou algo que necessite de atenção.">
             </div>
@@ -68,6 +68,8 @@
                 << Voltar </a> </div> </section> </div> <div class="space">
         </div>
         <script>
+            document.getElementById("data-evento").min = new Date();
+
             $('#form-eventos').on('submit', e => {
                 e.preventDefault();
                 $.ajax({
@@ -75,7 +77,6 @@
                     method: 'post',
                     data: $('#form-eventos').serialize()
                 }).done(d => {
-                    //console.log(d);
                     Swal.fire(d).then(result => {
                         if (result.value) window.location = '/eventos';
                     })

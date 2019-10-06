@@ -1,13 +1,8 @@
-const mongoose = require("mongoose");
 const mailer = require("../services/mail.service");
+const mongoose = require("mongoose");
+const db = require("../services/database.service");
 
-const user = process.env.DB_USER;
-const password = process.env.DB_PASSWORD;
-const url = process.env.DB_URL;
-
-mongoose.connect(`mongodb+srv://${user}:${password}@${url}`, {
-  useNewUrlParser: true
-});
+db.dbConnect();
 
 const AdoptedSpecies = mongoose.model(
   "AdoptedSpecies",
@@ -60,7 +55,6 @@ module.exports = {
       { upsert: true }, //caso nao exista, cria a especie
       (err, res) => {
         if (err) console.log(err); //erro, caso exista. Normalmente v em null
-        //console.log(res); //resultado da query
       }
     );
 
@@ -73,7 +67,7 @@ module.exports = {
     }
 
     let receiver = req.body.emailadote;
-    let subject = "salveosbichin! | Obrigado por Adotar uma espécie!";
+    let subject = "salveosbichin! | Obrigada por Adotar uma espécie!";
     let text =
       "Parabéns, " +
       req.body.nomeadote +
@@ -90,9 +84,9 @@ module.exports = {
 
     mailer.enviaEmail(receiver, subject, text);
     callback.json({
-      title: "Obrigado pela doação!",
+      title: "Obrigada pela doação!",
       text: "As informações de pagamento serão eviadas para seu e-mail.",
       type: "success"
-    }); // TODO: popup de adotado
+    });
   }
 };

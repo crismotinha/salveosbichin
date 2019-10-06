@@ -4,6 +4,7 @@ const adoteController = require('../controllers/adote.controller');
 const eventosController = require('../controllers/eventos.controller');
 const inscritoController = require('../controllers/inscritos.controller');
 const jogoController = require('../controllers/jogo.controller');
+const abaixoController = require('../controllers/abaixo-assinado.controller');
 
 const Cat = mongoose.model('Cat', { name: String });
 const router = express.Router();
@@ -55,6 +56,11 @@ router.post('/afiliacao', function (req, res, next) {
 router.get('/jogos-natureza', function (req, res, next) {
   jogoController.numeroPessoasJogando(res);
   //res.render('inovacoes/jogos-natureza', { title: 'Salve os Bichin | Jogos da natureza!' })
+});
+
+// Abaixo-assinado 
+router.get('/abaixo-assinado', function (req, res, next) {
+  abaixoController.getAbaixosAssinados(res);
 });
 
 module.exports = router;

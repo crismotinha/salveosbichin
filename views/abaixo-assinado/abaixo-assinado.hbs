@@ -1,0 +1,47 @@
+<section id="abaixo-assinado-home">
+    <div class="news-home">
+        <div class="container noticias-header">
+            <h1 class="news-home-title">abaixo-assinado</h1>
+            <h5 class="header-subtitle">colabore para uma causa assinando um dos abaixo-assinados existentes ou crie o
+                seu próprio!</h4>
+        </div>
+    </div>
+</section>
+<section id="petitions">
+
+
+
+
+
+    <div class="container">
+        <div class="space"></div>
+        <div class="aa-main">
+        <p>Você tem uma causa para defender? Cadastre seu abaixo-assinado para que todo mundo colabore:
+            <a href="/abaixo-assinado/abaixo-assinado-new"><button class="btn btn-success btn-adote">Novo
+                    abaixo-assinado</button></a>
+        </p>
+        </div>
+        <div class="space"></div>
+
+        <div class="list-group" style="margin-top: 20px">
+            <div class="aa-list">
+                {{#each abaixosList}}
+                <ul class="timeline">
+                    <li>
+                        <a href="/abaixo-assinado/{{id}}" class="orange-link">{{titulo}}</a>
+                        <p class="resumo-index"> {{resumo}}</p>
+                        <span class="orange-title">Data limite: </span>
+                        <span class="resumo-index">{{dataLimite}}</span>
+                        <div style="meta-index" style="float: right">
+                            <span class="orange-title">Meta de assinaturas: </span>
+                            <span class="resumo-index">{{meta}}</span>
+                        </div>
+                    </li>
+                </ul>
+                <div class="gap"></div>
+                {{/each}}
+
+            </div>
+        </div>
+</section>
+<div class="space"></div>
