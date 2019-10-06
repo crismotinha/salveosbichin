@@ -26,22 +26,18 @@ module.exports = {
     res.render("eventos/eventos", { title: "Salve os Bichin | Eventos" });
   },
 
-  getEventosHomepage: (req, callback) => {
-    const eventosHome = Eventos.find({}).sort({ data: -1 }).limit(3);
-  },
-
   createEvento: (req, callback) => {
     const evento = new Eventos({
-        nome: req.body.nomeevento,
-        data: req.body.dataevento,
-        descricao: req.body.descricaoevento,
-        responsavel: req.body.responsavelevento,
-        emailContato: req.body.emailevento,
-        local: req.body.localevento,
-        cidade: req.body.cidadeevento,
-        estado: req.body.estadoevento,
-        linkEvento: req.body.linkevento,
-        observacao: req.body.obsevento
+      nome: req.body.nomeevento,
+      data: req.body.dataevento,
+      descricao: req.body.descricaoevento,
+      responsavel: req.body.responsavelevento,
+      emailContato: req.body.emailevento,
+      local: req.body.localevento,
+      cidade: req.body.cidadeevento,
+      estado: req.body.estadoevento,
+      linkEvento: req.body.linkevento,
+      observacao: req.body.obsevento
     });
 
     evento.save().then(() => {
@@ -54,48 +50,22 @@ module.exports = {
             to.push(currentValue.email);
           });
 
-          corpoEvento =
-            "Nome do Evento: " +
-            req.body.nomeevento +
-            "\n" +
-            "Data do Evento: " +
-            req.body.dataevento +
-            "\n" +
-            "Descricao do Evento: " +
-            req.body.descricaoevento +
-            "\n" +
-            "Responsável: " +
-            req.body.responsavelevento +
-            "\n" +
-            "E-mail de Contato: " +
-            req.body.emailevento +
-            "\n" +
-            "Local: " +
-            req.body.localevento +
-            "\n" +
-            "Cidade: " +
-            req.body.cidadeevento +
-            "\n" +
-            "Estado: " +
-            req.body.estadoevento +
-            "\n" +
-            "Link: " +
-            req.body.linkevento +
-            "\n" +
-            "Observação: " +
-            req.body.obsevento +
-            "\n";
+          corpoEvento = "Um novo evento foi criado em nosso site! \n" +
+            "Nome do Evento: " + req.body.nomeevento + "\n" +
+            "Data do Evento: " + req.body.dataevento + "\n" +
+            "Descricao do Evento: " + req.body.descricaoevento + "\n" +
+            "Responsável: " + req.body.responsavelevento + "\n" +
+            "E-mail de Contato: " + req.body.emailevento + "\n" +
+            "Local: " + req.body.localevento + "\n" +
+            "Cidade: " + req.body.cidadeevento + "\n" +
+            "Estado: " + req.body.estadoevento + "\n" +
+            "Link: " + req.body.linkevento + "\n" +
+            "Observação: " + req.body.obsevento + "\n";
 
-          mailer.enviaEmail(
-            to,
-            req.body.nomeevento + " | Salve os Bichin!",
-            corpoEvento
-          );
+          mailer.enviaEmail(to, "Salve os Bichin | Novo evento!", corpoEvento);
         }
       });
     });
-
-    console.log("foi");
     callback.json({
       title: "Evento Criado!",
       text:
@@ -111,7 +81,6 @@ module.exports = {
       .limit(3)
       .lean()
       .exec((err, docs) => {
-        console.log("entrei");
         let eventos = [];
         //
         if (err || docs === null) {
@@ -123,7 +92,6 @@ module.exports = {
               descricao: "Sem descrição"
             });
           }
-          //console.log(docs);
         } else {
           docs.forEach(current => {
             let dataParaString = current.data.toLocaleDateString(
@@ -138,7 +106,7 @@ module.exports = {
           });
         }
         callback.render("index", {
-          title: "Salve os Bichin | Eventos",
+          title: "Salve os Bichin",
           eventos: eventos
         });
       });
@@ -156,8 +124,9 @@ module.exports = {
       else {
         docs.forEach((current) => {
           let dataParaString = current.data.toLocaleDateString('en-GB'/*, {day: '2-digit', month: '2-digit', year: 'numeric'}*/);
+          let horaParaString = current.data.toLocaleTimeString();
           //12/11/2019
-          let day = dataParaString.substring(3, 5); //FIXME datas com 0?
+          let day = ("0" + current.data.getDate()).slice(-2); 
           let month = months[parseInt(dataParaString.substring(0, 2), 10) - 1];
           let year = dataParaString.substring(6, 10);
           eventoslist.push({
@@ -167,11 +136,12 @@ module.exports = {
             month: month,
             year: year,
             data: dataParaString,
+            hora: horaParaString,
             descricao: current.descricao,
             local: current.local,
             cidade: current.cidade,
             estado: current.estado,
-            responsavel: current.responsavelevento,
+            responsavel: current.responsavel,
             emailContato: current.emailContato,
             obs: current.observacao
           });

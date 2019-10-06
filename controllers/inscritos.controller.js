@@ -39,24 +39,22 @@ module.exports = {
           } else {
             mailer.mailAfiliacao(req.body.emailafiliacao);
             callback.json({
-              title: "Obrigado por se afiliar!",
+              title: "Obrigada por se afiliar!",
               type: "success"
             });
           }
         } else {
           mailer.mailAfiliacao(req.body.emailafiliacao);
           callback.json({
-            title: "Obrigado por se afiliar!",
+            title: "Obrigada por se afiliar!",
             type: "success"
           });
         }
       }
     );
-    // res.render(); TODO: popup de inscrito
   },
 
   newAgendaInscrito: (req, callback) => {
-    //console.log(req);
     inscritos.findOneAndUpdate(
       { email: req.body.emailinscrito },
       { email: req.body.emailinscrito, agenda: true },
@@ -78,14 +76,14 @@ module.exports = {
           } else {
             mailer.mailAgendaInscrito(req.body.emailinscrito);
             callback.json({
-              title: "Obrigado por se iscrever na nossa agenda!",
+              title: "Obrigada por se iscrever na nossa agenda!",
               type: "success"
             });
           }
         } else {
           mailer.mailAgendaInscrito(req.body.emailinscrito);
           callback.json({
-            title: "Obrigado por se iscrever na nossa agenda!",
+            title: "Obrigada por se iscrever na nossa agenda!",
             type: "success"
           });
         }

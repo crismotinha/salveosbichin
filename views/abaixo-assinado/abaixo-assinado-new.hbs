@@ -1,0 +1,62 @@
+<section id="noticias1-home">
+    <div class="news-home">
+        <div class="container noticias-header">
+            <h1 class="news-home-title">abaixo-assinado</h1>
+        </div>
+    </div>
+</section>
+<div class="space"></div>
+<section id="abaixos-new">
+    <div class="container">
+        <form id="form-abaixos" method="post" action="criarabaixoassinado">
+            <div class="form-group">
+                <label for="nome-abaixo">Título:</label>
+                <input type="text" class="form-control" id="tituloAbaixo" name="tituloAbaixo" placeholder="Insira o título do seu abaixo-assinado"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="resumo-abaixo">Resumo:</label>
+                <input type="textarea" class="form-control" id="resumoAbaixo" placeholder="Descreva resumidamente o objetivo do seu abaixo-assinado"
+                    name="resumoAbaixo" required>
+            </div>
+            <div class="form-group">
+                <label for="responsavel-abaixoass">Responsável:</label>
+                <input type="text" class="form-control" id="responsavelAbaixo" placeholder="Quem está criando?"
+                    name="responsavelAbaixo" required>
+            </div>
+            <div class="form-group">
+                <label for="desc-abaixo">Descrição:</label>
+                <input type="text" class="form-control" id="textoAbaixo" name="textoAbaixo"
+                    placeholder="Descreva detalhadamente a motivação do seu abaixo-assinado">
+            </div>
+            <div class="form-group">
+                <label for="data-abaixo">Data limite:</label>
+                <input type="datetime-local" class="form-control" id="dataLimiteAbaixo" name="dataLimiteAbaixo"
+                    placeholder="Insira aqui a data limite">
+            </div>
+            <div class="form-group">
+                <label for="meta-abaixo">Meta de assinaturas:</label>
+                <input type="number" class="form-control" id="metaAbaixo" name="metaAbaixo"
+                    placeholder="Insira aqui a meta">
+            </div>
+
+            <button type="submit" class="btn btn-success btn-adote">Enviar</button>
+        </form>
+        <div class="especie-back-button">
+            <a href="/abaixo-assinado">
+                << Voltar </a> </div> </section> </div> <div class="space">
+        </div>
+        <script>
+            $('#form-abaixos').on('submit', e => {
+                e.preventDefault();
+                $.ajax({
+                    url: 'criarabaixoassinado',
+                    method: 'post',
+                    data: $('#form-abaixos').serialize()
+                }).done(d => {
+                    Swal.fire(d).then(result => {
+                        if (result.value) window.location = '/abaixo-assinado';
+                    })
+                })
+            })
+        </script>
