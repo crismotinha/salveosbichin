@@ -442,7 +442,6 @@ section#home-reviews p {
   text-align: right;
 }
 
-
 .ass-aa {
   font-family: "Nunito";
   text-align: right;
@@ -457,11 +456,86 @@ section#home-reviews p {
   font-weight: 600;
 }
 
+.resumo-index {
+  font-family: 'Nunito';
+  text-align: left justify;
+  font-size: 0.9em;
+}
+
+.meta-index {
+  
+  margin-right: 10px;
+  
+}
+
 .resp-aa {
   font-family: 'Nunito';
   text-align: left justify;
   font-size: 1.0em;
   font-weight: 600;
 }
+
+.aa-main {
+  display: block;
+  padding: 5px;
+  height: 10px;
+  text-align: justify;
+}
+
+.aa-list {
+  display: block;
+  background-color: #fafafa;
+}
+
+.gap {
+  display: block;
+  background-color: #ffffff;
+  height: 10px;
+}
+
+.orange-link {
+  font-family: "Nunito";
+  font-size: 1.1em;
+  color: #c08d59;
+  text-shadow: 2px 2px 5px #efefef;
+  font-weight: 700;
+}
+
+.orange-link:hover{
+  color: #353A40;
+  text-decoration: none;
+}
+
+/*haber akışı list*/
+ul.timeline {
+  list-style-type: none;
+  position: relative;
+}
+ul.timeline:before {
+  content: ' ';
+  background: #d4d9df;
+  display: inline-block;
+  position: absolute;
+  left: 29px;
+  width: 2px;
+  height: 100%;
+  z-index: 400;
+}
+ul.timeline > li {
+  margin: 20px 0;
+  padding-left: 20px;
+}
+ul.timeline > li:before {
+
+    width: 100px; height: 100px;
+    background-color: #A0DE21; 
+    -moz-border-radius: 100px 0px;
+    -webkit-border-radius: 100px 0px;
+    border-radius: 100px 0px;
+
+
+}
+
+
 
 /* fim show abaixo-assinado*/

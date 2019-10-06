@@ -13,7 +13,7 @@
     <div class="container">
         <div class="space"></div>
         <div class="row no-gutters">
-            <div class="col-md-8" style="padding-right: 50px;   text-align: justify">
+            <div class="col-md-8" style="padding-right:30px; text-align:justify; clear: right">
                 <h1 class="orange-title">{{abaixo.titulo}}</h1>
                 <p class="resumo-aa">{{abaixo.resumo}} </p>
                 <p>{{abaixo.texto}}</p>
@@ -21,25 +21,24 @@
                 <span>{{abaixo.responsavel}}</span>
             </div>
             <div class="col-aa col-md-4" style="padding: 5px">
-                <h3 class="orange-title" style="text-align: right">Temos {{abaixo.qtdAssinaturas}} assinaturas!</h3>
-                <h5 class="orange-title" style="text-align: right; padding-bottom: 30px">Ajude-nos a atingir a meta:
-                    </h4>
-                    <form id="assinarabaixo" class="form-inline" style="display: flex; justify-content:flex-end"
-                        action="#" method="post">
-                        <input type="email" class="form-control mx-sm-3 mb-2" id="email-assinar" name="emailAssinar"
-                            aria-describedby="emailHelp" placeholder="Insira seu email">
-                        <button type="submit" class="btn btn-success btn-adote mb-2">Assinar</button>
-                        <input type="hidden" id="tituloAssinar" name="tituloAssinar" value="{{abaixo.titulo}}">
-                        <input type="hidden" id="idAssinar" name="idAssinar" value="{{abaixo._id}}">
-                    </form>
-                    <div class="progress" style="width: 90%; float: right">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="{{porcentagem}}"
-                            aria-valuemin="0" aria-valuemax="100" style="width:{{porcentagem}}%">
+                <h3 class="orange-title" style="text-align: right">Conseguimos {{abaixo.qtdAssinaturas}} assinaturas!</h3>
+                <h5 class="orange-title" style="text-align: right; padding-bottom: 30px">Ajude-nos a atingir a meta de {{abaixo.meta}} assinaturas: </h5>
+                                        <div class="progress" style="margin-left:15%">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                            role="progressbar" aria-valuenow="{{porcentagem}}" aria-valuemin="0" aria-valuemax="100"
+                            style="width:{{porcentagem}}%">
                             {{porcentagem}}%
                         </div>
                     </div>
                     <div class="space"></div>
-                    <p class="ass-aa">Meta: {{abaixo.meta}} assinaturas</p>
+                    <form id="assinarabaixo" class="form-inline" style="display:flex; justify-content:flex-end"
+                        action="#" method="post">
+                        <input type="email" class="form-control mx-sm-3 mb-2" id="email-assinar" name="emailAssinar"
+                            aria-describedby="emailHelp" placeholder="Insira seu e-mail">
+                        <button type="submit" class="btn btn-success btn-adote mb-2">Assinar</button>
+                        <input type="hidden" id="tituloAssinar" name="tituloAssinar" value="{{abaixo.titulo}}">
+                        <input type="hidden" id="idAssinar" name="idAssinar" value="{{abaixo._id}}">
+                    </form>
             </div>
         </div>
     </div>
