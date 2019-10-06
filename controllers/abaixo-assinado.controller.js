@@ -23,6 +23,8 @@ const AbaixoAssinado = mongoose.model(('AbaixoAssinado'), new mongoose.Schema({
 	dataCriacao: Date
 }));
 
+var moment = require('moment');
+moment.locale('pt');
 
 module.exports = {
 	getSingleAbaixo: (req, res) => {
@@ -31,8 +33,11 @@ module.exports = {
 				console.log(err);
 			}
 			else {
-				res.render('abaixo-assinado/abaixo-assinado-single', { title: 'Salve os Bichin | Abaixo assinado - ' + req.params.titulo, 
-				abaixo: document, porcentagem: Math.round((document.qtdAssinaturas * 100) / document.meta) });
+				res.render('abaixo-assinado/abaixo-assinado-single', {
+					title: 'Salve os Bichin | Abaixo assinado - ' + req.params.titulo,
+					abaixo: document,					
+					porcentagem: Math.round((document.qtdAssinaturas * 100) / document.meta)
+				});
 			}
 		})
 	},
@@ -51,11 +56,12 @@ module.exports = {
 					// let dataParaString = current.data.toLocaleDateString('en-GB'/*, {day: '2-digit', month: '2-digit', year: 'numeric'}*/);
 					//MM/DD/YYYY
 					const porcentagem = Math.round((current.qtdAssinaturas * 100) / current.meta);
+					let data = moment(current.dataLimite).format('LL');
 
 					abaixosList.push({
 						id: current._id,
 						titulo: current.titulo,
-						dataLimite: current.dataLimite,
+						dataLimite: data,
 						resumo: current.resumo,
 						responsavel: current.responsavel,
 						texto: current.texto,
@@ -95,11 +101,11 @@ module.exports = {
 
 					mail = "Um novo abaixo assinado foi criado no nosso site! \n" +
 						"Título: " + req.body.tituloAbaixo + "\n" +
-					"Resumo: " + req.body.resumoAbaixo + "\n" + 
-					"Responsável: " + req.body.responsavelAbaixo + "\n" +
-					"Data Limite: " + req.body.dataLimiteAbaixo + "\n" +
-					"Meta: " + req.body.metaAbaixo + "\n" + 
-					req.body.textoAbaixo + "\n";
+						"Resumo: " + req.body.resumoAbaixo + "\n" +
+						"Responsável: " + req.body.responsavelAbaixo + "\n" +
+						"Data Limite: " + req.body.dataLimiteAbaixo + "\n" +
+						"Meta: " + req.body.metaAbaixo + "\n" +
+						req.body.textoAbaixo + "\n";
 
 					mailer.enviaEmail(to, "Salve os Bichin | Novo abaixo-assinado!", mail);
 				}
