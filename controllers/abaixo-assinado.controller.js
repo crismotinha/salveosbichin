@@ -2,14 +2,9 @@ const mongoose = require("mongoose");
 const mailer = require("../services/mail.service");
 const Inscritos = require("../controllers/inscritos.controller")
 	.InscristosModel;
+const db = require("../services/database.service");
 
-const user = process.env.DB_USER;
-const password = process.env.DB_PASSWORD;
-const url = process.env.DB_URL;
-
-mongoose.connect(`mongodb+srv://${user}:${password}@${url}`, {
-	useNewUrlParser: true
-});
+db.dbConnect();
 
 const AbaixoAssinado = mongoose.model(('AbaixoAssinado'), new mongoose.Schema({
 	titulo: { type: String, unique: true },
