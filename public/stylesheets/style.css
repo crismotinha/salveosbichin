@@ -549,5 +549,10 @@ ul.timeline > li:before {
 }
 
 #loja {
-  padding: 5%;
+  padding: 2%;
+}
+
+.nav-link-loja {
+  color: #2b8067 !important;
+  font-weight: bolder;
 }

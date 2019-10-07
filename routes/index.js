@@ -66,7 +66,7 @@ router.get('/abaixo-assinado', function (req, res, next) {
 
 //Loja
 router.get('/loja', (req, res)=>{
-  lojaController.getProdutos(res);
+  lojaController.getProdutos(req, res);
 });
 
 module.exports = router;
