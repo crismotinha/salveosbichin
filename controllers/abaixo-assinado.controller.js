@@ -14,6 +14,7 @@ const AbaixoAssinado = mongoose.model(('AbaixoAssinado'), new mongoose.Schema({
 	whoSigned: [Array],
 	meta: Number,
 	texto: String,
+	receiver: String,
 	qtdAssinaturas: Number,
 	dataCriacao: Date
 }));
@@ -58,6 +59,7 @@ module.exports = {
 						titulo: current.titulo,
 						dataLimite: data,
 						resumo: current.resumo,
+						receiver: current.receiver,
 						responsavel: current.responsavel,
 						texto: current.texto,
 						meta: current.meta,
@@ -77,6 +79,7 @@ module.exports = {
 			dataLimite: req.body.dataLimiteAbaixo,
 			resumo: req.body.resumoAbaixo,
 			responsavel: req.body.responsavelAbaixo,
+			receiver: req.body.pressioneAbaixo, // receiver: quem está pressionando
 			meta: req.body.metaAbaixo,
 			texto: req.body.textoAbaixo,
 			qtdAssinaturas: 0,
@@ -97,7 +100,8 @@ module.exports = {
 					mail = "Um novo abaixo assinado foi criado no nosso site! \n" +
 						"Título: " + req.body.tituloAbaixo + "\n" +
 						"Resumo: " + req.body.resumoAbaixo + "\n" +
-						"Responsável: " + req.body.responsavelAbaixo + "\n" +
+						"Pressionando: " + req.body.pressioneAbaixo + "\n" +
+						"Autor: " + req.body.responsavelAbaixo + "\n" +
 						"Data Limite: " + req.body.dataLimiteAbaixo + "\n" +
 						"Meta: " + req.body.metaAbaixo + "\n" +
 						req.body.textoAbaixo + "\n";
