@@ -1,0 +1,27 @@
+<section id="abaixo-assinado-home">
+    <div class="news-home">
+        <div class="container noticias-header">
+            <h1 class="news-home-title">loja</h1>
+            <h5 class="header-subtitle">colabore com a sustentabilidade comprando produtos recicláveis!</h4>
+        </div>
+    </div>
+</section>
+<ul class="nav justify-content-center">
+    <a class="navbar-brand nav-link active nav-link-loja" href="#"><i class="fa fa-shopping-cart icon-large"></i> Seu Carrinho ({{num_itens}})</a>
+</ul>
+
+<section id="loja">
+<div class="row">
+   {{#each produtos}}
+  <div class="card col-sm-3">
+    <img class="loja-card-img-top" src="{{img}}" alt="Imagem de capa do card">
+    <div class="card-body">
+      <h5 class="card-title">{{titulo}}</h5>
+      <p class="card-text">{{descricao}}</p>
+      <p class="card-text h4">R${{preco}}</p>
+      <br>
+      <button class="btn btn-success btn-adote">Adicionar ao carrinho</button>
+    </div>
+  </div>
+  {{/each}}
+</div>

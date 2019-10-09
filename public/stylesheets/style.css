@@ -539,3 +539,20 @@ ul.timeline > li:before {
 
 
 /* fim show abaixo-assinado*/
+
+/*Loja*/
+
+.loja-card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+#loja {
+  padding: 2%;
+}
+
+.nav-link-loja {
+  color: #2b8067 !important;
+  font-weight: bolder;
+}
