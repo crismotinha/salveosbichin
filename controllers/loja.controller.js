@@ -33,7 +33,6 @@ module.exports = {
 	getCarrinho: (req, res) => {
 		carrinho = req.cookies['carrinho'] || {};
 		console.log('carrinho', carrinho)
-		num_itens = Object.keys(carrinho).length;
 		ids = []
 		Object.keys(carrinho).forEach(prod => ids.push(mongoose.Types.ObjectId(prod)))
 		Produto.find({"_id": {"$in": ids}})
@@ -47,8 +46,9 @@ module.exports = {
 				titulo: produto.titulo,
 				descricao: produto.descricao,
 				preco: produto.preco.toFixed(2),
+				qtd: parseInt(carrinho[produto.id].qtd),
 			}));
-			res.render('loja/carrinho', { title: 'Salve os Bichin | Carrinho', produtos: produtoPrecoCorrigido, num_itens: num_itens })
+			res.render('loja/carrinho', { title: 'Salve os Bichin | Carrinho', produtos: produtoPrecoCorrigido })
 		})
 		.catch(err => console.log(err))
 	},
@@ -66,13 +66,19 @@ module.exports = {
 		}
 
 		res.cookie('carrinho', carrinho);
-		res.send("Mandando o cookie");
+		res.send({
+            title: "Produto adicionado ao carrinho!",
+            type: "success"
+          });
 	},
 	removeFromCarrinho: (req, res) => {
 		carrinho = req.cookies['carrinho'] || {};
 		produto = req.body;
 		delete carrinho[produto.id]
 		res.cookie('carrinho', carrinho);
-		res.send("Mandando o cookie");
+		res.send({
+            title: "Produto removido!",
+            type: "success"
+          });
 	},
 }

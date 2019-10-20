@@ -32,18 +32,36 @@
   {{/each}}
 </div>
 <script type="text/javascript">
-    const salvaCarrinho = (id) => {
-        const qtd = document.getElementById("qtd").value;
-      try {
-        var request = new XMLHttpRequest();
-        request.open('POST', '/loja/carrinho', true);
-        request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    // const salvaCarrinho = (id) => {
+    //     const qtd = document.getElementById("qtd").value;
+    //   try {
+    //     var request = new XMLHttpRequest();
+    //     request.open('POST', '/loja/carrinho', true);
+    //     request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 
-        const body = {id, qtd}
-        request.send(JSON.stringify(body));
-        console.log('Completed!', request);
-      } catch(err) {
-        console.error(`Error: ${err}`);
-      }
+    //     const body = {id, qtd}
+    //     request.send(JSON.stringify(body))
+    //     .then(res => {
+    //       console.log(ok)
+    //       Swal.fire(res).then(result => {
+    //           if (result.value) window.location = '/loja';
+    //       })
+    //     });
+    //     console.log('Completed!', request);
+    //   } catch(err) {
+    //     console.error(`Error: ${err}`);
+    //   }
+    // };
+    const salvaCarrinho = (id) => {
+      const qtd = document.getElementById("qtd").value; 
+      $.ajax({
+          url: '/loja/carrinho',
+          method: 'post',
+          data: {id, qtd}
+      }).done(d => {
+          Swal.fire(d).then(result => {
+              if (result.value) window.location = '/loja';
+          })
+      })
     };
 </script>

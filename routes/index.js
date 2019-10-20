@@ -75,6 +75,7 @@ router.post('/loja/carrinho', (req, res) => {
   lojaController.addToCarrinho(req, res);
 });
 router.delete('/loja/carrinho', (req, res) => {
+  console.log('ue')
   lojaController.removeFromCarrinho(req, res);
 });
 module.exports = router;

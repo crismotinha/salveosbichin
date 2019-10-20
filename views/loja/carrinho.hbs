@@ -6,11 +6,8 @@
         </div>
     </div>
 </section>
-<ul class="nav justify-content-center">
-    <a class="navbar-brand nav-link active nav-link-loja" href="/loja/carrinho"><i class="fa fa-shopping-cart icon-large"></i> Seu Carrinho ({{num_itens}})</a>
-</ul>
-
 <section id="loja">
+  {{#if produtos}}
 <div class="row">
    {{#each produtos}}
   <div class="card col-sm-3">
@@ -20,8 +17,43 @@
       <p class="card-text">{{descricao}}</p>
       <p class="card-text h4">R${{preco}}</p>
       <br>
-      <button class="btn btn-success btn-adote">Adicionar ao carrinho</button>
+      <div class="row">
+        <label for="qtd" class="col-sm-6">Quantidade: </label>
+        <input type="number" id="qtd" class="col-sm-6 input-loja" value="{{qtd}}">
+      </div>
+      <div class="col text-center">
+        <button onclick="salvaCarrinho('{{id}}')" class="btn btn-success btn-adote">Adicionar ao carrinho</button>  
+        <button onclick="removerDoCarrinho('{{id}}')" class="btn btn-danger btn-adote">Deletar</button>  
+      </div>
     </div>
   </div>
   {{/each}}
 </div>
+{{else}}
+<h4 class="text-center">Você não tem nenhum produto no carrinho :(<br> <a href="/loja">Clique aqui para ir para a loja!</a></h4>
+{{/if}}
+<script type="text/javascript">
+    const salvaCarrinho = (id) => {
+      const qtd = document.getElementById("qtd").value; 
+      $.ajax({
+          url: '/loja/carrinho',
+          method: 'post',
+          data: {id, qtd}
+      }).done(d => {
+          Swal.fire(d).then(result => {
+              if (result.value) window.location = '/loja/carrinho';
+          })
+      })
+    };
+    const removerDoCarrinho = (id) => {
+      $.ajax({
+          url: '/loja/carrinho',
+          method: 'delete',
+          data: {id}
+      }).done(d => {
+          Swal.fire(d).then(result => {
+              if (result.value) window.location = '/loja/carrinho';
+          })
+      })
+    };
+</script>
