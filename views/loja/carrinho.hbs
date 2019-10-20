@@ -7,6 +7,11 @@
     </div>
 </section>
 <section id="loja">
+<ul class="nav justify-content-center">
+  Insira aqui seu e-mail para receber as informações de pagamento:
+  <input type="email" id="email" placeholder="E-mail" class="input-carrinho">
+  <button onclick="fechaCarrinho()" class="btn btn-success btn-adote">Enviar</button>
+</ul>
   {{#if produtos}}
 <div class="row">
    {{#each produtos}}
@@ -15,15 +20,13 @@
     <div class="card-body">
       <h5 class="card-title">{{titulo}}</h5>
       <p class="card-text">{{descricao}}</p>
-      <p class="card-text h4">R${{preco}}</p>
+      <p class="card-text h6">Unidade: R${{preco}}</p>
       <br>
-      <div class="row">
-        <label for="qtd" class="col-sm-6">Quantidade: </label>
-        <input type="number" id="qtd" class="col-sm-6 input-loja" value="{{qtd}}">
-      </div>
+      <p class="card-text h5">Quantidade: {{qtd}}</p>
+      <p class="card-text h5">Subtotal: R${{subtotal}}</p>
+      <br>
       <div class="col text-center">
-        <button onclick="salvaCarrinho('{{id}}')" class="btn btn-success btn-adote">Adicionar ao carrinho</button>  
-        <button onclick="removerDoCarrinho('{{id}}')" class="btn btn-danger btn-adote">Deletar</button>  
+        <button onclick="removerDoCarrinho('{{id}}')" class="btn btn-danger">Deletar</button>  
       </div>
     </div>
   </div>
@@ -56,4 +59,17 @@
           })
       })
     };
+    const fechaCarrinho = () => {
+      const email = document.getElementById("email").value; 
+      $.ajax({
+          url: '/loja/carrinho/fechar',
+          method: 'post',
+          data: {email}
+      }).done(d => {
+          Swal.fire(d).then(result => {
+              if (result.value) window.location = '/loja/carrinho';
+          })
+      })
+    };
+
 </script>

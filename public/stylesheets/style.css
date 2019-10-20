@@ -561,3 +561,7 @@ ul.timeline > li:before {
   padding-right: 0px !important;
   margin-bottom: 3%;
 }
+
+.input-carrinho {
+  margin-left: 3%;
+}
