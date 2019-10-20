@@ -68,5 +68,10 @@ router.get('/abaixo-assinado', function (req, res, next) {
 router.get('/loja', (req, res)=>{
   lojaController.getProdutos(req, res);
 });
-
+router.get('/loja/carrinho', (req, res) => {
+  lojaController.getCarrinho(req, res);
+});
+router.post('/loja/carrinho', (req, res) => {
+  lojaController.addToCarrinho(req, res);
+});
 module.exports = router;

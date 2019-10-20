@@ -1,7 +1,7 @@
 <section id="abaixo-assinado-home">
     <div class="news-home">
         <div class="container noticias-header">
-            <h1 class="news-home-title">loja</h1>
+            <h1 class="news-home-title">loja - carrinho</h1>
             <h5 class="header-subtitle">colabore com a sustentabilidade comprando produtos recicláveis!</h4>
         </div>
     </div>
@@ -20,25 +20,8 @@
       <p class="card-text">{{descricao}}</p>
       <p class="card-text h4">R${{preco}}</p>
       <br>
-      <input type="number" id="qtd">
-      <button onclick="salvaCarrinho('{{id}}')" class="btn btn-success btn-adote">Adicionar ao carrinho</button>
+      <button class="btn btn-success btn-adote">Adicionar ao carrinho</button>
     </div>
   </div>
   {{/each}}
 </div>
-<script type="text/javascript">
-    const salvaCarrinho = (id) => {
-        const qtd = document.getElementById("qtd").value;
-      try {
-        var request = new XMLHttpRequest();
-        request.open('POST', '/loja/carrinho', true);
-        request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-
-        const body = {id, qtd}
-        request.send(JSON.stringify(body));
-        console.log('Completed!', request);
-      } catch(err) {
-        console.error(`Error: ${err}`);
-      }
-    };
-</script>
