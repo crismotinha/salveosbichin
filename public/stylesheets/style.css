@@ -556,3 +556,8 @@ ul.timeline > li:before {
   color: #2b8067 !important;
   font-weight: bolder;
 }
+
+.input-loja {
+  padding-right: 0px !important;
+  margin-bottom: 3%;
+}
