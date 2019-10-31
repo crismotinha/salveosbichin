@@ -42,13 +42,15 @@ module.exports = {
   },
 
   getPresente: (req, res) => {
-    Presentes.findOne({ _id: req.params.codigo }).lean().exec((err, document) => {
+    Presentes.findById(req.query.codigo).lean().exec((err, document) => {
         if (err || (document === null)) {
-            console.log("Não achou codigo " + req.params.codigo);
+            console.log("Não achou codigo " + req.query.codigo);
             console.log(err);
         }
         else {
-            console.log("achou codigo " + req.params.codigo);
+            console.log("achou codigo " + req.query.codigo);
+            console.log("nome " + document.nome);
+            console.log("template " + document.template);
             res.render('presente-planeta/template-presente', {
                 title: 'Salve os Bichin | Presente para o planeta - Aniversário ' + document.nome,
                 presente: document
