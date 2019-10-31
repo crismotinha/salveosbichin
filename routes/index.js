@@ -69,4 +69,9 @@ router.get('/loja', (req, res)=>{
   lojaController.getProdutos(req, res);
 });
 
+//Presente para o planeta
+router.get('/presente-planeta', (req, res)=>{
+  res.render('presente-planeta/presente-planeta', { title: 'Salve os Bichin | Presente para o planeta'})
+});
+
 module.exports = router;

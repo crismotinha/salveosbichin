@@ -1,0 +1,108 @@
+<section id="noticias1-home">
+	<div class="news-home">
+		<div class="container noticias-header">
+			<h1 class="news-home-title">Presente para o planeta</h1>
+		</div>
+	</div>
+</section>
+<div class="space"></div>
+
+<h3>Visualizar presente:</h3>
+<form id="form-visualizar" method="get" action="visualizar-presente">
+            <div class="form-group">
+                <label for="codigo-template">Código:</label>
+                <input type="text" class="form-control" id="codigo" name="codigo"
+                    placeholder="Insira o código do presente" required>
+            </div>
+
+            <button type="submit" class="btn btn-success">Visualizar</button>
+</form>
+
+<br>
+<br>
+
+<h3>Criar presente:</h3>
+<form id="form-presente" method="post" action="criarpresente">
+            <div class="form-group">
+                <label for="nome-aniversariante">Nome do aniversariante:</label>
+                <input type="text" class="form-control" id="nome" name="nome"
+                    placeholder="Insira o nome do aniversariante" required>
+            </div>
+
+			<div class="form-group">
+                <label for="template">Escolha um template:</label>
+            </div>
+
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+						<br />
+						<div class="card-columns">
+							<div class="card" style="max-width:319px;">
+								<div class="card-block text-center">
+									<img class="card-img-top" src="../imgs/art-close-up-ecology-886521.jpg">
+									<h4 class="card-title">Nome</h4>
+									<p class="card-text">Olá, amigo! É meu aniversário e vc pode me presentear apoiando o projeto salveosbichin. Conto com vc!</p>
+								</div>
+							</div>
+							<div class="custom-control custom-radio">
+								<input type="radio" id="val-1-template" name="valorTemplate" class="custom-control-input" value="1" required>
+								<label class="custom-control-label" for="val-1-template">Template 1</label>
+							</div>
+
+							<div class="card" style="max-width:319px;">
+								<div class="card-block text-center">
+									<h4 class="card-title">Nome</h4>
+									<p class="card-text">Olá, amigo! É meu aniversário e vc pode me presentear apoiando o projeto salveosbichin. Conto com vc!</p>
+									<img class="card-img-top" src="../imgs/art-close-up-ecology-886521.jpg">
+								</div>
+							</div>
+							<div class="custom-control custom-radio">
+								<input type="radio" id="val-2-template" name="valorTemplate" class="custom-control-input" value="2">
+								<label class="custom-control-label" for="val-2-template">Template 2</label>
+							</div>
+
+							<div class="card" style="max-width:319px;">
+								<div class="card-block text-center">
+									<h4 class="card-title">Nome</h4>
+									<img class="card-img-top" src="../imgs/art-close-up-ecology-886521.jpg">
+									<p class="card-text">Olá, amigo! É meu aniversário e vc pode me presentear apoiando o projeto salveosbichin. Conto com vc!</p>
+								</div>
+							</div>
+							<div class="custom-control custom-radio">
+								<input type="radio" id="val-3-template" name="valorTemplate" class="custom-control-input" value="3">
+								<label class="custom-control-label" for="val-3-template">Template 3</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<br>
+
+            <button type="submit" class="btn btn-success">Criar</button>
+</form>
+
+<script>
+			$('#form-visualizar').on('submit', e => {
+                e.preventDefault();
+                $.ajax({
+                    url: '/presente-planeta/visualizar-presente',
+                    method: 'get',
+                    data: $('#form-visualizar').serialize()
+                })
+            })
+
+            $('#form-presente').on('submit', e => {
+                e.preventDefault();
+                $.ajax({
+                    url: '/presente-planeta/criarpresente',
+                    method: 'post',
+                    data: $('#form-presente').serialize()
+                }).done(d => {
+                    Swal.fire(d).then(result => {
+                        if (result.value) window.location = '/presente-planeta/';
+                    })
+                })
+            })
+</script>

@@ -1,0 +1,56 @@
+<section id="noticias1-home">
+	<div class="news-home">
+		<div class="container noticias-header">
+			<h1 class="news-home-title">Parabéns {{presente.nome}} !</h1>
+		</div>
+	</div>
+</section>
+<div class="space"></div>
+
+<p hidden id="template">{{presente.template}}</p>
+
+<div class="container">
+      <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+        	<br />
+
+        	<div class="card-columns">
+
+	        	<div hidden id="1" class="card" style="max-width:319px;">
+	        		<div class="card-block text-center">
+						<img class="card-img-top" src="../imgs/art-close-up-ecology-886521.jpg">
+	        			<h4 class="card-title">Nome</h4>
+	        			<p class="card-text">Olá, amigo! É meu aniversário e vc pode me presentear apoiando o projeto salveosbichin. Conto com vc!</p>
+	        		</div>
+	        	</div>
+
+	        	<div hidden id="2" class="card" style="max-width:319px;">
+	        		<div class="card-block text-center">
+	        			<h4 class="card-title">Nome</h4>
+	        			<p class="card-text">Olá, amigo! É meu aniversário e vc pode me presentear apoiando o projeto salveosbichin. Conto com vc!</p>
+						<img class="card-img-top" src="../imgs/art-close-up-ecology-886521.jpg">
+	        		</div>
+	        	</div>
+
+				<div hidden id="3" class="card" style="max-width:319px;">
+	        		<div class="card-block text-center">
+	        			<h4 class="card-title">Nome</h4>
+						<img class="card-img-top" src="../imgs/art-close-up-ecology-886521.jpg">
+	        			<p class="card-text">Olá, amigo! É meu aniversário e vc pode me presentear apoiando o projeto salveosbichin. Conto com vc!</p>
+	        			
+	        		</div>
+	        	</div>
+
+
+        	</div>
+        	
+        	
+        </div>
+      </div>
+</div>
+
+<script>
+    let template = document.getElementById('template').innerHTML;
+	document.getElementById(template).hidden = true;
+</script>
