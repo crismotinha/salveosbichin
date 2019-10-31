@@ -1,7 +1,7 @@
 <section id="noticias1-home">
 	<div class="news-home">
 		<div class="container noticias-header">
-			<h1 class="news-home-title">Parabéns {{presente.nome}} !</h1>
+			<h1 class="news-home-title">Feliz aniversário {{presente.nome}} !</h1>
 		</div>
 	</div>
 </section>
@@ -20,30 +20,33 @@
 	        	<div hidden id="1" class="card" style="max-width:319px;">
 	        		<div class="card-block text-center">
 						<img class="card-img-top" src="../imgs/art-close-up-ecology-886521.jpg">
-	        			<h4 class="card-title">Nome</h4>
-	        			<p class="card-text">Olá, amigo! É meu aniversário e vc pode me presentear apoiando o projeto salveosbichin. Conto com vc!</p>
+	        			<h4 class="card-title">{{presente.nome}}</h4>
+	        			<p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
 	        		</div>
 	        	</div>
 
 	        	<div hidden id="2" class="card" style="max-width:319px;">
 	        		<div class="card-block text-center">
-	        			<h4 class="card-title">Nome</h4>
-	        			<p class="card-text">Olá, amigo! É meu aniversário e vc pode me presentear apoiando o projeto salveosbichin. Conto com vc!</p>
+	        			<h4 class="card-title">{{presente.nome}}</h4>
+	        			<p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
 						<img class="card-img-top" src="../imgs/art-close-up-ecology-886521.jpg">
 	        		</div>
 	        	</div>
 
 				<div hidden id="3" class="card" style="max-width:319px;">
 	        		<div class="card-block text-center">
-	        			<h4 class="card-title">Nome</h4>
+	        			<h4 class="card-title">{{presente.nome}}</h4>
 						<img class="card-img-top" src="../imgs/art-close-up-ecology-886521.jpg">
-	        			<p class="card-text">Olá, amigo! É meu aniversário e vc pode me presentear apoiando o projeto salveosbichin. Conto com vc!</p>
+	        			<p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
 	        			
 	        		</div>
 	        	</div>
-
-
         	</div>
+
+			<form id="formafiliacao" class="form-inline afilie-se" action="" method="post">
+					<input type="email" class="form-control mx-sm-3 mb-2" id="email-adote" name="emailafiliacao" aria-describedby="emailHelp" placeholder="Insira seu email">
+					<button type="submit" class="btn btn-success btn-adote btn-afilie-se mb-2">Enviar</button>
+				</form>
         	
         	
         </div>
@@ -52,5 +55,5 @@
 
 <script>
     let template = document.getElementById('template').innerHTML;
-	document.getElementById(template).hidden = true;
+	document.getElementById(template).hidden = false;
 </script>

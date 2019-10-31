@@ -13,4 +13,12 @@ router.get('/visualizar-presente', async (req, res)=>{
     presenteController.getPresente(req, res);
 });
 
+router.get('/template-presente', (req, res)=>{
+    var doc = {nome: "teste", template: "3"}
+    res.render('presente-planeta/template-presente', {
+        title: 'Salve os Bichin | Presente para o planeta - Aniversário ' + doc.nome,
+        presente: doc
+    });
+});
+
 module.exports = router;
