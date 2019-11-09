@@ -5,7 +5,9 @@ db.dbConnect();
 
 const Presentes = mongoose.model(('Presentes'), new mongoose.Schema({
   nome: String,
-  template: String
+  template: String,
+  texto: String,
+  imageSrc: String
 }));
 
 module.exports = {
@@ -17,6 +19,8 @@ module.exports = {
     const presente = new Presentes({
       nome: req.body.nome,
       template: templateEscolhido,
+      texto: req.body.texto,
+      imageSrc: req.body.imagem
     });
 
     presente.save().then(() => {
@@ -25,7 +29,7 @@ module.exports = {
         callback.json({
           title: "Presente Criado!",
           text:
-            "O presente foi criado com código " + presente._id,
+            "O presente foi criado com código " + presente._id + ".\n" + "Para acessá-lo use o link: ",
           type: "success",
           codigo: presente._id
         });
