@@ -64,7 +64,7 @@ module.exports = {
             });
         }
     })
-},
+  },
 
   PresentesModel: Presentes,
 

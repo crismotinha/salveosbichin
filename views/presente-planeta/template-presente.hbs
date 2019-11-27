@@ -8,6 +8,7 @@
 <div class="space"></div>
 
 <p hidden id="template">{{presente.template}}</p>
+<p hidden id="imgSrc">{{presente.imageSrc}}</p>
 
 <div class="container">
       <div class="row">
@@ -17,26 +18,26 @@
 
         	<div class="card-columns">
 
+	        	<div hidden id="0" class="card" style="max-width:319px;">
+	        		<div class="card-block text-center">
+						<img id="img0" class="card-img-top" src="">
+	        			<h4 class="card-title">{{presente.nome}}</h4>
+	        			<p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
+	        		</div>
+	        	</div>
+
 	        	<div hidden id="1" class="card" style="max-width:319px;">
 	        		<div class="card-block text-center">
-						<img class="card-img-top" src="../imgs/art-close-up-ecology-886521.jpg">
 	        			<h4 class="card-title">{{presente.nome}}</h4>
 	        			<p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
+						<img id="img1" class="card-img-top" src="">
 	        		</div>
 	        	</div>
 
-	        	<div hidden id="2" class="card" style="max-width:319px;">
+				<div hidden id="2" class="card" style="max-width:319px;">
 	        		<div class="card-block text-center">
 	        			<h4 class="card-title">{{presente.nome}}</h4>
-	        			<p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
-						<img class="card-img-top" src="../imgs/art-close-up-ecology-886521.jpg">
-	        		</div>
-	        	</div>
-
-				<div hidden id="3" class="card" style="max-width:319px;">
-	        		<div class="card-block text-center">
-	        			<h4 class="card-title">{{presente.nome}}</h4>
-						<img class="card-img-top" src="../imgs/art-close-up-ecology-886521.jpg">
+						<img id="img2" class="card-img-top" src="">
 	        			<p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
 	        			
 	        		</div>
@@ -54,6 +55,11 @@
 </div>
 
 <script>
-    let template = document.getElementById('template').innerHTML;
-	document.getElementById(template).hidden = false;
+    let templateId = document.getElementById('template').innerHTML;
+	document.getElementById(templateId).hidden = false;
+	let imgSrc = document.getElementById('imgSrc').innerHTML;
+	console.log(imgSrc);
+	document.getElementById("img0").src = imgSrc;
+	document.getElementById("img1").src = imgSrc;
+	document.getElementById("img2").src = imgSrc;
 </script>
