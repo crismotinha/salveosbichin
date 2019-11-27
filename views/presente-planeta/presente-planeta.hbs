@@ -1,109 +1,221 @@
 <section id="noticias1-home">
-	<div class="news-home">
-		<div class="container noticias-header">
-			<h1 class="news-home-title">Presente para o planeta</h1>
-		</div>
-	</div>
+    <div class="news-home">
+        <div class="container noticias-header">
+            <h1 class="news-home-title">Presente para o planeta</h1>
+        </div>
+    </div>
 </section>
 <div class="space"></div>
 
-<h3>Visualizar presente:</h3>
-<form id="form-visualizar" method="get" action="visualizar-presente">
+
+
+<div class="row justify-content-center">
+  <div class="card col-sm-3 align-self-center">
+    <div class="card-body">
+        <h5 class="card-title">Visualizar presente:</h5>
+        <form class="card-text" id="form-visualizar" method="get" action="visualizar-presente">
             <div class="form-group">
-                <label for="codigo-template">Código:</label>
                 <input type="text" class="form-control" id="codigo" name="codigo"
                     placeholder="Insira o código do presente" required>
             </div>
-
             <button type="submit" class="btn btn-success">Visualizar</button>
-</form>
+        </form>
+    </div>
+  </div>
+</div>
 
 <br>
 <br>
 
-<h3>Criar presente:</h3>
-<form id="form-presente" method="post" action="criarpresente">
+<div class="row justify-content-center">
+  <div class="card col-sm-3 align-self-center">
+    <div class="card-body">
+        <h5 class="card-title">Criar presente:</h5>
+        
+        <form id="form-presente" method="post" action="criarpresente">
+
+            <input type="text" hidden id="nomeAniversariante" name="nomeAniversariante">
+            <input type="text" hidden id="imagemEscolhida" name="imagemEscolhida" value="../imgs/especies/arara-azul-grande.jpg">
+            <input type="text" hidden id="templateEscolhido" name="templateEscolhido" value="0">
+
             <div class="form-group">
                 <label for="nome-aniversariante">Nome do aniversariante:</label>
-                <input type="text" class="form-control" id="nome" name="nome"
+                <input id="aniversariante" type="text" class="form-control"
                     placeholder="Insira o nome do aniversariante" required>
             </div>
 
-			<div class="form-group">
-                <label for="template">Escolha um template:</label>
+            <div class="form-group">
+                <label for="imagem-aniversariante">Escolha a imagem:</label>
             </div>
 
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-						<br />
-						<div class="card-columns">
-							<div class="card" style="max-width:319px;">
-								<div class="card-block text-center">
-									<img class="card-img-top" src="../imgs/art-close-up-ecology-886521.jpg">
-									<h4 class="card-title">Nome</h4>
-									<p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
-								</div>
-							</div>
-							<div class="custom-control custom-radio">
-								<input type="radio" id="val-1-template" name="valorTemplate" class="custom-control-input" value="1" required>
-								<label class="custom-control-label" for="val-1-template">Template 1</label>
-							</div>
 
-							<div class="card" style="max-width:319px;">
-								<div class="card-block text-center">
-									<h4 class="card-title">Nome</h4>
-									<p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
-									<img class="card-img-top" src="../imgs/art-close-up-ecology-886521.jpg">
-								</div>
-							</div>
-							<div class="custom-control custom-radio">
-								<input type="radio" id="val-2-template" name="valorTemplate" class="custom-control-input" value="2">
-								<label class="custom-control-label" for="val-2-template">Template 2</label>
-							</div>
+            <div id="carouselImagens" class="carousel slide" data-interval="false">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselImagens" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselImagens" data-slide-to="1"></li>
+                    <li data-target="#carouselImagens" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item carousel-imagem active">
+                        <img class="card-img-top" src="../imgs/especies/arara-azul-grande.jpg">
+                    </div>
+                    <div class="carousel-item carousel-imagem">
+                        <img class="card-img-top" src="../imgs/especies/mico1.jpg">
+                    </div>
+                    <div class="carousel-item carousel-imagem">
+                        <img class="card-img-top" src="../imgs/especies/onca-pintada.jpg">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselImagens" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Próxima</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselImagens" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Anterior</span>
+                </a>
+            </div>  
 
-							<div class="card" style="max-width:319px;">
-								<div class="card-block text-center">
-									<h4 class="card-title">Nome</h4>
-									<img class="card-img-top" src="../imgs/art-close-up-ecology-886521.jpg">
-									<p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
-								</div>
-							</div>
-							<div class="custom-control custom-radio">
-								<input type="radio" id="val-3-template" name="valorTemplate" class="custom-control-input" value="3">
-								<label class="custom-control-label" for="val-3-template">Template 3</label>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+            </br>
 
-			<br>
+
+            <div class="form-group">
+                <label for="template-aniversariante">Escolha o template:</label>
+            </div>
+
+
+
+            <div id="carouselTemplates" class="carousel slide" data-interval="false">
+
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselTemplates" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselTemplates" data-slide-to="1"></li>
+                    <li data-target="#carouselTemplates" data-slide-to="2"></li>
+                </ol>
+                
+                <div class="carousel-inner">
+                    <div class="carousel-item carousel-template active">
+                        <div class="card">
+                            <div class="card-block text-center">
+                                <img id="teste1" class="card-img-top" src="../imgs/especies/arara-azul-grande.jpg">
+                                <h4 id="nome1" class="card-title">Nome</h4>
+                                <p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item carousel-template">
+                        <div class="card">
+                            <div class="card-block text-center">
+                                <h4 id="nome2" class="card-title">Nome</h4>
+                                <p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
+                                <img id="teste2" class="card-img-top" src="../imgs/especies/arara-azul-grande.jpg">
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="carousel-item carousel-template">
+                        <div class="card">
+                            <div class="card-block text-center">
+                                <h4 id="nome3" class="card-title">Nome</h4>
+                                <img id="teste3" class="card-img-top" src="../imgs/especies/arara-azul-grande.jpg">
+                                <p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselTemplates" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Anterior</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselTemplates" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Próximo</span>
+                </a>
+            </div> 
+
+            <br>
 
             <button type="submit" class="btn btn-success">Criar</button>
-</form>
+
+        </form>
+    </div>
+  </div>
+</div>
 
 <script>
-	
-			$('#form-visualizar').on('submit', e => {
-                e.preventDefault();
-                $.ajax({
-                    url: '/presente-planeta/visualizar-presente',
-                    method: 'get',
-                    data: $('#form-visualizar').serialize()
-                })
-            })
 
-            $('#form-presente').on('submit', e => {
-                e.preventDefault();
-                $.ajax({
-                    url: '/presente-planeta/criarpresente',
-                    method: 'post',
-                    data: $('#form-presente').serialize()
-                }).done(d => {
-                    Swal.fire(d).then(result => {
-                        if (result.value) window.location = '/presente-planeta/';
-                    })
-                })
+    $(document).ready(function() {
+
+        $("#aniversariante").on('paste input', function(){
+            console.log(this.value);
+          document.getElementById("nome1").innerHTML = this.value;
+          document.getElementById("nome2").innerHTML = this.value;
+          document.getElementById("nome3").innerHTML = this.value;
+
+          document.getElementById("nomeAniversariante").value = this.value;
+        });
+
+        $('#carouselImagens').bind('slide.bs.carousel', function (e) {
+
+            setTimeout( function(){
+                $( ".carousel-imagem" ).each(function( i ) {
+                    if ( $(this).hasClass("active") ) {
+
+                        console.log("imagem active " + i);
+                        console.log($(this));
+
+                        const tmp = "../"
+
+                        let src = $(this)['0'].childNodes['1'].src;
+
+                        let src2 = tmp + src.slice(22, src.length);
+
+                        console.log(src2);
+
+                        document.getElementById("teste1").src = src2;
+                        document.getElementById("teste2").src = src2;
+                        document.getElementById("teste3").src = src2;
+
+                        document.getElementById("imagemEscolhida").value = src2;
+                    }
+                });
+            }, 700);
+        });
+
+        $('#carouselTemplates').bind('slide.bs.carousel', function (e) {
+
+            setTimeout( function(){
+                $( ".carousel-template" ).each(function( i ) {
+                    if ( $(this).hasClass("active") ) {
+
+                        console.log("template active " + i);
+                        console.log($(this));
+
+                        document.getElementById("templateEscolhido").value = i;
+                    }
+                });
+            }, 700);
+        });
+    });
+
+    $('#form-visualizar').on('submit', e => {
+        e.preventDefault();
+        $.ajax({
+            url: '/presente-planeta/visualizar-presente',
+            method: 'get',
+            data: $('#form-visualizar').serialize()
+        })
+    })
+
+    $('#form-presente').on('submit', e => {
+        e.preventDefault();
+        $.ajax({
+            url: '/presente-planeta/criarpresente',
+            method: 'post',
+            data: $('#form-presente').serialize()
+        }).done(d => {
+            Swal.fire(d).then(result => {
+                if (result.value) window.location = '/presente-planeta/';
             })
+        })
+    })
 </script>

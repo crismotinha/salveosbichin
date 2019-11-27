@@ -6,7 +6,6 @@ db.dbConnect();
 const Presentes = mongoose.model(('Presentes'), new mongoose.Schema({
   nome: String,
   template: String,
-  texto: String,
   imageSrc: String
 }));
 
@@ -14,13 +13,16 @@ module.exports = {
 
   createPresente: (req, callback) => {
 
-    let templateEscolhido = parseInt(req.body.valorTemplate);
+    //let templateEscolhido = parseInt(req.body.valorTemplate);
+
+    console.log(req.body.nomeAniversariante);
+    console.log(req.body.imagemEscolhida);
+    console.log(req.body.templateEscolhido);
 
     const presente = new Presentes({
-      nome: req.body.nome,
-      template: templateEscolhido,
-      texto: req.body.texto,
-      imageSrc: req.body.imagem
+      nome: req.body.nomeAniversariante,
+      template: req.body.templateEscolhido,
+      imageSrc: req.body.imagemEscolhida
     });
 
     presente.save().then(() => {
@@ -55,6 +57,7 @@ module.exports = {
             console.log("achou codigo " + req.query.codigo);
             console.log("nome " + document.nome);
             console.log("template " + document.template);
+            console.log("imagem " + document.imageSrc);
             res.render('presente-planeta/template-presente', {
                 title: 'Salve os Bichin | Presente para o planeta - Aniversário ' + document.nome,
                 presente: document

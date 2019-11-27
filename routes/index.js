@@ -73,8 +73,5 @@ router.get('/loja', (req, res)=>{
 router.get('/presente-planeta', (req, res)=>{
   res.render('presente-planeta/presente-planeta', { title: 'Salve os Bichin | Presente para o planeta'})
 });
-router.get('/presente-planeta-test', (req, res)=>{
-  res.render('presente-planeta/presente-planeta-test', { title: 'Salve os Bichin | Presente para o planeta test'})
-});
 
 module.exports = router;
