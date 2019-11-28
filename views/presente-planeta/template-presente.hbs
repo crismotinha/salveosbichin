@@ -42,7 +42,7 @@
 				<br>
 
 				<form id="formpresente" class="form-inline afilie-se" action="info" method="post">
-					<input type="email" class="form-control mx-sm-3 mb-2" id="email-adote" name="emailpresente" aria-describedby="emailHelp" placeholder="Insira seu email">
+					<input type="email" class="form-control mx-sm-3 mb-2" id="email-presente" name="emailpresente" aria-describedby="emailHelp" placeholder="Insira seu email">
 					<button type="submit" class="btn btn-success btn-adote btn-afilie-se mb-2">Enviar</button>
 				</form>
 
@@ -58,4 +58,16 @@
 	document.getElementById("img0").src = imgSrc;
 	document.getElementById("img1").src = imgSrc;
 	document.getElementById("img2").src = imgSrc;
+	
+	$('#formpresente').on('submit', (e) => {
+    e.preventDefault();
+    $.ajax({
+      url: '/info',
+      method: 'post',
+      data: $('#formpresente').serialize()
+    }).done(d => {
+      Swal.fire(d);
+      $('#email-presente').val('');
+    });
+  })
 </script>
