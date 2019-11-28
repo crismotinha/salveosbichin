@@ -15,6 +15,24 @@ const inscritos = mongoose.model(
 );
 
 module.exports = {
+  enviarInfoPresente: (req, callback) => {
+    let receiver = req.body.emailpresente;
+    let subject = "salveosbichin! | Obrigado por querer ajudar!";
+    let text =
+      "Agradecemos sua ajuda com qualquer quantia! \n Para realizar o pagamento, realize uma transferência bancária com os seguintes dados:" +
+      "\n CONTA: 9867-1 \n AGÊNCIA: 0001 \N BANCO: Banco do Brasil. \n" +
+      "Razão Social: Salve os Bichin \n" +
+      "CNPJ: 50.668.081/0001-70" + 
+      "Obrigada e até a próxima! :) ";
+
+    mailer.enviaEmail(receiver, subject, text);
+    callback.json({
+      title: "Obrigado pelo apoio!",
+      text: "As informações de pagamento serão eviadas para seu e-mail.",
+      type: "success"
+    });
+  },
+  
   newAfiliacao: (req, callback) => {
     //corrigido usando upsert
     inscritos.findOneAndUpdate(
@@ -76,14 +94,14 @@ module.exports = {
           } else {
             mailer.mailAgendaInscrito(req.body.emailinscrito);
             callback.json({
-              title: "Obrigada por se iscrever na nossa agenda!",
+              title: "Obrigada por se inscrever na nossa agenda!",
               type: "success"
             });
           }
         } else {
           mailer.mailAgendaInscrito(req.body.emailinscrito);
           callback.json({
-            title: "Obrigada por se iscrever na nossa agenda!",
+            title: "Obrigada por se inscrever na nossa agenda!",
             type: "success"
           });
         }

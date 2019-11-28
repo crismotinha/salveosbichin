@@ -18,27 +18,32 @@
                 <p class="resumo-aa">{{abaixo.resumo}} </p>
                 <p>{{abaixo.texto}}</p>
                 <span class="resp-aa">Responsável pela criação do abaixo-assinado:</span>
-                <span>{{abaixo.responsavel}}</span>
+                <span>{{abaixo.responsavel}}</span><br>
+                <span class="resp-aa">Queremos pressionar </span><span
+                    class="orange-title"><b>{{abaixo.receiver}}</b></span><span class="resp-aa"> para a realização desse
+                    abaixo-assinado</span>
             </div>
             <div class="col-aa col-md-4" style="padding: 5px">
-                <h3 class="orange-title" style="text-align: right">Conseguimos {{abaixo.qtdAssinaturas}} assinaturas!</h3>
-                <h5 class="orange-title" style="text-align: right; padding-bottom: 30px">Ajude-nos a atingir a meta de {{abaixo.meta}} assinaturas: </h5>
-                                        <div class="progress" style="margin-left:15%">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                            role="progressbar" aria-valuenow="{{porcentagem}}" aria-valuemin="0" aria-valuemax="100"
-                            style="width:{{porcentagem}}%">
-                            {{porcentagem}}%
-                        </div>
+                <h3 class="orange-title" style="text-align: right">Conseguimos {{abaixo.qtdAssinaturas}} assinaturas!
+                </h3>
+                <h5 class="orange-title" style="text-align: right; padding-bottom: 30px">Ajude-nos a atingir a meta de
+                    {{abaixo.meta}} assinaturas: </h5>
+                <div class="progress" style="margin-left:15%">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
+                        aria-valuenow="{{porcentagem}}" aria-valuemin="0" aria-valuemax="100"
+                        style="width:{{porcentagem}}%">
+                        {{porcentagem}}%
                     </div>
-                    <div class="space"></div>
-                    <form id="assinarabaixo" class="form-inline" style="display:flex; justify-content:flex-end"
-                        action="#" method="post">
-                        <input type="email" class="form-control mx-sm-3 mb-2" id="email-assinar" name="emailAssinar"
-                            aria-describedby="emailHelp" placeholder="Insira seu e-mail">
-                        <button type="submit" class="btn btn-success btn-adote mb-2">Assinar</button>
-                        <input type="hidden" id="tituloAssinar" name="tituloAssinar" value="{{abaixo.titulo}}">
-                        <input type="hidden" id="idAssinar" name="idAssinar" value="{{abaixo._id}}">
-                    </form>
+                </div>
+                <div class="space"></div>
+                <form id="assinarabaixo" class="form-inline" style="display:flex; justify-content:flex-end" action="#"
+                    method="post">
+                    <input type="email" class="form-control mx-sm-3 mb-2" id="email-assinar" name="emailAssinar"
+                        aria-describedby="emailHelp" placeholder="Insira seu e-mail">
+                    <button type="submit" class="btn btn-success btn-adote mb-2">Assinar</button>
+                    <input type="hidden" id="tituloAssinar" name="tituloAssinar" value="{{abaixo.titulo}}">
+                    <input type="hidden" id="idAssinar" name="idAssinar" value="{{abaixo._id}}">
+                </form>
             </div>
         </div>
     </div>

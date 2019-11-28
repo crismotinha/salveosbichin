@@ -1,0 +1,73 @@
+<section id="noticias1-home">
+	<div class="news-home">
+		<div class="container noticias-header">
+			<h1 class="news-home-title">Feliz aniversário {{presente.nome}} !</h1>
+		</div>
+	</div>
+</section>
+<div class="space"></div>
+
+<p hidden id="template">{{presente.template}}</p>
+<p hidden id="imgSrc">{{presente.imageSrc}}</p>
+
+
+<div class="row justify-content-center">
+  <div class="card col-sm-3 align-self-center">
+    <div class="card-body">
+			<div hidden id="0" class="card">
+	        		<div class="card-block text-center">
+						<img id="img0" class="card-img-top" src="">
+	        			<h4 class="card-title">{{presente.nome}}</h4>
+	        			<p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
+	        		</div>
+	        	</div>
+
+	        	<div hidden id="1" class="card">
+	        		<div class="card-block text-center">
+	        			<h4 class="card-title">{{presente.nome}}</h4>
+	        			<p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
+						<img id="img1" class="card-img-top" src="">
+	        		</div>
+	        	</div>
+
+				<div hidden id="2" class="card">
+	        		<div class="card-block text-center">
+	        			<h4 class="card-title">{{presente.nome}}</h4>
+						<img id="img2" class="card-img-top" src="">
+	        			<p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
+	        			
+	        		</div>
+	        	</div>
+
+				<br>
+
+				<form id="formpresente" class="form-inline afilie-se" action="info" method="post">
+					<input type="email" class="form-control mx-sm-3 mb-2" id="email-presente" name="emailpresente" aria-describedby="emailHelp" placeholder="Insira seu email">
+					<button type="submit" class="btn btn-success btn-adote btn-afilie-se mb-2">Enviar</button>
+				</form>
+
+    </div>
+  </div>
+</div>
+
+<script>
+    let templateId = document.getElementById('template').innerHTML;
+	document.getElementById(templateId).hidden = false;
+	let imgSrc = document.getElementById('imgSrc').innerHTML;
+	console.log(imgSrc);
+	document.getElementById("img0").src = imgSrc;
+	document.getElementById("img1").src = imgSrc;
+	document.getElementById("img2").src = imgSrc;
+	
+	$('#formpresente').on('submit', (e) => {
+    e.preventDefault();
+    $.ajax({
+      url: '/presente-planeta/info',
+      method: 'post',
+      data: $('#formpresente').serialize()
+    }).done(d => {
+      Swal.fire(d);
+      $('#email-presente').val('');
+    });
+  })
+</script>
