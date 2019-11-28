@@ -31,7 +31,7 @@ module.exports = {
         callback.json({
           title: "Presente Criado!",
           text:
-            "O presente foi criado com código " + presente._id + ".\n" + "Para acessá-lo use o link: ",
+            "O presente foi criado com código " + presente._id,
           type: "success",
           codigo: presente._id
         });

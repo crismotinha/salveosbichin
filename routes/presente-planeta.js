@@ -13,7 +13,7 @@ router.post('/criarpresente', (req, res)=>{
     presenteController.getPresente(req, res);
 }); */
 
-router.get('/visualizar-presente?codigo', (req, res)=>{
+router.get('/visualizar-presente', (req, res)=>{
     presenteController.getPresente(req, res);
 });
 

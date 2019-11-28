@@ -11,7 +11,7 @@
   <div class="card col-sm-3 align-self-center">
     <div class="card-body">
         <h5 class="card-title">Visualizar presente:</h5>
-        <form class="card-text" id="form-visualizar" method="get" action="visualizar-presente">
+        <form class="card-text" id="form-visualizar" method="get" action="presente-planeta/visualizar-presente">
             <div class="form-group">
                 <input type="text" class="form-control" id="codigo" name="codigo"
                     placeholder="Insira o código do presente" required>
@@ -55,10 +55,10 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item carousel-imagem active">
-                        <img class="card-img-top" src="../imgs/especies/arara-azul-grande.jpg">
+                        <img class="card-img-top" src="../imgs/especies/mico1.jpg">
                     </div>
                     <div class="carousel-item carousel-imagem">
-                        <img class="card-img-top" src="../imgs/especies/mico1.jpg">
+                        <img class="card-img-top" src="../imgs/especies/arara-azul-grande.jpg">
                     </div>
                     <div class="carousel-item carousel-imagem">
                         <img class="card-img-top" src="../imgs/especies/onca-pintada.jpg">
@@ -95,7 +95,7 @@
                     <div class="carousel-item carousel-template active">
                         <div class="card">
                             <div class="card-block text-center">
-                                <img id="teste1" class="card-img-top" src="../imgs/especies/arara-azul-grande.jpg">
+                                <img id="teste1" class="card-img-top" src="../imgs/especies/mico1.jpg">
                                 <h4 id="nome1" class="card-title">Nome</h4>
                                 <p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
                             </div>
@@ -106,7 +106,7 @@
                             <div class="card-block text-center">
                                 <h4 id="nome2" class="card-title">Nome</h4>
                                 <p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
-                                <img id="teste2" class="card-img-top" src="../imgs/especies/arara-azul-grande.jpg">
+                                <img id="teste2" class="card-img-top" src="../imgs/especies/mico1.jpg">
                             </div>
                         </div>  
                     </div>
@@ -114,7 +114,7 @@
                         <div class="card">
                             <div class="card-block text-center">
                                 <h4 id="nome3" class="card-title">Nome</h4>
-                                <img id="teste3" class="card-img-top" src="../imgs/especies/arara-azul-grande.jpg">
+                                <img id="teste3" class="card-img-top" src="../imgs/especies/mico1.jpg">
                                 <p class="card-text">Olá, amigo! Este é meu cartão de aniversário e vc pode me presentear apoiando o projeto salveosbichin. Para ajudar basta passar seu email para receber as informações. Conto com vc!</p>
                             </div>
                         </div>
@@ -210,7 +210,7 @@
             data: $('#form-presente').serialize()
         }).done(d => {
             Swal.fire(d).then(result => {
-                if (result.value) window.location = '/presente-planeta/';
+                if (result.value) window.location = '/presente-planeta';
             })
         })
     })
