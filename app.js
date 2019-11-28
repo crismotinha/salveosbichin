@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var adoteRouter = require('./routes/adote-especies');
 var eventosRouter = require('./routes/eventos');
 var abaixoRouter = require('./routes/abaixo-assinado');
+var presenteRouter = require('./routes/presente-planeta');
 
 var app = express();
 var hbs = require('hbs');
@@ -29,6 +30,7 @@ app.use('/', indexRouter);
 app.use('/adote', adoteRouter);
 app.use('/eventos', eventosRouter);
 app.use('/abaixo-assinado', abaixoRouter);
+app.use('/presente-planeta', presenteRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

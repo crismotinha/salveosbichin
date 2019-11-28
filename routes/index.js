@@ -68,6 +68,7 @@ router.get('/abaixo-assinado', function (req, res, next) {
 router.get('/loja', (req, res)=>{
   lojaController.getProdutos(req, res);
 });
+
 router.get('/loja/carrinho', (req, res) => {
   lojaController.getCarrinho(req, res);
 });
@@ -80,4 +81,10 @@ router.delete('/loja/carrinho', (req, res) => {
 router.post('/loja/carrinho/fechar', (req, res)=>{
   lojaController.checkout(req, res);
 });
+
+//Presente para o planeta
+router.get('/presente-planeta', (req, res)=>{
+  res.render('presente-planeta/presente-planeta', { title: 'Salve os Bichin | Presente para o planeta'})
+});
+
 module.exports = router;
