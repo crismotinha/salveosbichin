@@ -62,7 +62,7 @@
 	$('#formpresente').on('submit', (e) => {
     e.preventDefault();
     $.ajax({
-      url: 'presente-planeta/info',
+      url: '/presente-planeta/info',
       method: 'post',
       data: $('#formpresente').serialize()
     }).done(d => {
