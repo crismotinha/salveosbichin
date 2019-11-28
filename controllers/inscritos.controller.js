@@ -31,7 +31,7 @@ module.exports = {
       text: "As informações de pagamento serão eviadas para seu e-mail.",
       type: "success"
     });
-  }
+  },
   
   newAfiliacao: (req, callback) => {
     //corrigido usando upsert
