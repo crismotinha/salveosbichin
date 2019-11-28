@@ -94,14 +94,14 @@ module.exports = {
           } else {
             mailer.mailAgendaInscrito(req.body.emailinscrito);
             callback.json({
-              title: "Obrigada por se iscrever na nossa agenda!",
+              title: "Obrigada por se inscrever na nossa agenda!",
               type: "success"
             });
           }
         } else {
           mailer.mailAgendaInscrito(req.body.emailinscrito);
           callback.json({
-            title: "Obrigada por se iscrever na nossa agenda!",
+            title: "Obrigada por se inscrever na nossa agenda!",
             type: "success"
           });
         }
