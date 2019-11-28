@@ -19,7 +19,7 @@ module.exports = {
     let receiver = req.body.emailpresente;
     let subject = "salveosbichin! | Obrigado por querer ajudar!";
     let text =
-      "Agradecemos sua ajuda! \n Para realizar o pagamento, realize uma transferência bancária com os seguintes dados:" +
+      "Agradecemos sua ajuda com qualquer quantia! \n Para realizar o pagamento, realize uma transferência bancária com os seguintes dados:" +
       "\n CONTA: 9867-1 \n AGÊNCIA: 0001 \N BANCO: Banco do Brasil. \n" +
       "Razão Social: Salve os Bichin \n" +
       "CNPJ: 50.668.081/0001-70" + 
