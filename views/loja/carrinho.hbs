@@ -1,0 +1,75 @@
+<section id="abaixo-assinado-home">
+    <div class="news-home">
+        <div class="container noticias-header">
+            <h1 class="news-home-title">loja - carrinho</h1>
+            <h5 class="header-subtitle">colabore com a sustentabilidade comprando produtos recicláveis!</h4>
+        </div>
+    </div>
+</section>
+<section id="loja">
+<ul class="nav justify-content-center">
+  Insira aqui seu e-mail para receber as informações de pagamento:
+  <input type="email" id="email" placeholder="E-mail" class="input-carrinho">
+  <button onclick="fechaCarrinho()" class="btn btn-success btn-adote">Enviar</button>
+</ul>
+  {{#if produtos}}
+<div class="row">
+   {{#each produtos}}
+  <div class="card col-sm-3">
+    <img class="loja-card-img-top" src="{{img}}" alt="Imagem de capa do card">
+    <div class="card-body">
+      <h5 class="card-title">{{titulo}}</h5>
+      <p class="card-text">{{descricao}}</p>
+      <p class="card-text h6">Unidade: R${{preco}}</p>
+      <br>
+      <p class="card-text h5">Quantidade: {{qtd}}</p>
+      <p class="card-text h5">Subtotal: R${{subtotal}}</p>
+      <br>
+      <div class="col text-center">
+        <button onclick="removerDoCarrinho('{{id}}')" class="btn btn-danger">Deletar</button>  
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>
+{{else}}
+<h4 class="text-center">Você não tem nenhum produto no carrinho :(<br> <a href="/loja">Clique aqui para ir para a loja!</a></h4>
+{{/if}}
+<script type="text/javascript">
+    const salvaCarrinho = (id) => {
+      const qtd = document.getElementById("qtd").value; 
+      $.ajax({
+          url: '/loja/carrinho',
+          method: 'post',
+          data: {id, qtd}
+      }).done(d => {
+          Swal.fire(d).then(result => {
+              if (result.value) window.location = '/loja/carrinho';
+          })
+      })
+    };
+    const removerDoCarrinho = (id) => {
+      $.ajax({
+          url: '/loja/carrinho',
+          method: 'delete',
+          data: {id}
+      }).done(d => {
+          Swal.fire(d).then(result => {
+              if (result.value) window.location = '/loja/carrinho';
+          })
+      })
+    };
+    const fechaCarrinho = () => {
+      const email = document.getElementById("email").value; 
+      $.ajax({
+          url: '/loja/carrinho/fechar',
+          method: 'post',
+          data: {email}
+      }).done(d => {
+          Swal.fire(d).then(result => {
+              if (result.value) window.location = '/loja/carrinho';
+          })
+      })
+    };
+
+</script>
